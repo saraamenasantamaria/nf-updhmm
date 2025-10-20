@@ -1,0 +1,53 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/subworkflows/yaml-schema.json
+name: "COMBINE_VCF"
+description: Perform VCF intersection and merge operations to combine family trio VCFs into a single merged VCF
+keywords:
+  - vcf
+  - intersection
+  - merge
+  - bcftools
+  - family
+  - trio
+components:
+  - bcftools/isec
+  - bcftools/merge
+
+input:
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing family information (family ID and SV paths)
+          e.g. [ id:'family_001', sv_p:'path/to/proband', sv_m:'path/to/mother', sv_f:'path/to/father' ]
+    - vcfs:
+        type: file
+        description: List of VCF files for family trio (proband, mother, father) to be intersected and merged
+        pattern: "*.{vcf.gz}"
+    - tbis:
+        type: file
+        description: Tabix index files for input VCF files
+        pattern: "*.tbi"
+
+output:
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing family information (family ID and SV paths)
+          e.g. [ id:'family_001', sv_p:'path/to/proband', sv_m:'path/to/mother', sv_f:'path/to/father' ]
+    - vcf:
+        type: file
+        description: Merged VCF file containing variants from family trio members after optional intersection
+        pattern: "*.{vcf.gz}"
+    - tbi:
+        type: file
+        description: Tabix index file for merged VCF
+        pattern: "*.tbi"
+  - versions:
+      type: file
+      description: File containing software versions
+      pattern: "versions.yml"
+
+authors:
+  - "@saramenasantamaria"
+
+maintainers:
+  - "@saramenasantamaria"

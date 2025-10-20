@@ -1,0 +1,62 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/subworkflows/yaml-schema.json
+name: "EVENT_DETECTION"
+description: Implements the core UPDhmm R-package logic, including trio VCF preprocessing with quality-aware genotype encoding, HMM-based UPD detection, and event collapsing to summarize regions per sample and chromosome
+keywords:
+  - vcf
+  - upd
+  - uniparental disomy
+  - event detection
+  - trio
+  - family
+  - genotype
+  - hmm
+  - hidden markov model
+  - collapse
+  - depth ratio
+components:
+  - vcf_check
+  - calculate_events
+  - collapse_events
+
+input:
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing family information (family ID, individual IDs, and SV paths)
+          e.g. [ id:'family_001', proband_id:'proband_001', mother_id:'mother_001', father_id:'father_001', sv_p:'path/to/proband.bed', sv_m:'path/to/mother.bed', sv_f:'-' ]
+    - vcf:
+        type: file
+        description: Input VCF file containing family trio genotypes for UPD event detection
+        pattern: "*.{vcf.gz}"
+    - tbi:
+        type: file
+        description: Tabix index file for input VCF
+        pattern: "*.tbi"
+
+output:
+  - upd_events_txt:
+      - meta:
+          type: map
+          description: |
+            Groovy Map containing family information (family ID, individual IDs, and SV paths)
+            e.g. [ id:'family_001', proband_id:'proband_001', mother_id:'mother_001', father_id:'father_001', sv_p:'path/to/proband.bed', sv_m:'path/to/mother.bed', sv_f:'-' ]
+      - txt:
+          type: file
+          description: UPD events file containing HMM-detected UPD events per trio, including genomic coordinates (seqnames, start, end), inferred state (group), number of SNPs (n_snps), Mendelian error counts (n_mendelian_error), and optional per-block normalized depth ratios
+          pattern: "*.txt"
+  - upd_collapsed_txt:
+      - meta:
+          type: map
+          description: |
+            Groovy Map containing family information (family ID, individual IDs, and SV paths)
+            e.g. [ id:'family_001', proband_id:'proband_001', mother_id:'mother_001', father_id:'father_001', sv_p:'path/to/proband.bed', sv_m:'path/to/mother.bed', sv_f:'-' ]
+      - txt:
+          type: file
+          description: description: Collapsed UPD events file per sample, chromosome, and group, summarizing total event counts (n_events), cumulative Mendelian errors (total_mendelian_error), total genomic span size (total_size), and merged event coordinates (collapsed_events, min_start, max_end)
+          pattern: "*.txt"
+
+authors:
+  - "@saramenasantamaria"
+
+maintainers:
+  - "@saramenasantamaria"

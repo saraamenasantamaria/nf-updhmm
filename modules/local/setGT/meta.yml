@@ -1,54 +1,67 @@
-name: "SETGT"
-description: "Fix missing genotype calls in VCF files by replacing ./. with 0/0"
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
+name: "setgt"
+description: Convert missing genotypes in VCF files to homozygous reference calls using bcftools setGT plugin to ensure all genotypes are explicitly defined
 keywords:
-  - "vcf"
-  - "fix"
-  - "missing"
-  - "genotype"
+  - vcf
+  - genotype
+  - missing data
+  - imputation
+  - bcftools
+  - setgt
+  - homozygous reference
 
 tools:
-  - "bcftools":
-      description: "A set of utilities that manipulate variant calls in the Variant Call Format (VCF) and its binary counterpart BCF format."
-      homepage: "https://samtools.github.io/bcftools/bcftools.html"
-      documentation: "http://www.htslib.org/doc/bcftools.html"
-      doi: "10.1093/gigascience/giab008"
+  - bcftools:
+      description: |
+        BCFtools is a set of utilities that manipulate variant calls in the Variant Call Format (VCF) and its binary counterpart BCF. 
+        The setGT plugin is used to set or change genotype fields.
+      homepage: http://samtools.github.io/bcftools/bcftools.html
+      documentation: http://samtools.github.io/bcftools/bcftools.html
+      doi: 10.1093/gigascience/giab008
       licence: ["MIT"]
 
 input:
-  - meta:
-      type: map
-      description: |
-        Groovy Map containing sample information
-        e.g. [ id:'test', single_end:false ]
-  - vcf:
-      type: file
-      description: Input VCF file
-      pattern: "*.{vcf,vcf.gz}"
-  - tbi:
-      type: file
-      description: Index of the input VCF file
-      pattern: "*.{tbi,csi}"
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing family information (family ID, individual IDs, and SV paths)
+          e.g. `[ id:'family_001', proband_id:'proband_001', mother_id:'mother_001', father_id:'father_001', sv_p:'path/to/proband.bed', sv_m:'path/to/mother.bed', sv_f:'-' ]`
+    - vcf:
+        type: file
+        description: Input VCF file containing variant calls with potentially missing genotypes
+        pattern: "*.{vcf,vcf.gz}"
+    - tbi:
+        type: file
+        description: Tabix index file for input VCF
+        pattern: "*.tbi"
 
 output:
-  - meta:
-      type: map
-      description: |
-        Groovy Map containing sample information
-        e.g. [ id:'test', single_end:false ]
-  - vcf:
-      type: file
-      description: Fixed VCF file with missing genotypes replaced by 0/0
-      pattern: "*.vcf.gz"
-  - tbi:
-      type: file
-      description: Index of the fixed VCF file
-      pattern: "*.vcf.gz.tbi"
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing family information (family ID, individual IDs, and SV paths)
+          e.g. `[ id:'family_001', proband_id:'proband_001', mother_id:'mother_001', father_id:'father_001', sv_p:'path/to/proband.bed', sv_m:'path/to/mother.bed', sv_f:'-' ]`
+    - vcf:
+        type: file
+        description: Output VCF file with missing genotypes converted to homozygous reference (0/0)
+        pattern: "*.vcf.gz"
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing family information (family ID, individual IDs, and SV paths)
+          e.g. `[ id:'family_001', proband_id:'proband_001', mother_id:'mother_001', father_id:'father_001', sv_p:'path/to/proband.bed', sv_m:'path/to/mother.bed', sv_f:'-' ]`
+    - tbi:
+        type: file
+        description: Tabix index file for output VCF
+        pattern: "*.vcf.gz.tbi"
   - versions:
-      type: file
-      description: File containing software versions
-      pattern: "versions.yml"
+      - versions.yml:
+          type: file
+          description: File containing software versions
+          pattern: "versions.yml"
 
 authors:
   - "@saramenasantamaria"
+
 maintainers:
   - "@saramenasantamaria"

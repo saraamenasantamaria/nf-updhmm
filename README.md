@@ -32,15 +32,16 @@ Where appropriate, modules are reused or patched from [nf-core/modules](https://
 ## Pipeline summary
 
 This pipeline standardizes the detection of uniparental disomy (UPD) events in trio sequencing data.  
-It includes preprocessing of raw VCF files to ensure compatibility with the UPDhmm R package, application of a Hidden Markov Model to detect UPD segments, and postprocessing filters to refine the final set of events.
+It includes preprocessing of raw VCF/GVCF files to ensure compatibility with the UPDhmm R package, application of a Hidden Markov Model to detect UPD segments, and postprocessing filters to refine the final set of events.
 
 Default steps:
 
 1. **Preprocessing (`PREPROCESS_VCF`)**  
-   Prepares the trio data by combining individual VCFs (if required) and applying filters to keep only high-quality biallelic SNVs.
+   Prepares the trio data by combining individual VCFs/GVCFs (if required) and applying filters to keep only high-quality biallelic SNVs.
    
    - **`REMOVE_ANNOTATIONS`** – filters autosomes, removes annotations from individual VCF files, and regroups by family.
    - **`COMBINE_VCF`** – merges the VCFs from father, mother, and proband into a joint file, keeping either only variants shared by all three individuals (`perform_intersection = TRUE`) or all variants (`perform_intersection = FALSE`).
+   - **`COMBINE_GVCF`** –
    - **`SV_MASK_BED`** *(optional)* – removes variants overlapping large structural changes using BED files.
    - **`FILTER_LOWCONF`** – applies hard filters to generate the final preprocessed VCF per family.
 
@@ -52,7 +53,7 @@ Default steps:
 > **Note:** If merging is performed instead of intersection, the **SETGT** module is applied to convert missing genotypes in VCF files to homozygous reference.
 > This ensures that all genotypes are explicitly defined before downstream analysis.
 
-2. **UPD detection (`UPD_ANALYSIS`)**  
+2. **UPD detection (`EVENT_DETECTION`)**  
    Runs the UPDhmm core functions to detect genomic blocks consistent with UPD.  
    - **`VCF_CHECK`** – validates and formats the combined VCF as a `largeCollapsedVcf` object.  
    - **`CALCULATE_EVENTS`** – applies the HMM (Viterbi algorithm) to infer hidden states, groups variants into blocks, and annotates each block with confidence metrics.
@@ -116,19 +117,17 @@ If no events are found, an empty data.frame is returned.
 
 **Output columns:**  
 
-| Column name          | Description                                                                 |
-|----------------------|-----------------------------------------------------------------------------|
-| seqnames             | Chromosome                                                                 |
-| start                | Start position of the block                                                |
-| end                  | End position of the block                                                  |
-| n_snps               | Number of variants within the event                                        |
-| group                | Predicted UPD state (e.g. iso_mat, het_fat)                                |
-| log_likelihood       | Log likelihood ratio for the inferred block                                |
-| p_value              | Statistical significance of the event                                      |
-| n_mendelian_error    | Number of Mendelian errors supporting the event                            |
-| ratio_proband        | Ratio of average depth inside vs. outside the event for the proband        |
-| ratio_mother         | Ratio of average depth inside vs. outside the event for the mother         |
-| ratio_father         | Ratio of average depth inside vs. outside the event for the father         |
+| Column name          | Description                                                                           |
+|----------------------|---------------------------------------------------------------------------------------|
+| seqnames             | Chromosome                                                                            |
+| start                | Start position of the block                                                           |
+| end                  | End position of the block                                                             |
+| n_snps               | Number of variants within the event                                                   |
+| group                | Predicted UPD state (e.g. iso_mat, het_fat)                                           |
+| n_mendelian_error    | Number of Mendelian errors supporting the event                                       |
+| ratio_proband        | (Optional) Ratio of average depth inside vs. outside the event for the proband        |
+| ratio_mother         | (Optional) Ratio of average depth inside vs. outside the event for the mother         |
+| ratio_father         | (Optional) Ratio of average depth inside vs. outside the event for the father         |
 
 2. **Collapsed events (`<trio>.collapsed.txt`)**  
    Postprocessed and filtered results. Overlapping events of the same type within the same chromosome (e.g. paternal isodisomy) are merged into a single representative block.  
@@ -162,11 +161,12 @@ nextflow run nf-core/updhmm \
    --outdir <OUTDIR> \
    --genome_build <hg38/hg19> \
    --perform_intersection <TRUE/FALSE>
+   -- AÑADIR AQUÍ TODOS LOS PARÁMETROS CONFIGURABLES QUE SE PUEDEN INTRODUCIR
 ```
 
 ## Credits
 
-nf-core/updhmm was originally written by Marta Sevilla Porras, Sara Mena Santamaría and Carlos Ruiz Arenas.
+nf-core/updhmm was originally written by Sara Mena Santamaría, Marta Sevilla Porras and Carlos Ruiz Arenas.
 
 
 ## Contributions and Support

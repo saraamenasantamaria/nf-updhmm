@@ -1,8 +1,9 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/subworkflows/yaml-schema.json
 name: "REMOVE_ANNOTATIONS"
-description: Filter autosomes, remove unused annotations from individual VCFs, and regroup by family.
+description: Index VCF/GVCF files, filter autosomes, remove unused annotations from individual files, and regroup by family
 keywords:
   - vcf
+  - gvcf
   - annotations
   - bcftools
   - family
@@ -13,32 +14,39 @@ components:
   - tabix/tabix
   - bcftools/view
   - bcftools/annotate
+  
 input:
-  - samples_ch:
-      type: channel
-      description: |
-        Channel containing family metadata and VCF files for trio analysis
-      pattern: "[meta, vcfs]"
-      structure:
-        - meta: Family metadata map containing family ID and SV paths
-        - vcfs: List of VCF files [proband, mother, father] in order
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing family information (family ID and SV paths)
+          e.g. [ id:'family_001', sv_p:'path/to/proband', sv_m:'path/to/mother', sv_f:'path/to/father' ]
+    - vcfs:
+        type: file
+        description: List of VCF/GVCF files for family trio (proband, mother, father)
+        pattern: "*.{vcf.gz}"
+
 output:
-  - vcfs:
-      type: channel
-      description: |
-        Processed VCF files with annotations removed and filtered for autosomes, 
-        regrouped by family. Each family contains processed VCFs for proband, mother, 
-        and father with corresponding index files.
-      pattern: "[meta, vcfs, tbis]"
-      structure:
-        - meta: Family metadata map
-        - vcfs: List of processed VCF files [proband, mother, father] in order
-        - tbis: List of corresponding VCF index files [proband, mother, father] in order
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing family information (family ID and SV paths)
+          e.g. [ id:'family_001', sv_p:'path/to/proband', sv_m:'path/to/mother', sv_f:'path/to/father' ]
+    - vcfs:
+        type: file
+        description: Processed VCF/GVCF files filtered for autosomes with annotations removed
+        pattern: "*.{vcf.gz}"
+    - tbis:
+        type: file
+        description: Tabix index files for processed VCF/GVCF files
+        pattern: "*.tbi"
   - versions:
-      type: channel
-      description: Channel containing software versions
-      pattern: "versions.yml"
+      type: file
+      description: File containing software versions
+      pattern: "versions.yml"   
+       
 authors:
   - "@saramenasantamaria"
+  
 maintainers:
   - "@saramenasantamaria"

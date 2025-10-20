@@ -1,0 +1,179 @@
+Dec-11 18:08:46.292 [main] DEBUG nextflow.cli.Launcher - $> nextflow -quiet -log /home/u0030001/nf-updhmm_zenodo/.nf-test/tests/2a343b6de37da757b154cfb428092bdc/meta/nextflow.log run /home/u0030001/nf-updhmm_zenodo/.nf-test-2a343b6de37da757b154cfb428092bdc.nf -c /home/u0030001/nf-updhmm_zenodo/nextflow.config -c /home/u0030001/nf-updhmm_zenodo/tests/nextflow.config -params-file /home/u0030001/nf-updhmm_zenodo/.nf-test/tests/2a343b6de37da757b154cfb428092bdc/meta/params.json -ansi-log false -profile singularity -with-trace /home/u0030001/nf-updhmm_zenodo/.nf-test/tests/2a343b6de37da757b154cfb428092bdc/meta/trace.csv -w /home/u0030001/nf-updhmm_zenodo/.nf-test/tests/2a343b6de37da757b154cfb428092bdc/work -stub
+Dec-11 18:08:46.497 [main] INFO  nextflow.cli.CmdRun - N E X T F L O W  ~  version 25.04.6
+Dec-11 18:08:46.580 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; embedded=false; plugins-dir=/home/u0030001/.nextflow/plugins; core-plugins: nf-amazon@2.15.0,nf-azure@1.16.0,nf-cloudcache@0.4.3,nf-codecommit@0.2.3,nf-console@1.2.1,nf-google@1.21.1,nf-k8s@1.0.0,nf-tower@1.11.4,nf-wave@1.12.1
+Dec-11 18:08:46.685 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
+Dec-11 18:08:46.688 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
+Dec-11 18:08:46.690 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.12.0 in 'deployment' mode
+Dec-11 18:08:46.707 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
+Dec-11 18:08:46.788 [main] DEBUG nextflow.config.ConfigBuilder - Found config base: /home/u0030001/nf-updhmm_zenodo/nextflow.config
+Dec-11 18:08:46.871 [main] DEBUG nextflow.config.ConfigBuilder - User config file: /home/u0030001/nf-updhmm_zenodo/nextflow.config
+Dec-11 18:08:46.872 [main] DEBUG nextflow.config.ConfigBuilder - User config file: /home/u0030001/nf-updhmm_zenodo/tests/nextflow.config
+Dec-11 18:08:46.873 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /home/u0030001/nf-updhmm_zenodo/nextflow.config
+Dec-11 18:08:46.874 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /home/u0030001/nf-updhmm_zenodo/nextflow.config
+Dec-11 18:08:46.874 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /home/u0030001/nf-updhmm_zenodo/tests/nextflow.config
+Dec-11 18:08:46.974 [main] DEBUG n.secret.LocalSecretsProvider - Secrets store: /home/u0030001/.nextflow/secrets/store.json
+Dec-11 18:08:46.978 [main] DEBUG nextflow.secret.SecretsLoader - Discovered secrets providers: [nextflow.secret.LocalSecretsProvider@54acff7d] - activable => nextflow.secret.LocalSecretsProvider@54acff7d
+Dec-11 18:08:47.074 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `singularity`
+Dec-11 18:08:52.981 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `singularity`
+Dec-11 18:08:54.269 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `singularity`
+Dec-11 18:08:54.282 [main] DEBUG nextflow.config.ConfigBuilder - Available config profiles: [bih, cfc_dev, uzl_omics, ifb_core, embl_hd, denbi_qbic, alice, mjolnir_globe, uppmax, giga, incliva, ilifu, ki_luria, uge, icr_alma, rosalind_uge, lugh, mccleary, unibe_ibu, vai, czbiohub_aws, jax, roslin, tes, scw, unc_longleaf, tigem, tubingen_apg, apollo, ipop_up, vsc_calcua, pdc_kth, ceci_nic5, ccga_cau, humantechnopole, stjude, daisybio, eddie, medair, biowulf, apptainer, bi, bigpurple, adcra, cedars, pawsey_setonix, vsc_kul_uhasselt, pawsey_nimbus, rki, ucl_myriad, utd_ganymede, charliecloud, fred_hutch, seattlechildrens, icr_davros, ceres, arm, munin, rosalind, hasta, cfc, uzh, shu_bmrc, ebi_codon_slurm, ebc, ccga_dx, crick, ku_sund_danhead, marvin, lrz_cm4, shifter, biohpc_gen, mana, mamba, york_viking, unc_lccc, wehi, awsbatch, wustl_htcf, arcc, ceci_dragon2, imperial, maestro, software_license, cannon, genotoul, nci_gadi, abims, eva_grace, janelia, nu_genomics, googlebatch, oist, sahmri, kaust, alliance_canada, mpcdf, leicester, vsc_ugent, create, sage, cambridge, jex, podman, ebi_codon, cheaha, xanadu, nyu_hpc, test, marjorie, computerome, ucd_sonic, gpu, seg_globe, mssm, sanger, dkfz, bluebear, pasteur, einstein, ethz_euler, m3c, test_full, imb, ucl_cscluster, tuos_stanage, azurebatch, seadragon, crukmi, csiro_petrichor, qmul_apocrita, wave, docker, engaging, gis, hypatia, psmn, eva, unity, cropdiversityhpc, nygc, fgcz, conda, crg, singularity, mpcdf_viper, pe2, dirac, self_hosted_runner, tufts, uw_hyak_pedslabs, binac2, debug, hki_genie, genouest, cbe, unsw_katana, utd_juno, gitpod, phoenix, seawulf, uod_hpc, fub_curta, lovelace, uct_hpc, aws_tower, binac, fsu_draco]
+Dec-11 18:08:54.471 [main] DEBUG nextflow.cli.CmdRun - Applied DSL=2 from script declaration
+Dec-11 18:08:54.486 [main] INFO  nextflow.cli.CmdRun - Launching `/home/u0030001/nf-updhmm_zenodo/.nf-test-2a343b6de37da757b154cfb428092bdc.nf` [crazy_shannon] DSL2 - revision: 34c1030d43
+Dec-11 18:08:54.488 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins declared=[nf-schema@2.4.2]
+Dec-11 18:08:54.488 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins default=[]
+Dec-11 18:08:54.488 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins resolved requirement=[nf-schema@2.4.2]
+Dec-11 18:08:54.570 [main] DEBUG nextflow.plugin.PluginUpdater - Installing plugin nf-schema version: 2.4.2
+Dec-11 18:08:54.677 [main] INFO  org.pf4j.AbstractPluginManager - Plugin 'nf-schema@2.4.2' resolved
+Dec-11 18:08:54.677 [main] INFO  org.pf4j.AbstractPluginManager - Start plugin 'nf-schema@2.4.2'
+Dec-11 18:08:54.686 [main] DEBUG nextflow.plugin.BasePlugin - Plugin started nf-schema@2.4.2
+Dec-11 18:08:54.879 [main] DEBUG nextflow.Session - Session UUID: d666fba0-32db-4314-9403-432a28eaa765
+Dec-11 18:08:54.879 [main] DEBUG nextflow.Session - Run name: crazy_shannon
+Dec-11 18:08:54.880 [main] DEBUG nextflow.Session - Executor pool size: 48
+Dec-11 18:08:54.886 [main] DEBUG nextflow.file.FilePorter - File porter settings maxRetries=3; maxTransfers=50; pollTimeout=null
+Dec-11 18:08:54.890 [main] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'FileTransfer' minSize=10; maxSize=144; workQueue=LinkedBlockingQueue[-1]; allowCoreThreadTimeout=false
+Dec-11 18:08:54.979 [main] DEBUG nextflow.cli.CmdRun - 
+  Version: 25.04.6 build 5954
+  Created: 01-07-2025 11:27 UTC (13:27 CEST)
+  System: Linux 5.14.0-503.40.1.el9_5.x86_64
+  Runtime: Groovy 4.0.26 on OpenJDK 64-Bit Server VM 17.0.15-internal+0-adhoc..src
+  Encoding: UTF-8 (UTF-8)
+  Process: 2182825@ur1nprohpclgn01.urederra.nasertic.es [10.249.234.11]
+  CPUs: 48 - Mem: 94.1 GB (18.3 GB) - Swap: 0 (0)
+Dec-11 18:08:55.080 [main] DEBUG nextflow.Session - Work-dir: /home/u0030001/nf-updhmm_zenodo/.nf-test/tests/2a343b6de37da757b154cfb428092bdc/work [nfs]
+Dec-11 18:08:55.172 [main] DEBUG nextflow.executor.ExecutorFactory - Extension executors providers=[]
+Dec-11 18:08:55.180 [main] DEBUG nextflow.Session - Observer factory: DefaultObserverFactory
+Dec-11 18:08:55.197 [main] DEBUG nextflow.Session - Observer factory: ValidationObserverFactory
+Dec-11 18:08:55.269 [main] DEBUG nextflow.Session - Observer factory (v2): LinObserverFactory
+Dec-11 18:08:55.289 [main] DEBUG nextflow.cache.CacheFactory - Using Nextflow cache factory: nextflow.cache.DefaultCacheFactory
+Dec-11 18:08:55.380 [main] DEBUG nextflow.util.CustomThreadPool - Creating default thread pool > poolSize: 49; maxThreads: 1000
+Dec-11 18:08:55.754 [main] DEBUG nextflow.Session - Session start
+Dec-11 18:08:55.757 [main] DEBUG nextflow.trace.TraceFileObserver - Workflow started -- trace file: /home/u0030001/nf-updhmm_zenodo/.nf-test/tests/2a343b6de37da757b154cfb428092bdc/meta/trace.csv
+Dec-11 18:08:55.786 [main] DEBUG n.validation.config.ValidationConfig - Set `validation.monochromeLogs` to false
+Dec-11 18:08:55.788 [main] DEBUG n.validation.config.ValidationConfig - Added the following parameters to the ignored parameters: [genomes]
+Dec-11 18:08:55.790 [main] DEBUG n.validation.config.HelpConfig - Set `validation.help.enabled` to true
+Dec-11 18:08:55.790 [main] DEBUG n.validation.config.HelpConfig - Set `validation.help.showHiddenParameter` to show_hidden
+Dec-11 18:08:55.791 [main] DEBUG n.validation.config.HelpConfig - Set `validation.help.showHidden` to false (Due to --show_hidden)
+Dec-11 18:08:55.791 [main] DEBUG n.validation.config.HelpConfig - Set `validation.help.fullParameter` to help_full
+Dec-11 18:08:55.799 [main] DEBUG n.validation.config.HelpConfig - Set `validation.help.beforeText` to 
+------------------------------------------------------
+                                        ,--./,-.
+        ___     __   __   __   ___     /,-._.--~'
+  |\ | |__  __ /  ` /  \ |__) |__         }  {
+  | \| |       \__, \__/ |  \ |___     \`-._,-`-,
+                                        `._,._,'
+  nf-core/updhmm 1.0.0dev
+------------------------------------------------------
+
+Dec-11 18:08:55.800 [main] DEBUG n.validation.config.HelpConfig - Set `validation.help.afterText` to 
+* The nf-core framework
+    https://doi.org/10.1038/s41587-020-0439-x
+* Software dependencies
+    https://github.com/nf-core/updhmm/blob/master/CITATIONS.md
+
+Dec-11 18:08:55.801 [main] DEBUG n.validation.config.HelpConfig - Set `validation.help.command` to nextflow run nf-core/updhmm -profile <docker/singularity/.../institute> --input samplesheet.csv --outdir <OUTDIR>
+Dec-11 18:08:55.803 [main] DEBUG n.validation.config.SummaryConfig - Set `validation.summary.beforeText` to 
+------------------------------------------------------
+                                        ,--./,-.
+        ___     __   __   __   ___     /,-._.--~'
+  |\ | |__  __ /  ` /  \ |__) |__         }  {
+  | \| |       \__, \__/ |  \ |___     \`-._,-`-,
+                                        `._,._,'
+  nf-core/updhmm 1.0.0dev
+------------------------------------------------------
+
+Dec-11 18:08:55.804 [main] DEBUG n.validation.config.SummaryConfig - Set `validation.summary.afterText` to 
+* The nf-core framework
+    https://doi.org/10.1038/s41587-020-0439-x
+* Software dependencies
+    https://github.com/nf-core/updhmm/blob/master/CITATIONS.md
+
+Dec-11 18:08:56.382 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
+Dec-11 18:08:58.373 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withLabel:process_medium` matches labels `process_medium` for process with name FILTER_LOWCONF:BCFTOOLS_VIEW_BIALLELIC
+Dec-11 18:08:58.376 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withName:BCFTOOLS_VIEW_BIALLELIC` matches process FILTER_LOWCONF:BCFTOOLS_VIEW_BIALLELIC
+Dec-11 18:08:58.389 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Dec-11 18:08:58.390 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Dec-11 18:08:58.474 [main] DEBUG nextflow.executor.Executor - [warm up] executor > local
+Dec-11 18:08:58.479 [main] DEBUG n.processor.LocalPollingMonitor - Creating local task monitor for executor 'local' > cpus=48; memory=94.1 GB; capacity=48; pollInterval=100ms; dumpInterval=5m
+Dec-11 18:08:58.481 [main] DEBUG n.processor.TaskPollingMonitor - >>> barrier register (monitor: local)
+Dec-11 18:08:58.499 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'FILTER_LOWCONF:BCFTOOLS_VIEW_BIALLELIC': maxForks=0; fair=false; array=0
+Dec-11 18:08:58.687 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withLabel:process_medium` matches labels `process_medium` for process with name FILTER_LOWCONF:BCFTOOLS_VIEW_QUAL_MIN
+Dec-11 18:08:58.690 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withName:BCFTOOLS_VIEW_QUAL_MIN` matches process FILTER_LOWCONF:BCFTOOLS_VIEW_QUAL_MIN
+Dec-11 18:08:58.774 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Dec-11 18:08:58.774 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Dec-11 18:08:58.775 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'FILTER_LOWCONF:BCFTOOLS_VIEW_QUAL_MIN': maxForks=0; fair=false; array=0
+Dec-11 18:08:58.785 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withLabel:process_medium` matches labels `process_medium` for process with name FILTER_LOWCONF:BCFTOOLS_VIEW_REFHOMO_EXCLUDE
+Dec-11 18:08:58.786 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withName:BCFTOOLS_VIEW_REFHOMO_EXCLUDE` matches process FILTER_LOWCONF:BCFTOOLS_VIEW_REFHOMO_EXCLUDE
+Dec-11 18:08:58.871 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Dec-11 18:08:58.871 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Dec-11 18:08:58.872 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'FILTER_LOWCONF:BCFTOOLS_VIEW_REFHOMO_EXCLUDE': maxForks=0; fair=false; array=0
+Dec-11 18:08:58.885 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withLabel:process_medium` matches labels `process_medium` for process with name FILTER_LOWCONF:BCFTOOLS_VIEW_EXCL_ALL
+Dec-11 18:08:58.892 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withName:BCFTOOLS_VIEW_EXCL_ALL` matches process FILTER_LOWCONF:BCFTOOLS_VIEW_EXCL_ALL
+Dec-11 18:08:58.971 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Dec-11 18:08:58.972 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Dec-11 18:08:58.972 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'FILTER_LOWCONF:BCFTOOLS_VIEW_EXCL_ALL': maxForks=0; fair=false; array=0
+Dec-11 18:08:58.985 [main] DEBUG nextflow.Session - Config process names validation disabled as requested
+Dec-11 18:08:58.989 [main] DEBUG nextflow.Session - Igniting dataflow network (7)
+Dec-11 18:08:58.990 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > FILTER_LOWCONF:BCFTOOLS_VIEW_BIALLELIC
+Dec-11 18:08:58.990 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > FILTER_LOWCONF:BCFTOOLS_VIEW_QUAL_MIN
+Dec-11 18:08:58.990 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > FILTER_LOWCONF:BCFTOOLS_VIEW_REFHOMO_EXCLUDE
+Dec-11 18:08:58.990 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > FILTER_LOWCONF:BCFTOOLS_VIEW_EXCL_ALL
+Dec-11 18:08:59.069 [main] DEBUG nextflow.script.ScriptRunner - Parsed script files:
+  Script_7ac6c6c3f4ffd716: /home/u0030001/nf-updhmm_zenodo/modules/nf-core/bcftools/view/main.nf
+  Script_87b44ba347dc0fa9: /home/u0030001/nf-updhmm_zenodo/subworkflows/local/filter_lowconf/main.nf
+  Script_b9a2c23772f11d20: /home/u0030001/nf-updhmm_zenodo/modules/local/setGT/main.nf
+  Script_4675ebbbb2ca283d: /home/u0030001/nf-updhmm_zenodo/.nf-test-2a343b6de37da757b154cfb428092bdc.nf
+Dec-11 18:08:59.069 [main] DEBUG nextflow.script.ScriptRunner - > Awaiting termination 
+Dec-11 18:08:59.070 [main] DEBUG nextflow.Session - Session await
+Dec-11 18:08:59.388 [Actor Thread 34] WARN  nextflow.container.SingularityCache - Singularity cache directory has not been defined -- Remote image will be stored in the path: /home/u0030001/nf-updhmm_zenodo/.nf-test/tests/2a343b6de37da757b154cfb428092bdc/work/singularity -- Use the environment variable NXF_SINGULARITY_CACHEDIR to specify a different location
+Dec-11 18:08:59.388 [Actor Thread 34] INFO  nextflow.container.SingularityCache - Pulling Singularity image https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/47/474a5ea8dc03366b04df884d89aeacc4f8e6d1ad92266888e7a8e7958d07cde8/data [cache /home/u0030001/nf-updhmm_zenodo/.nf-test/tests/2a343b6de37da757b154cfb428092bdc/work/singularity/community-cr-prod.seqera.io-docker-registry-v2-blobs-sha256-47-474a5ea8dc03366b04df884d89aeacc4f8e6d1ad92266888e7a8e7958d07cde8-data.img]
+Dec-11 18:09:00.867 [Actor Thread 34] DEBUG nextflow.container.SingularityCache - Singularity pull complete image=https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/47/474a5ea8dc03366b04df884d89aeacc4f8e6d1ad92266888e7a8e7958d07cde8/data path=/home/u0030001/nf-updhmm_zenodo/.nf-test/tests/2a343b6de37da757b154cfb428092bdc/work/singularity/community-cr-prod.seqera.io-docker-registry-v2-blobs-sha256-47-474a5ea8dc03366b04df884d89aeacc4f8e6d1ad92266888e7a8e7958d07cde8-data.img
+Dec-11 18:09:01.079 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Dec-11 18:09:01.081 [Task submitter] INFO  nextflow.Session - [5c/0607b1] Submitted process > FILTER_LOWCONF:BCFTOOLS_VIEW_BIALLELIC (family2)
+Dec-11 18:09:01.103 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Dec-11 18:09:01.169 [Task submitter] INFO  nextflow.Session - [b3/d04eb8] Submitted process > FILTER_LOWCONF:BCFTOOLS_VIEW_BIALLELIC (family1)
+Dec-11 18:09:02.190 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 2; name: FILTER_LOWCONF:BCFTOOLS_VIEW_BIALLELIC (family2); status: COMPLETED; exit: 0; error: -; workDir: /home/u0030001/nf-updhmm_zenodo/.nf-test/tests/2a343b6de37da757b154cfb428092bdc/work/5c/0607b1482aa377ebf77cfb0b43247c]
+Dec-11 18:09:02.190 [Task monitor] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'TaskFinalizer' minSize=10; maxSize=144; workQueue=LinkedBlockingQueue[-1]; allowCoreThreadTimeout=false
+Dec-11 18:09:02.201 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 1; name: FILTER_LOWCONF:BCFTOOLS_VIEW_BIALLELIC (family1); status: COMPLETED; exit: 0; error: -; workDir: /home/u0030001/nf-updhmm_zenodo/.nf-test/tests/2a343b6de37da757b154cfb428092bdc/work/b3/d04eb8d28ee4d495b94b894e540bdf]
+Dec-11 18:09:02.300 [TaskFinalizer-2] DEBUG nextflow.processor.TaskProcessor - Process FILTER_LOWCONF:BCFTOOLS_VIEW_BIALLELIC > Skipping output binding because one or more optional files are missing: fileoutparam<2:1>
+Dec-11 18:09:02.303 [TaskFinalizer-1] DEBUG nextflow.processor.TaskProcessor - Process FILTER_LOWCONF:BCFTOOLS_VIEW_BIALLELIC > Skipping output binding because one or more optional files are missing: fileoutparam<2:1>
+Dec-11 18:09:02.482 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Dec-11 18:09:02.482 [Task submitter] INFO  nextflow.Session - [39/2a97be] Submitted process > FILTER_LOWCONF:BCFTOOLS_VIEW_QUAL_MIN (family2)
+Dec-11 18:09:02.500 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Dec-11 18:09:02.501 [Task submitter] INFO  nextflow.Session - [45/f18b3b] Submitted process > FILTER_LOWCONF:BCFTOOLS_VIEW_QUAL_MIN (family1)
+Dec-11 18:09:03.785 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 4; name: FILTER_LOWCONF:BCFTOOLS_VIEW_QUAL_MIN (family2); status: COMPLETED; exit: 0; error: -; workDir: /home/u0030001/nf-updhmm_zenodo/.nf-test/tests/2a343b6de37da757b154cfb428092bdc/work/39/2a97bee1794f9f34c10439cd26a31b]
+Dec-11 18:09:03.787 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 3; name: FILTER_LOWCONF:BCFTOOLS_VIEW_QUAL_MIN (family1); status: COMPLETED; exit: 0; error: -; workDir: /home/u0030001/nf-updhmm_zenodo/.nf-test/tests/2a343b6de37da757b154cfb428092bdc/work/45/f18b3ba299b4d5bec0dfd1253cc4f5]
+Dec-11 18:09:03.806 [TaskFinalizer-3] DEBUG nextflow.processor.TaskProcessor - Process FILTER_LOWCONF:BCFTOOLS_VIEW_QUAL_MIN > Skipping output binding because one or more optional files are missing: fileoutparam<2:1>
+Dec-11 18:09:03.807 [TaskFinalizer-4] DEBUG nextflow.processor.TaskProcessor - Process FILTER_LOWCONF:BCFTOOLS_VIEW_QUAL_MIN > Skipping output binding because one or more optional files are missing: fileoutparam<2:1>
+Dec-11 18:09:03.839 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Dec-11 18:09:03.839 [Task submitter] INFO  nextflow.Session - [20/e69f1d] Submitted process > FILTER_LOWCONF:BCFTOOLS_VIEW_REFHOMO_EXCLUDE (family2)
+Dec-11 18:09:03.856 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Dec-11 18:09:03.856 [Task submitter] INFO  nextflow.Session - [91/727afe] Submitted process > FILTER_LOWCONF:BCFTOOLS_VIEW_REFHOMO_EXCLUDE (family1)
+Dec-11 18:09:04.784 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 5; name: FILTER_LOWCONF:BCFTOOLS_VIEW_REFHOMO_EXCLUDE (family2); status: COMPLETED; exit: 0; error: -; workDir: /home/u0030001/nf-updhmm_zenodo/.nf-test/tests/2a343b6de37da757b154cfb428092bdc/work/20/e69f1defc1d87525a261638ebc62eb]
+Dec-11 18:09:04.804 [TaskFinalizer-5] DEBUG nextflow.processor.TaskProcessor - Process FILTER_LOWCONF:BCFTOOLS_VIEW_REFHOMO_EXCLUDE > Skipping output binding because one or more optional files are missing: fileoutparam<2:1>
+Dec-11 18:09:04.812 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 6; name: FILTER_LOWCONF:BCFTOOLS_VIEW_REFHOMO_EXCLUDE (family1); status: COMPLETED; exit: 0; error: -; workDir: /home/u0030001/nf-updhmm_zenodo/.nf-test/tests/2a343b6de37da757b154cfb428092bdc/work/91/727afe225807d2752aee96b7566df2]
+Dec-11 18:09:04.830 [TaskFinalizer-6] DEBUG nextflow.processor.TaskProcessor - Process FILTER_LOWCONF:BCFTOOLS_VIEW_REFHOMO_EXCLUDE > Skipping output binding because one or more optional files are missing: fileoutparam<2:1>
+Dec-11 18:09:04.834 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Dec-11 18:09:04.834 [Task submitter] INFO  nextflow.Session - [d9/58fd44] Submitted process > FILTER_LOWCONF:BCFTOOLS_VIEW_EXCL_ALL (family2)
+Dec-11 18:09:04.884 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Dec-11 18:09:04.885 [Task submitter] INFO  nextflow.Session - [d3/3c3d40] Submitted process > FILTER_LOWCONF:BCFTOOLS_VIEW_EXCL_ALL (family1)
+Dec-11 18:09:05.926 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 7; name: FILTER_LOWCONF:BCFTOOLS_VIEW_EXCL_ALL (family2); status: COMPLETED; exit: 0; error: -; workDir: /home/u0030001/nf-updhmm_zenodo/.nf-test/tests/2a343b6de37da757b154cfb428092bdc/work/d9/58fd44d288a35411cde6bde1cd7a8d]
+Dec-11 18:09:05.943 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 8; name: FILTER_LOWCONF:BCFTOOLS_VIEW_EXCL_ALL (family1); status: COMPLETED; exit: 0; error: -; workDir: /home/u0030001/nf-updhmm_zenodo/.nf-test/tests/2a343b6de37da757b154cfb428092bdc/work/d3/3c3d4094e2d9c9ee2fb1f7c1156045]
+Dec-11 18:09:05.972 [TaskFinalizer-7] DEBUG nextflow.processor.TaskProcessor - Process FILTER_LOWCONF:BCFTOOLS_VIEW_EXCL_ALL > Skipping output binding because one or more optional files are missing: fileoutparam<2:1>
+Dec-11 18:09:05.978 [TaskFinalizer-7] WARN  nextflow.processor.PublishDir - Process `FILTER_LOWCONF:BCFTOOLS_VIEW_EXCL_ALL` publishDir path contains a variable with a null value
+Dec-11 18:09:05.987 [TaskFinalizer-8] DEBUG nextflow.processor.TaskProcessor - Process FILTER_LOWCONF:BCFTOOLS_VIEW_EXCL_ALL > Skipping output binding because one or more optional files are missing: fileoutparam<2:1>
+Dec-11 18:09:05.988 [TaskFinalizer-8] WARN  nextflow.processor.PublishDir - Process `FILTER_LOWCONF:BCFTOOLS_VIEW_EXCL_ALL` publishDir path contains a variable with a null value
+Dec-11 18:09:05.990 [TaskFinalizer-7] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'PublishDir' minSize=10; maxSize=144; workQueue=LinkedBlockingQueue[-1]; allowCoreThreadTimeout=false
+Dec-11 18:09:05.992 [main] DEBUG nextflow.Session - Session await > all processes finished
+Dec-11 18:09:06.044 [Task monitor] DEBUG n.processor.TaskPollingMonitor - <<< barrier arrives (monitor: local) - terminating tasks monitor poll loop
+Dec-11 18:09:06.045 [main] DEBUG nextflow.Session - Session await > all barriers passed
+Dec-11 18:09:06.046 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'TaskFinalizer' shutdown completed (hard=false)
+Dec-11 18:09:06.046 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'PublishDir' shutdown completed (hard=false)
+Dec-11 18:09:06.059 [main] DEBUG n.trace.WorkflowStatsObserver - Workflow completed > WorkflowStats[succeededCount=8; failedCount=0; ignoredCount=0; cachedCount=0; pendingCount=0; submittedCount=0; runningCount=0; retriesCount=0; abortedCount=0; succeedDuration=25.9s; failedDuration=0ms; cachedDuration=0ms;loadCpus=0; loadMemory=0; peakRunning=2; peakCpus=12; peakMemory=24 GB; ]
+Dec-11 18:09:06.060 [main] DEBUG nextflow.trace.TraceFileObserver - Workflow completed -- saving trace file
+Dec-11 18:09:06.064 [main] DEBUG nextflow.trace.ReportObserver - Workflow completed -- rendering execution report
+Dec-11 18:09:06.737 [main] DEBUG nextflow.trace.TimelineObserver - Workflow completed -- rendering execution timeline
+Dec-11 18:09:06.898 [main] DEBUG nextflow.cache.CacheDB - Closing CacheDB done
+Dec-11 18:09:06.926 [main] INFO  org.pf4j.AbstractPluginManager - Stop plugin 'nf-schema@2.4.2'
+Dec-11 18:09:06.926 [main] DEBUG nextflow.plugin.BasePlugin - Plugin stopped nf-schema
+Dec-11 18:09:06.927 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'FileTransfer' shutdown completed (hard=false)
+Dec-11 18:09:06.927 [main] DEBUG nextflow.script.ScriptRunner - > Execution complete -- Goodbye

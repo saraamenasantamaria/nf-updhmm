@@ -1,46 +1,59 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/subworkflows/yaml-schema.json
 name: "SV_MASK_BED"
-description: Filter structural variants using BED regions by concatenating, merging, and applying region masks
+description: Filter structural variants from VCF files using BED regions as masks
 keywords:
+  - vcf
+  - bed
   - structural variants
-  - BED regions
   - filtering
   - masking
-  - vcf
   - bcftools
   - bedtools
+  - family
+  - trio
 components:
   - concat_bed
   - bedtools/merge
   - bcftools/view
   - bcftools/query
+
 input:
-  - sv_paths_ch:
-      type: channel
-      description: |
-        Channel containing sample metadata with structural variant paths, VCF files (BED/VCF or '-' if none) and their indices
-      pattern: "[meta, vcf, tbi]"
-      structure:
-        - meta: Family metadata map containing family ID and SV paths
-        - vcf: Input VCF file to be filtered
-        - tbi: Input VCF index file
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing family information (family ID and SV paths)
+          e.g. [ id:'family_001', sv_p:'path/to/proband.bed', sv_m:'path/to/mother.vcf.gz', sv_f:'-' ]
+          SV paths can be BED files, VCF.GZ files, or '-' for samples without SVs
+    - vcf:
+        type: file
+        description: Input VCF file to be filtered using structural variant masks
+        pattern: "*.{vcf.gz}"
+    - tbi:
+        type: file
+        description: Tabix index file for input VCF
+        pattern: "*.tbi"
+
 output:
-  - vcfs:
-      type: channel
-      description: |
-        Processed VCF files with structural variants filtered out using BED masks.
-        For samples without SVs, VCFs are passed through unmodified.
-      pattern: "[meta, vcf, tbi]"
-      structure:
-        - meta: Family metadata map
-        - vcf: Filtered VCF file (or original if no SVs)
-        - tbi: VCF index file
+  - - meta:
+          type: map
+          description: |
+            Groovy Map containing family information (family ID and SV paths)
+            e.g. [ id:'family_001', sv_p:'path/to/proband.bed', sv_m:'path/to/mother.vcf.gz', sv_f:'-' ]
+      - vcf:
+          type: file
+          description: Filtered VCF file with structural variants removed based on BED mask regions, or original VCF if no SV files provided
+          pattern: "*.{vcf.gz}"
+      - tbi:
+          type: file
+          description: Tabix index file for filtered VCF
+          pattern: "*.tbi"
   - versions:
-      type: channel
-      description: |
-        Channel containing software versions
-      pattern: "versions.yml"
+      type: file
+      description: File containing software versions
+      pattern: "versions.yml"   
+
 authors:
   - "@saramenasantamaria"
+
 maintainers:
   - "@saramenasantamaria"

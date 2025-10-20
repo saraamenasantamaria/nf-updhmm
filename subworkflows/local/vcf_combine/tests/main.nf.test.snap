@@ -1,0 +1,337 @@
+{
+    "single family - with intersection - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "family1",
+                            "sv_p": "-",
+                            "sv_m": "-",
+                            "sv_f": "-"
+                        },
+                        "family1.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                        "family1.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,9547c83764f1803b3cde25fddd7e00ef",
+                    "versions.yml:md5,b93e5f723925d16b3b27fa1d8251f450"
+                ],
+                "vcf": [
+                    [
+                        {
+                            "id": "family1",
+                            "sv_p": "-",
+                            "sv_m": "-",
+                            "sv_f": "-"
+                        },
+                        "family1.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                        "family1.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,9547c83764f1803b3cde25fddd7e00ef",
+                    "versions.yml:md5,b93e5f723925d16b3b27fa1d8251f450"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.04.6"
+        },
+        "timestamp": "2025-12-11T17:58:47.994032506"
+    },
+    "multiple families - with intersection": {
+        "content": [
+            [
+                {
+                    "meta": {
+                        "id": "family1",
+                        "sv_p": "-",
+                        "sv_m": "-",
+                        "sv_f": "-"
+                    },
+                    "vcf_name": "family1.vcf.gz",
+                    "tbi_name": "family1.vcf.gz.tbi"
+                },
+                {
+                    "meta": {
+                        "id": "family2",
+                        "sv_p": "-",
+                        "sv_m": "-",
+                        "sv_f": "-"
+                    },
+                    "vcf_name": "family2.vcf.gz",
+                    "tbi_name": "family2.vcf.gz.tbi"
+                }
+            ],
+            [
+                "versions.yml:md5,9547c83764f1803b3cde25fddd7e00ef",
+                "versions.yml:md5,9547c83764f1803b3cde25fddd7e00ef",
+                "versions.yml:md5,b93e5f723925d16b3b27fa1d8251f450",
+                "versions.yml:md5,b93e5f723925d16b3b27fa1d8251f450"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.04.6"
+        },
+        "timestamp": "2025-12-11T17:58:08.397593458"
+    },
+    "single family - without intersection - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "family1",
+                            "sv_p": "-",
+                            "sv_m": "-",
+                            "sv_f": "-"
+                        },
+                        "family1.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                        "family1.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,9547c83764f1803b3cde25fddd7e00ef"
+                ],
+                "vcf": [
+                    [
+                        {
+                            "id": "family1",
+                            "sv_p": "-",
+                            "sv_m": "-",
+                            "sv_f": "-"
+                        },
+                        "family1.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                        "family1.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,9547c83764f1803b3cde25fddd7e00ef"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.04.6"
+        },
+        "timestamp": "2025-12-11T17:59:06.827580654"
+    },
+    "multiple families - without intersection": {
+        "content": [
+            [
+                {
+                    "meta": {
+                        "id": "family1",
+                        "sv_p": "-",
+                        "sv_m": "-",
+                        "sv_f": "-"
+                    },
+                    "vcf_name": "family1.vcf.gz",
+                    "tbi_name": "family1.vcf.gz.tbi"
+                },
+                {
+                    "meta": {
+                        "id": "family2",
+                        "sv_p": "-",
+                        "sv_m": "-",
+                        "sv_f": "-"
+                    },
+                    "vcf_name": "family2.vcf.gz",
+                    "tbi_name": "family2.vcf.gz.tbi"
+                }
+            ],
+            [
+                "versions.yml:md5,9547c83764f1803b3cde25fddd7e00ef",
+                "versions.yml:md5,9547c83764f1803b3cde25fddd7e00ef"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.04.6"
+        },
+        "timestamp": "2025-12-11T17:58:28.476019523"
+    },
+    "single family - with intersection": {
+        "content": [
+            [
+                {
+                    "meta": {
+                        "id": "family1",
+                        "sv_p": "-",
+                        "sv_m": "-",
+                        "sv_f": "-"
+                    },
+                    "vcf_name": "family1.vcf.gz",
+                    "tbi_name": "family1.vcf.gz.tbi"
+                }
+            ],
+            [
+                "versions.yml:md5,9547c83764f1803b3cde25fddd7e00ef",
+                "versions.yml:md5,b93e5f723925d16b3b27fa1d8251f450"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.04.6"
+        },
+        "timestamp": "2025-12-11T17:57:27.121579893"
+    },
+    "multiple families - without intersection - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "family1",
+                            "sv_p": "-",
+                            "sv_m": "-",
+                            "sv_f": "-"
+                        },
+                        "family1.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                        "family1.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        {
+                            "id": "family2",
+                            "sv_p": "-",
+                            "sv_m": "-",
+                            "sv_f": "-"
+                        },
+                        "family2.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                        "family2.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,9547c83764f1803b3cde25fddd7e00ef",
+                    "versions.yml:md5,9547c83764f1803b3cde25fddd7e00ef"
+                ],
+                "vcf": [
+                    [
+                        {
+                            "id": "family1",
+                            "sv_p": "-",
+                            "sv_m": "-",
+                            "sv_f": "-"
+                        },
+                        "family1.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                        "family1.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        {
+                            "id": "family2",
+                            "sv_p": "-",
+                            "sv_m": "-",
+                            "sv_f": "-"
+                        },
+                        "family2.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                        "family2.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,9547c83764f1803b3cde25fddd7e00ef",
+                    "versions.yml:md5,9547c83764f1803b3cde25fddd7e00ef"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.04.6"
+        },
+        "timestamp": "2025-12-11T17:59:47.007251152"
+    },
+    "single family - without intersection": {
+        "content": [
+            [
+                {
+                    "meta": {
+                        "id": "family1",
+                        "sv_p": "-",
+                        "sv_m": "-",
+                        "sv_f": "-"
+                    },
+                    "vcf_name": "family1.vcf.gz",
+                    "tbi_name": "family1.vcf.gz.tbi"
+                }
+            ],
+            [
+                "versions.yml:md5,9547c83764f1803b3cde25fddd7e00ef"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.04.6"
+        },
+        "timestamp": "2025-12-11T17:57:46.577966245"
+    },
+    "multiple families - with intersection - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "family1",
+                            "sv_p": "-",
+                            "sv_m": "-",
+                            "sv_f": "-"
+                        },
+                        "family1.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                        "family1.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        {
+                            "id": "family2",
+                            "sv_p": "-",
+                            "sv_m": "-",
+                            "sv_f": "-"
+                        },
+                        "family2.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                        "family2.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,9547c83764f1803b3cde25fddd7e00ef",
+                    "versions.yml:md5,9547c83764f1803b3cde25fddd7e00ef",
+                    "versions.yml:md5,b93e5f723925d16b3b27fa1d8251f450",
+                    "versions.yml:md5,b93e5f723925d16b3b27fa1d8251f450"
+                ],
+                "vcf": [
+                    [
+                        {
+                            "id": "family1",
+                            "sv_p": "-",
+                            "sv_m": "-",
+                            "sv_f": "-"
+                        },
+                        "family1.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                        "family1.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        {
+                            "id": "family2",
+                            "sv_p": "-",
+                            "sv_m": "-",
+                            "sv_f": "-"
+                        },
+                        "family2.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                        "family2.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,9547c83764f1803b3cde25fddd7e00ef",
+                    "versions.yml:md5,9547c83764f1803b3cde25fddd7e00ef",
+                    "versions.yml:md5,b93e5f723925d16b3b27fa1d8251f450",
+                    "versions.yml:md5,b93e5f723925d16b3b27fa1d8251f450"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.04.6"
+        },
+        "timestamp": "2025-12-11T17:59:27.381700937"
+    }
+}

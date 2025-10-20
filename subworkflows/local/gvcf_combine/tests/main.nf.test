@@ -1,0 +1,78 @@
+nextflow_workflow {
+
+    name "Test Workflow GVCF_COMBINE"
+    script "../main.nf"
+    workflow "GVCF_COMBINE"
+    
+    tag "subworkflows"
+    tag "subworkflows_local"
+    tag "gvcf_combine"
+    tag "gatk4"
+    tag "gatk4/combinegvcfs"
+    tag "gatk4/genotypegvcfs"
+    tag "bcftools"
+    tag "bcftools/annotate"
+
+    test("homo_sapiens - duo - 2 gvcf - fasta") {
+
+        when {
+            workflow {
+                """
+
+                input[0] = Channel.of([
+                    [ id: 'test_trio' ],
+                    [
+                        file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/gvcf/test.genome.vcf.gz', checkIfExists: true),
+                        file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/gvcf/test2.genome.vcf.gz', checkIfExists: true)
+                    ],
+                    [
+                        file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/gvcf/test.genome.vcf.gz.tbi', checkIfExists: true),
+                        file(params.modules_testdata_base_path + 'genomics/homo_sapiens/illumina/gvcf/test2.genome.vcf.gz.tbi', checkIfExists: true)
+                    ]
+                ])
+                
+                input[1] = file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.fasta', checkIfExists: true)
+                input[2] = file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.fasta.fai', checkIfExists: true)
+                input[3] = file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/genome.dict', checkIfExists: true)
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert workflow.out.vcf },
+                { assert workflow.out.vcf.size() == 1 },
+                { assert snapshot(workflow.out).match() }
+            )
+        }
+    }
+
+
+    test("homo_sapiens - stub") {
+
+        options "-stub"
+
+        when {
+            workflow {
+                """
+                input[0] = Channel.of([
+                    [ id: 'test_stub' ],
+                    [ file('test1.g.vcf.gz'), file('test2.g.vcf.gz'), file('test3.g.vcf.gz') ],
+                    [ file('test1.g.vcf.gz.tbi'), file('test2.g.vcf.gz.tbi'), file('test3.g.vcf.gz.tbi') ]
+                ])
+                input[1] = file('genome.fasta')
+                input[2] = file('genome.fasta.fai')
+                input[3] = file('genome.dict')
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(workflow.out).match() }
+            )
+        }
+    }
+}

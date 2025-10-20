@@ -1,0 +1,8 @@
+[33mNextflow 25.10.2 is available - Please consider updating your version to it(B[m
+[0;31mThe following errors have been detected in /home/u0030001/nf-updhmm_zenodo/subworkflows/local/preprocessing/tests/data/invalid_samplesheet.csv:
+
+-> Entry 1: Error for field 'fam_id' (FAM 1): "FAM 1" does not match regular expression [^\S+$] (Family ID must be provided and cannot contain spaces)
+-> Entry 1: Error for field 'path_vcf_proband' (/home/u0030001/nf-updhmm_zenodo/subworkflows/local/preprocessing/tests/data/proband.vcf): "/home/u0030001/nf-updhmm_zenodo/subworkflows/local/preprocessing/tests/data/proband.vcf" does not match regular expression [^.+\.(vcf\.gz|gvcf\.gz)$] (Proband VCF file must be provided, cannot contain spaces and must have extension '.vcf.gz' or '.gvcf.gz')
+-> Entry 1: Error for field 'path_vcf_proband' (/home/u0030001/nf-updhmm_zenodo/subworkflows/local/preprocessing/tests/data/proband.vcf): the file or directory '/home/u0030001/nf-updhmm_zenodo/subworkflows/local/preprocessing/tests/data/proband.vcf' does not exist (Proband VCF file must be provided, cannot contain spaces and must have extension '.vcf.gz' or '.gvcf.gz')
+[0m
+ -- Check script '/home/u0030001/nf-updhmm_zenodo/subworkflows/local/preprocessing/main.nf' at line: 38 or see '/home/u0030001/nf-updhmm_zenodo/.nf-test/tests/7ac45ecf102b9a445a2bb938d39da794/meta/nextflow.log' file for more details

@@ -1,0 +1,80 @@
+{
+    "homo_sapiens - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test_stub"
+                        },
+                        "test_stub_filtered.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                        "test_stub_filtered.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,7bdacf98a54eb44ef0d2949b0e05af81",
+                    "versions.yml:md5,91f50a8bec29017dfbf96528f7572112",
+                    "versions.yml:md5,fcddbeecccfbbc18fe6e264ce4ca350d"
+                ],
+                "vcf": [
+                    [
+                        {
+                            "id": "test_stub"
+                        },
+                        "test_stub_filtered.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                        "test_stub_filtered.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,7bdacf98a54eb44ef0d2949b0e05af81",
+                    "versions.yml:md5,91f50a8bec29017dfbf96528f7572112",
+                    "versions.yml:md5,fcddbeecccfbbc18fe6e264ce4ca350d"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.04.6"
+        },
+        "timestamp": "2025-12-13T13:44:04.793567598"
+    },
+    "homo_sapiens - duo - 2 gvcf - fasta": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test_trio"
+                        },
+                        "test_trio_filtered.vcf.gz:md5,77449334de3f9bf95e0780bdb8e5f6c4",
+                        "test_trio_filtered.vcf.gz.tbi:md5,95f178742295f7681f4f78305fad86ad"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,7bdacf98a54eb44ef0d2949b0e05af81",
+                    "versions.yml:md5,91f50a8bec29017dfbf96528f7572112",
+                    "versions.yml:md5,fcddbeecccfbbc18fe6e264ce4ca350d"
+                ],
+                "vcf": [
+                    [
+                        {
+                            "id": "test_trio"
+                        },
+                        "test_trio_filtered.vcf.gz:md5,77449334de3f9bf95e0780bdb8e5f6c4",
+                        "test_trio_filtered.vcf.gz.tbi:md5,95f178742295f7681f4f78305fad86ad"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,7bdacf98a54eb44ef0d2949b0e05af81",
+                    "versions.yml:md5,91f50a8bec29017dfbf96528f7572112",
+                    "versions.yml:md5,fcddbeecccfbbc18fe6e264ce4ca350d"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.04.6"
+        },
+        "timestamp": "2025-12-13T13:42:30.404350506"
+    }
+}

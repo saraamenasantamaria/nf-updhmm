@@ -1,0 +1,56 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/subworkflows/yaml-schema.json
+name: "PREPROCESS_VCF"
+description: Complete VCF preprocessing pipeline for family trio analysis including samplesheet validation, annotation removal, VCF/GVCF combination, structural variant filtering, and quality filtering to produce final high-confidence variant calls
+keywords:
+  - vcf
+  - gvcf
+  - preprocessing
+  - pipeline
+  - samplesheet
+  - validation
+  - annotation
+  - combination
+  - structural variants
+  - quality filtering
+  - family
+  - trio
+  - bcftools
+  - gatk
+components:
+  - remove_annotations
+  - combine_vcf
+  - combine_gvcf
+  - sv_mask_bed
+  - filter_lowconf
+
+input:
+  - - samplesheet:
+        type: file
+        description: |
+          Input samplesheet CSV file containing family trio information with required columns: fam_id, proband_id, mother_id, father_id, path_vcf_proband, path_vcf_mother, path_vcf_father, path_sv_proband, path_sv_mother, path_sv_father (SV path columns may contain '-' if not available)
+        pattern: "*.csv"
+
+output:
+  - - meta:
+          type: map
+          description: |
+            Groovy Map containing family information (family ID, individual IDs, and SV paths)
+            e.g. [ id:'family_001', proband_id:'proband_001', mother_id:'mother_001', father_id:'father_001', sv_p:'path/to/proband.bed', sv_m:'path/to/mother.bed', sv_f:'-' ]
+      - vcf:
+          type: file
+          description: Final preprocessed high-confidence VCF file after complete pipeline processing 
+          pattern: "*.{vcf.gz}"
+      - tbi:
+          type: file
+          description: Tabix index file for final preprocessed VCF
+          pattern: "*.tbi"
+  - versions:
+      type: file
+      description: File containing software versions
+      pattern: "versions.yml"
+
+authors:
+  - "@saramenasantamaria"
+
+maintainers:
+  - "@saramenasantamaria"

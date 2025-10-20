@@ -1,31 +1,45 @@
 //
-// Event detection workflow: VCF validation, UPD event calculation, and event collapsing
+// Event detection workflow
+//
+// Implements the core UPDhmm R-package logic for trio-based UPD detection.
+// Steps include:
+//   - Trio VCF preprocessing with quality-aware genotype encoding
+//   - HMM-based UPD event detection across chromosomes
+//   - Event collapsing to summarize UPD regions per sample and chromosome
 //
 
-include { VCF_CHECK                     } from '../../../modules/local/vcf_check/main'
-include { CALCULATE_EVENTS              } from '../../../modules/local/calculate_events/main' 
-include { COLLAPSE_EVENTS               } from '../../../modules/local/collapse_events/main'
+include { UPDHMM_VCFCHECK        } from '../../../modules/local/updhmm_vcfcheck/main'
+include { UPDHMM_CALCULATEEVENTS } from '../../../modules/local/updhmm_calculateevents/main' 
+include { UPDHMM_COLLAPSEEVENTS  } from '../../../modules/local/updhmm_collapseevents/main'
 
 workflow EVENT_DETECTION {
     
     take:
-    vcfs_ch    // channel: [meta, vcf, tbi]
+    ch_vcfs    // channel: [val(meta), path(vcf), path(tbi)]
     
     main:
     //ch_versions = Channel.empty()
     
-    VCF_CHECK (vcfs_ch)
-    //ch_versions = ch_versions.mix(VCF_CHECK.out.versions.first())
+    //
+    // Validate VCF structure and format
+    //
+    UPDHMM_VCFCHECK(ch_vcfs)
+    //ch_versions = ch_versions.mix(UPDHMM_VCFCHECK.out.versions.first())
     
+    //
+    // Calculate UPD events from processed VCF
+    //
+    UPDHMM_CALCULATEEVENTS(UPDHMM_VCFCHECK.out.processed_vcf)
+    //ch_versions = ch_versions.mix(UPDHMM_CALCULATEEVENTS.out.versions.first())
     
-    CALCULATE_EVENTS (VCF_CHECK.out.processed_vcf)
-    //ch_versions = ch_versions.mix(CALCULATE_EVENTS.out.versions.first())
-    
-    COLLAPSE_EVENTS (CALCULATE_EVENTS.out.upd_events_rds)
-    //ch_versions = ch_versions.mix(COLLAPSE_EVENTS.out.versions.first())
+    //
+    // Collapse overlapping UPD events
+    //
+    UPDHMM_COLLAPSEEVENTS(UPDHMM_CALCULATEEVENTS.out.upd_events_rds)
+    //ch_versions = ch_versions.mix(UPDHMM_COLLAPSEEVENTS.out.versions.first())
     
     emit:
-    upd_events_txt     = CALCULATE_EVENTS.out.upd_events_txt     // channel: [ meta, txt ]
-    upd_collapsed_txt  = COLLAPSE_EVENTS.out.upd_collapsed_txt   // channel: [ meta, txt ]    
-    //versions           = ch_versions                             // channel: versions.yml
+    upd_events_txt    = UPDHMM_CALCULATEEVENTS.out.upd_events_txt   // channel: [val(meta), path(txt)]
+    upd_collapsed_txt = UPDHMM_COLLAPSEEVENTS.out.upd_collapsed_txt // channel: [val(meta), path(txt)]
+    //versions          = ch_versions                            // channel: [path(versions.yml)]
 }

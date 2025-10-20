@@ -3,8 +3,11 @@ nextflow_process {
     name "Test Process SETGT"
     script "../main.nf"
     process "SETGT"
+    tag "modules"
+    tag "modules_local"
+    tag "setgt"
 
-    test("setgt") {
+    test("single family") {
 
         when {
             process {
@@ -30,7 +33,7 @@ nextflow_process {
         }
     }
 
-    test("setgt - stub") {
+    test("single family - stub") {
 
         options "-stub"
 

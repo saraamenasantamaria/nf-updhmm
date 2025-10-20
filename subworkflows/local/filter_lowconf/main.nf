@@ -4,68 +4,120 @@
 // This workflow applies sequential filters to VCFs to ensure high-confidence variants.
 // Filters include:
 //   1) Keep only biallelic sites
-//   2) Exclude variants where all trio members are homozygous reference (0/0 or 0|0)
-//   3) Enforce minimum genotype quality (GQ) and depth (DP) across the trio
+//   2) Apply minimum genotype quality (GQ) and depth (DP) filters
+//   3) Exclude variants where all trio members are homozygous reference (0/0 or 0|0)
 //   4) Exclude problematic genomic regions (centromeres, segmental duplications, HLA/KIR)
 //
 // Notes:
-//   - SETGT is applied conditionally if params.perform_intersection is false.
+//   - SETGT is applied conditionally if val_perform_intersection is false.
 //   - All bcftools arguments are configured via conf/modules.config.
 //
 
-include { SETGT                                             } from '../../../modules/local/setGT/main'
-include { BCFTOOLS_VIEW as BCFTOOLS_VIEW_BIALLELIC         } from '../../../modules/nf-core/bcftools/view/main'
-include { BCFTOOLS_VIEW as BCFTOOLS_VIEW_REFHOMO_EXCLUDE    } from '../../../modules/nf-core/bcftools/view/main'
-include { BCFTOOLS_VIEW as BCFTOOLS_VIEW_QUAL_MIN           } from '../../../modules/nf-core/bcftools/view/main'
-include { BCFTOOLS_VIEW as BCFTOOLS_VIEW_EXCL_ALL   } from '../../../modules/nf-core/bcftools/view/main'
+include { SETGT                                              } from '../../../modules/local/setGT/main'
+include { BCFTOOLS_VIEW as BCFTOOLS_VIEW_BIALLELIC           } from '../../../modules/nf-core/bcftools/view/main'
+include { BCFTOOLS_VIEW as BCFTOOLS_VIEW_QUAL_MIN            } from '../../../modules/nf-core/bcftools/view/main'
+include { BCFTOOLS_VIEW as BCFTOOLS_VIEW_REFHOMO_EXCLUDE     } from '../../../modules/nf-core/bcftools/view/main'
+include { BCFTOOLS_VIEW as BCFTOOLS_VIEW_EXCL_ALL            } from '../../../modules/nf-core/bcftools/view/main'
+
+include { BCFTOOLS_SETGT_VAF                                 } from '../../../modules/local/bcftools_setgt_vaf/main'
 
 workflow FILTER_LOWCONF {
     
     take:
-    vcfs_ch    // channel: [meta, vcf, tbi]
+    ch_vcfs    // channel: [val(meta), path(vcf), path(tbi)]
+    val_perform_intersection  // boolean: whether to perform intersection
+    val_apply_vaf_correction  // boolean: whether to apply VAF-based GT correction
     
     main:
     ch_versions = Channel.empty()
     
-    // Helper function: combine VCF with index for sequential filtering
-    def combineVcfIndex = { vcf_ch, index_ch ->
-        return vcf_ch.join(index_ch).map { meta, vcf, tbi -> tuple(meta, vcf, tbi) }
-    }
-    
-    // Step 0: Conditionally apply SETGT if intersection is not performed
-    if (!params.perform_intersection) {
+    //
+    // Conditionally apply SETGT if intersection is not performed
+    //
+    if (!val_perform_intersection) {
         
-        SETGT(vcfs_ch)
+        SETGT(ch_vcfs)
         ch_versions = ch_versions.mix(SETGT.out.versions)
         
-        input_for_filtering = combineVcfIndex(SETGT.out.vcf, SETGT.out.tbi)
+        ch_input_for_filtering = SETGT.out.vcf
+            .join(SETGT.out.tbi)
     } else {
-        input_for_filtering = vcfs_ch
+        ch_input_for_filtering = ch_vcfs
+    }
+    
+    //
+    // Correct genotypes based on clear VAF thresholds
+    // Note: Ambiguous variants (0.15-0.30, 0.70-0.85) were already removed in SV_MASK_BED
+    //
+    
+    if (val_apply_vaf_correction) {
+        //
+        // Correct remaining variants with clear VAF but wrong GT:
+        // 0/1 with VAF < 0.15 -> 0/0 (clearly homozygous reference)
+        // 0/1 with VAF > 0.85 -> 1/1 (clearly homozygous alternate)
+        //
+        BCFTOOLS_SETGT_VAF(ch_input_for_filtering)
+        ch_versions = ch_versions.mix(BCFTOOLS_SETGT_VAF.out.versions)
+        ch_input_for_filtering = BCFTOOLS_SETGT_VAF.out.vcf
+            .join(BCFTOOLS_SETGT_VAF.out.tbi)
     }
 
-    // Create empty channel for unused inputs
-    empty_ch = Channel.value([])
+    //
+    // Prepare empty channel for unused inputs
+    //
+    ch_empty = Channel.value([])
 
-    // Step  1: Keep only biallelic variants
-    BCFTOOLS_VIEW_BIALLELIC(input_for_filtering, empty_ch, empty_ch, empty_ch)
+    //
+    // Keep only biallelic variants
+    //
+    BCFTOOLS_VIEW_BIALLELIC(
+        ch_input_for_filtering,
+        ch_empty,
+        ch_empty,
+        ch_empty
+    )
     ch_versions = ch_versions.mix(BCFTOOLS_VIEW_BIALLELIC.out.versions)
     
-    // Step  2: Apply minimum genotype quality (GQ) and depth (DP) filters
-    BCFTOOLS_VIEW_QUAL_MIN(combineVcfIndex(BCFTOOLS_VIEW_BIALLELIC.out.vcf, BCFTOOLS_VIEW_BIALLELIC.out.tbi), empty_ch, empty_ch, empty_ch)
+    //
+    // Apply minimum genotype quality (GQ) and depth (DP) filters
+    //
+    BCFTOOLS_VIEW_QUAL_MIN(
+        BCFTOOLS_VIEW_BIALLELIC.out.vcf.join(BCFTOOLS_VIEW_BIALLELIC.out.tbi),
+        ch_empty,
+        ch_empty,
+        ch_empty
+    )
     ch_versions = ch_versions.mix(BCFTOOLS_VIEW_QUAL_MIN.out.versions)
 
-    // Step  3: Exclude variants where all trio members are homozygous reference
-    BCFTOOLS_VIEW_REFHOMO_EXCLUDE(combineVcfIndex(BCFTOOLS_VIEW_QUAL_MIN.out.vcf, BCFTOOLS_VIEW_QUAL_MIN.out.tbi), empty_ch, empty_ch, empty_ch)
+    //
+    // Exclude variants where all trio members are homozygous reference
+    //
+    BCFTOOLS_VIEW_REFHOMO_EXCLUDE(
+        BCFTOOLS_VIEW_QUAL_MIN.out.vcf.join(BCFTOOLS_VIEW_QUAL_MIN.out.tbi),
+        ch_empty,
+        ch_empty,
+        ch_empty
+    )
     ch_versions = ch_versions.mix(BCFTOOLS_VIEW_REFHOMO_EXCLUDE.out.versions)
 
-    // Step  4: Exclude problematic genomic regions (centromeres, segmental duplications and HLA/KIR)
-    BCFTOOLS_VIEW_EXCL_ALL(combineVcfIndex(BCFTOOLS_VIEW_REFHOMO_EXCLUDE.out.vcf, BCFTOOLS_VIEW_REFHOMO_EXCLUDE.out.tbi), empty_ch, empty_ch, empty_ch)
+    //
+    // Exclude problematic genomic regions (centromeres, segmental duplications and HLA/KIR)
+    //
+    BCFTOOLS_VIEW_EXCL_ALL(
+        BCFTOOLS_VIEW_REFHOMO_EXCLUDE.out.vcf.join(BCFTOOLS_VIEW_REFHOMO_EXCLUDE.out.tbi),
+        ch_empty,
+        ch_empty,
+        ch_empty
+    )
     ch_versions = ch_versions.mix(BCFTOOLS_VIEW_EXCL_ALL.out.versions)
 
-    // Step 5: Prepare final filtered VCFs with their indices
-    final_vcfs = combineVcfIndex(BCFTOOLS_VIEW_EXCL_ALL.out.vcf, BCFTOOLS_VIEW_EXCL_ALL.out.tbi)
+    //
+    // Prepare final filtered VCFs with their indices
+    //
+    ch_final_vcfs = BCFTOOLS_VIEW_EXCL_ALL.out.vcf
+        .join(BCFTOOLS_VIEW_EXCL_ALL.out.tbi)
     
     emit:
-    vcfs     = final_vcfs            // channel: [meta, vcf, tbi]
-    versions = ch_versions           // channel: versions.yml
+    vcf      = ch_final_vcfs  // channel: [val(meta), path(vcf), path(tbi)]
+    versions = ch_versions    // channel: [path(versions.yml)]
 }

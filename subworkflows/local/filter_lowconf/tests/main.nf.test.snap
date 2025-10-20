@@ -1,37 +1,112 @@
 {
-    "with_intersection_stub": {
+    "single sample - without intersection - stub": {
         "content": [
-            [
-                {
-                    "meta": {
-                        "id": "family_intersect_stub"
-                    },
-                    "vcf_exists": true,
-                    "tbi_exists": true
-                }
-            ],
-            [
-                "versions.yml:md5,5867bfc7128cd39b20f84aa2ca9213d1",
-                "versions.yml:md5,ba1671b8d8c27bc942b34f1f5b9bff92",
-                "versions.yml:md5,e6bdc637f49435b94f30740c3dc85cdf",
-                "versions.yml:md5,f7c5aa38dea8fcfba5d81066887120d7"
-            ]
+            {
+                "0": [
+                    [
+                        {
+                            "id": "family1",
+                            "sv_p": "-",
+                            "sv_m": "-",
+                            "sv_f": "-"
+                        },
+                        "family1_filtered_final.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                        "family1_filtered_final.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,5867bfc7128cd39b20f84aa2ca9213d1",
+                    "versions.yml:md5,ba1671b8d8c27bc942b34f1f5b9bff92",
+                    "versions.yml:md5,e6bdc637f49435b94f30740c3dc85cdf",
+                    "versions.yml:md5,f7c5aa38dea8fcfba5d81066887120d7",
+                    "versions.yml:md5,faa362b7645bf78f2fe2cf02199408f3"
+                ],
+                "vcf": [
+                    [
+                        {
+                            "id": "family1",
+                            "sv_p": "-",
+                            "sv_m": "-",
+                            "sv_f": "-"
+                        },
+                        "family1_filtered_final.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                        "family1_filtered_final.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,5867bfc7128cd39b20f84aa2ca9213d1",
+                    "versions.yml:md5,ba1671b8d8c27bc942b34f1f5b9bff92",
+                    "versions.yml:md5,e6bdc637f49435b94f30740c3dc85cdf",
+                    "versions.yml:md5,f7c5aa38dea8fcfba5d81066887120d7",
+                    "versions.yml:md5,faa362b7645bf78f2fe2cf02199408f3"
+                ]
+            }
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2025-10-12T13:35:32.273143317"
+        "timestamp": "2025-12-11T14:43:38.864209958"
     },
-    "without_intersection_stub": {
+    "single sample - with intersection - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "family2",
+                            "sv_p": "-",
+                            "sv_m": "-",
+                            "sv_f": "-"
+                        },
+                        "family2_filtered_final.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                        "family2_filtered_final.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,5867bfc7128cd39b20f84aa2ca9213d1",
+                    "versions.yml:md5,ba1671b8d8c27bc942b34f1f5b9bff92",
+                    "versions.yml:md5,e6bdc637f49435b94f30740c3dc85cdf",
+                    "versions.yml:md5,f7c5aa38dea8fcfba5d81066887120d7"
+                ],
+                "vcf": [
+                    [
+                        {
+                            "id": "family2",
+                            "sv_p": "-",
+                            "sv_m": "-",
+                            "sv_f": "-"
+                        },
+                        "family2_filtered_final.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                        "family2_filtered_final.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,5867bfc7128cd39b20f84aa2ca9213d1",
+                    "versions.yml:md5,ba1671b8d8c27bc942b34f1f5b9bff92",
+                    "versions.yml:md5,e6bdc637f49435b94f30740c3dc85cdf",
+                    "versions.yml:md5,f7c5aa38dea8fcfba5d81066887120d7"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.04.6"
+        },
+        "timestamp": "2025-12-11T14:44:00.687714567"
+    },
+    "single sample - without intersection": {
         "content": [
             [
                 {
                     "meta": {
-                        "id": "family_no_intersect_stub"
+                        "id": "family1",
+                        "sv_p": "-",
+                        "sv_m": "-",
+                        "sv_f": "-"
                     },
-                    "vcf_exists": true,
-                    "tbi_exists": true
+                    "vcf_name": "family1_filtered_final.vcf.gz",
+                    "tbi_name": "family1_filtered_final.vcf.gz.tbi"
                 }
             ],
             [
@@ -46,24 +121,132 @@
             "nf-test": "0.9.3",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2025-10-12T13:37:36.130766577"
+        "timestamp": "2025-12-11T14:42:23.29565611"
     },
-    "multiple_samples": {
+    "multiple samples - mixed intersection modes - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "family1",
+                            "sv_p": "-",
+                            "sv_m": "-",
+                            "sv_f": "-"
+                        },
+                        "family1_filtered_final.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                        "family1_filtered_final.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        {
+                            "id": "family2",
+                            "sv_p": "-",
+                            "sv_m": "-",
+                            "sv_f": "-"
+                        },
+                        "family2_filtered_final.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                        "family2_filtered_final.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,5867bfc7128cd39b20f84aa2ca9213d1",
+                    "versions.yml:md5,5867bfc7128cd39b20f84aa2ca9213d1",
+                    "versions.yml:md5,ba1671b8d8c27bc942b34f1f5b9bff92",
+                    "versions.yml:md5,ba1671b8d8c27bc942b34f1f5b9bff92",
+                    "versions.yml:md5,e6bdc637f49435b94f30740c3dc85cdf",
+                    "versions.yml:md5,e6bdc637f49435b94f30740c3dc85cdf",
+                    "versions.yml:md5,f7c5aa38dea8fcfba5d81066887120d7",
+                    "versions.yml:md5,f7c5aa38dea8fcfba5d81066887120d7"
+                ],
+                "vcf": [
+                    [
+                        {
+                            "id": "family1",
+                            "sv_p": "-",
+                            "sv_m": "-",
+                            "sv_f": "-"
+                        },
+                        "family1_filtered_final.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                        "family1_filtered_final.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        {
+                            "id": "family2",
+                            "sv_p": "-",
+                            "sv_m": "-",
+                            "sv_f": "-"
+                        },
+                        "family2_filtered_final.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                        "family2_filtered_final.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,5867bfc7128cd39b20f84aa2ca9213d1",
+                    "versions.yml:md5,5867bfc7128cd39b20f84aa2ca9213d1",
+                    "versions.yml:md5,ba1671b8d8c27bc942b34f1f5b9bff92",
+                    "versions.yml:md5,ba1671b8d8c27bc942b34f1f5b9bff92",
+                    "versions.yml:md5,e6bdc637f49435b94f30740c3dc85cdf",
+                    "versions.yml:md5,e6bdc637f49435b94f30740c3dc85cdf",
+                    "versions.yml:md5,f7c5aa38dea8fcfba5d81066887120d7",
+                    "versions.yml:md5,f7c5aa38dea8fcfba5d81066887120d7"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.04.6"
+        },
+        "timestamp": "2025-12-11T14:44:24.251894174"
+    },
+    "single sample - with intersection": {
         "content": [
             [
                 {
                     "meta": {
-                        "id": "family1_multi"
+                        "id": "family2",
+                        "sv_p": "-",
+                        "sv_m": "-",
+                        "sv_f": "-"
                     },
-                    "vcf_exists": true,
-                    "tbi_exists": true
+                    "vcf_name": "family2_filtered_final.vcf.gz",
+                    "tbi_name": "family2_filtered_final.vcf.gz.tbi"
+                }
+            ],
+            [
+                "versions.yml:md5,5867bfc7128cd39b20f84aa2ca9213d1",
+                "versions.yml:md5,ba1671b8d8c27bc942b34f1f5b9bff92",
+                "versions.yml:md5,e6bdc637f49435b94f30740c3dc85cdf",
+                "versions.yml:md5,f7c5aa38dea8fcfba5d81066887120d7"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.04.6"
+        },
+        "timestamp": "2025-12-11T14:42:47.729419994"
+    },
+    "multiple samples - mixed intersection modes": {
+        "content": [
+            [
+                {
+                    "meta": {
+                        "id": "family1",
+                        "sv_p": "-",
+                        "sv_m": "-",
+                        "sv_f": "-"
+                    },
+                    "vcf_name": "family1_filtered_final.vcf.gz",
+                    "tbi_name": "family1_filtered_final.vcf.gz.tbi"
                 },
                 {
                     "meta": {
-                        "id": "family2_multi"
+                        "id": "family2",
+                        "sv_p": "-",
+                        "sv_m": "-",
+                        "sv_f": "-"
                     },
-                    "vcf_exists": true,
-                    "tbi_exists": true
+                    "vcf_name": "family2_filtered_final.vcf.gz",
+                    "tbi_name": "family2_filtered_final.vcf.gz.tbi"
                 }
             ],
             [
@@ -81,55 +264,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2025-10-12T13:35:10.72782586"
-    },
-    "without_intersection": {
-        "content": [
-            [
-                {
-                    "meta": {
-                        "id": "family2_no_intersect"
-                    },
-                    "vcf_exists": true,
-                    "tbi_exists": true
-                }
-            ],
-            [
-                "versions.yml:md5,5867bfc7128cd39b20f84aa2ca9213d1",
-                "versions.yml:md5,ba1671b8d8c27bc942b34f1f5b9bff92",
-                "versions.yml:md5,e6bdc637f49435b94f30740c3dc85cdf",
-                "versions.yml:md5,f7c5aa38dea8fcfba5d81066887120d7",
-                "versions.yml:md5,faa362b7645bf78f2fe2cf02199408f3"
-            ]
-        ],
-        "meta": {
-            "nf-test": "0.9.3",
-            "nextflow": "25.04.6"
-        },
-        "timestamp": "2025-10-12T13:34:42.928356873"
-    },
-    "with_intersection": {
-        "content": [
-            [
-                {
-                    "meta": {
-                        "id": "family1_intersect"
-                    },
-                    "vcf_exists": true,
-                    "tbi_exists": true
-                }
-            ],
-            [
-                "versions.yml:md5,5867bfc7128cd39b20f84aa2ca9213d1",
-                "versions.yml:md5,ba1671b8d8c27bc942b34f1f5b9bff92",
-                "versions.yml:md5,e6bdc637f49435b94f30740c3dc85cdf",
-                "versions.yml:md5,f7c5aa38dea8fcfba5d81066887120d7"
-            ]
-        ],
-        "meta": {
-            "nf-test": "0.9.3",
-            "nextflow": "25.04.6"
-        },
-        "timestamp": "2025-10-12T13:32:08.034495876"
+        "timestamp": "2025-12-11T14:43:16.121147742"
     }
 }
