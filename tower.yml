@@ -1,0 +1,9 @@
+reports:
+  "**/samplesheet.valid.csv":
+    display: "Validated family trio samplesheet"
+  
+  "**/final_processed/*.vcf.gz":
+    display: "Final processed VCF files"
+  
+  "pipeline_info/execution_report.html":
+    display: "Pipeline execution report"

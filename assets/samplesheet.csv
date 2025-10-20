@@ -1,0 +1,2 @@
+fam_id,proband_id,mother_id,father_id,path_vcf_proband,path_vcf_mother,path_vcf_father,path_sv_proband,path_sv_mother,path_sv_father
+FAM1,proband_id_1,mother_id_1,father_id_1,/path/to/proband_1.vcf.gz,/path/to/mother_1.vcf.gz,/path/to/father_1.vcf.gz,-,-,-

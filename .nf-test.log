@@ -1,0 +1,46 @@
+Oct-13 11:19:38.387 [main] INFO  com.askimed.nf.test.App - nf-test 0.9.3
+Oct-13 11:19:38.398 [main] INFO  com.askimed.nf.test.App - Arguments: [test, subworkflows/local/preprocess_vcf/tests/main.nf.test, --profile, singularity]
+Oct-13 11:19:39.295 [main] INFO  com.askimed.nf.test.App - Nextflow Version: 25.04.6
+Oct-13 11:19:39.298 [main] INFO  com.askimed.nf.test.commands.RunTestsCommand - Load config from file /home/u0030001/nf-updhmm_zenodo/nf-test.config...
+Oct-13 11:19:40.944 [main] WARN  com.askimed.nf.test.nextflow.NextflowScript - Module /home/u0030001/nf-updhmm_zenodo/workflows/updhmm.nf: Dependency '/home/u0030001/nf-updhmm_zenodo/workflows/../subworkflows/local/utils_nfcore_updhmm_pipeline.nf' not found.
+Oct-13 11:20:55.658 [main] INFO  com.askimed.nf.test.lang.dependencies.DependencyResolver - Loaded 34 files from directory /home/u0030001/nf-updhmm_zenodo in 75.532 sec
+Oct-13 11:20:55.671 [main] INFO  com.askimed.nf.test.lang.dependencies.DependencyResolver - Found 1 files containing tests.
+Oct-13 11:20:55.671 [main] DEBUG com.askimed.nf.test.lang.dependencies.DependencyResolver - Found files: [/home/u0030001/nf-updhmm_zenodo/subworkflows/local/preprocess_vcf/tests/main.nf.test]
+Oct-13 11:20:56.979 [main] INFO  com.askimed.nf.test.commands.RunTestsCommand - Found 11 tests to execute.
+Oct-13 11:20:56.981 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Started test plan
+Oct-13 11:20:56.981 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Running testsuite 'Test Subworkflow PREPROCESS_VCF' from file '/home/u0030001/nf-updhmm_zenodo/subworkflows/local/preprocess_vcf/tests/main.nf.test'.
+Oct-13 11:20:56.981 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Run test 'b8c83663: preprocess_vcf - with intersection and no SVs'. type: com.askimed.nf.test.lang.workflow.WorkflowTest
+Oct-13 11:21:43.628 [main] DEBUG com.askimed.nf.test.lang.extensions.SnapshotFile - Load snapshots from file '/home/u0030001/nf-updhmm_zenodo/subworkflows/local/preprocess_vcf/tests/main.nf.test.snap'
+Oct-13 11:21:43.660 [main] DEBUG com.askimed.nf.test.lang.extensions.Snapshot - Snapshots 'with_intersection_no_svs' match.
+Oct-13 11:21:43.661 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Test 'b8c83663: preprocess_vcf - with intersection and no SVs' finished. status: PASSED
+Oct-13 11:21:43.662 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Run test '1e62860f: preprocess_vcf - without intersection and no SVs'. type: com.askimed.nf.test.lang.workflow.WorkflowTest
+Oct-13 11:24:19.147 [main] DEBUG com.askimed.nf.test.lang.extensions.Snapshot - Snapshots 'without_intersection_no_svs' match.
+Oct-13 11:24:19.147 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Test '1e62860f: preprocess_vcf - without intersection and no SVs' finished. status: PASSED
+Oct-13 11:24:19.148 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Run test 'ba70dd1d: preprocess_vcf - with intersection and with SVs'. type: com.askimed.nf.test.lang.workflow.WorkflowTest
+Oct-13 11:27:29.294 [main] DEBUG com.askimed.nf.test.lang.extensions.Snapshot - Snapshots 'with_intersection_with_svs' match.
+Oct-13 11:27:29.294 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Test 'ba70dd1d: preprocess_vcf - with intersection and with SVs' finished. status: PASSED
+Oct-13 11:27:29.295 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Run test '3b02b6c0: preprocess_vcf - without intersection and with SVs'. type: com.askimed.nf.test.lang.workflow.WorkflowTest
+Oct-13 11:32:03.668 [main] DEBUG com.askimed.nf.test.lang.extensions.Snapshot - Snapshots 'without_intersection_with_svs' match.
+Oct-13 11:32:03.668 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Test '3b02b6c0: preprocess_vcf - without intersection and with SVs' finished. status: PASSED
+Oct-13 11:32:03.668 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Run test '8f8eef80: preprocess_vcf - with intersection and no SVs - stub'. type: com.askimed.nf.test.lang.workflow.WorkflowTest
+Oct-13 11:32:33.570 [main] DEBUG com.askimed.nf.test.lang.extensions.Snapshot - Snapshots 'with_intersection_no_svs_stub' match.
+Oct-13 11:32:33.570 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Test '8f8eef80: preprocess_vcf - with intersection and no SVs - stub' finished. status: PASSED
+Oct-13 11:32:33.571 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Run test 'be75f839: preprocess_vcf - without intersection and no SVs - stub'. type: com.askimed.nf.test.lang.workflow.WorkflowTest
+Oct-13 11:35:01.165 [main] DEBUG com.askimed.nf.test.lang.extensions.Snapshot - Snapshots 'without_intersection_no_svs_stub' match.
+Oct-13 11:35:01.165 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Test 'be75f839: preprocess_vcf - without intersection and no SVs - stub' finished. status: PASSED
+Oct-13 11:35:01.165 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Run test '5a287557: preprocess_vcf - with intersection and with SVs - stub'. type: com.askimed.nf.test.lang.workflow.WorkflowTest
+Oct-13 11:41:20.002 [main] DEBUG com.askimed.nf.test.lang.extensions.Snapshot - Snapshots 'with_intersection_with_svs_stub' match.
+Oct-13 11:41:20.002 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Test '5a287557: preprocess_vcf - with intersection and with SVs - stub' finished. status: PASSED
+Oct-13 11:41:20.002 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Run test '217be88a: preprocess_vcf - without intersection and with SVs - stub'. type: com.askimed.nf.test.lang.workflow.WorkflowTest
+Oct-13 11:46:04.803 [main] DEBUG com.askimed.nf.test.lang.extensions.Snapshot - Snapshots 'without_intersection_with_svs_stub' match.
+Oct-13 11:46:04.803 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Test '217be88a: preprocess_vcf - without intersection and with SVs - stub' finished. status: PASSED
+Oct-13 11:46:04.803 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Run test '86c5aaff: preprocess_vcf - multiple families'. type: com.askimed.nf.test.lang.workflow.WorkflowTest
+Oct-13 11:46:47.328 [main] DEBUG com.askimed.nf.test.lang.extensions.Snapshot - Snapshots 'multiple_families' match.
+Oct-13 11:46:47.328 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Test '86c5aaff: preprocess_vcf - multiple families' finished. status: PASSED
+Oct-13 11:46:47.329 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Run test '984a16a9: preprocess_vcf - multiple families - stub'. type: com.askimed.nf.test.lang.workflow.WorkflowTest
+Oct-13 11:47:21.516 [main] DEBUG com.askimed.nf.test.lang.extensions.Snapshot - Snapshots 'multiple_families_stub' match.
+Oct-13 11:47:21.516 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Test '984a16a9: preprocess_vcf - multiple families - stub' finished. status: PASSED
+Oct-13 11:47:21.517 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Run test 'd0fcd2c7: preprocess_vcf - error handling - invalid samplesheet'. type: com.askimed.nf.test.lang.workflow.WorkflowTest
+Oct-13 11:47:44.636 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Test 'd0fcd2c7: preprocess_vcf - error handling - invalid samplesheet' finished. status: PASSED
+Oct-13 11:47:44.637 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Testsuite 'Test Subworkflow PREPROCESS_VCF' finished. snapshot file: true, skipped tests: false, failed tests: false
+Oct-13 11:47:44.637 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Executed 11 tests. 0 tests failed. Done!

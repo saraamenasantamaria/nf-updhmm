@@ -1,0 +1,210 @@
+nextflow_workflow {
+
+    name "Test Subworkflow FILTER_LOWCONF"
+    script "../main.nf"
+    workflow "FILTER_LOWCONF"
+
+    test("filter_lowconf - with perform_intersection true") {
+        when {
+            params {
+                perform_intersection = true
+            }
+            workflow {
+                """
+                input[0] = Channel.of([
+                    [
+                        id: 'family1_intersect',
+                        sv_p: '-',
+                        sv_m: '-', 
+                        sv_f: '-'
+                    ],
+                    file('${projectDir}/subworkflows/local/filter_lowconf/tests/data/family2.vcf.gz', checkIfExists: true),
+                    file('${projectDir}/subworkflows/local/filter_lowconf/tests/data/family2.vcf.gz.tbi', checkIfExists: true)
+                ])
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(
+                    workflow.out.vcfs.collect { meta, vcf, tbi -> 
+                        [
+                            meta: [id: meta.id],
+                            vcf_exists: file(vcf).exists(),
+                            tbi_exists: file(tbi).exists()
+                        ]
+                    },
+                    workflow.out.versions
+                ).match("with_intersection") }
+            )
+        }
+    }
+
+    test("filter_lowconf - with perform_intersection false") {
+        when {
+            params {
+                perform_intersection = false
+            }
+            workflow {
+                """
+                input[0] = Channel.of([
+                    [
+                        id: 'family2_no_intersect',
+                        sv_p: '-',
+                        sv_m: '-', 
+                        sv_f: '-'
+                    ],
+                    file('${projectDir}/subworkflows/local/filter_lowconf/tests/data/family1.vcf.gz', checkIfExists: true),
+                    file('${projectDir}/subworkflows/local/filter_lowconf/tests/data/family1.vcf.gz.tbi', checkIfExists: true)
+                ])
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(
+                    workflow.out.vcfs.collect { meta, vcf, tbi -> 
+                        [
+                            meta: [id: meta.id],
+                            vcf_exists: file(vcf).exists(),
+                            tbi_exists: file(tbi).exists()
+                        ]
+                    },
+                    workflow.out.versions
+                ).match("without_intersection") }
+            )
+        }
+    }
+
+    test("filter_lowconf - multiple samples") {
+        when {
+            params {
+                perform_intersection = true
+            }
+            workflow {
+                """
+                input[0] = Channel.of([
+                    [
+                        id: 'family1_multi',
+                        sv_p: '-',
+                        sv_m: '-',
+                        sv_f: '-'
+                    ],
+                    file('${projectDir}/subworkflows/local/filter_lowconf/tests/data/family1.vcf.gz', checkIfExists: true),
+                    file('${projectDir}/subworkflows/local/filter_lowconf/tests/data/family1.vcf.gz.tbi', checkIfExists: true)
+                ],[
+                    [
+                        id: 'family2_multi',
+                        sv_p: '-',
+                        sv_m: '-',
+                        sv_f: '-'
+                    ],
+                    file('${projectDir}/subworkflows/local/filter_lowconf/tests/data/family2.vcf.gz', checkIfExists: true),
+                    file('${projectDir}/subworkflows/local/filter_lowconf/tests/data/family2.vcf.gz.tbi', checkIfExists: true)
+                ])
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert workflow.out.vcfs.size() == 2 },
+                { assert snapshot(
+                    workflow.out.vcfs.collect { meta, vcf, tbi -> 
+                        [
+                            meta: [id: meta.id],
+                            vcf_exists: file(vcf).exists(),
+                            tbi_exists: file(tbi).exists()
+                        ]
+                    }.sort { it.meta.id },
+                    workflow.out.versions
+                ).match("multiple_samples") }
+            )
+        }
+    }
+
+    test("filter_lowconf - with intersection - stub") {
+        options "-stub"
+
+        when {
+            params {
+                perform_intersection = true
+            }
+            workflow {
+                """
+                input[0] = Channel.of([
+                    [
+                        id: 'family_intersect_stub',
+                        sv_p: '-',
+                        sv_m: '-',
+                        sv_f: '-'
+                    ],
+                    file('${projectDir}/subworkflows/local/filter_lowconf/tests/data/family2.vcf.gz', checkIfExists: true),
+                    file('${projectDir}/subworkflows/local/filter_lowconf/tests/data/family2.vcf.gz.tbi', checkIfExists: true)
+                ])
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(
+                    workflow.out.vcfs.collect { meta, vcf, tbi -> 
+                        [
+                            meta: [id: meta.id],
+                            vcf_exists: file(vcf).exists(),
+                            tbi_exists: file(tbi).exists()
+                        ]
+                    },
+                    workflow.out.versions
+                ).match("with_intersection_stub") }
+            )
+        }
+    }
+
+    test("filter_lowconf - without intersection - stub") {
+        options "-stub"
+
+        when {
+            params {
+                perform_intersection = false
+            }
+            workflow {
+                """
+                input[0] = Channel.of([
+                    [
+                        id: 'family_no_intersect_stub',
+                        sv_p: '-',
+                        sv_m: '-',
+                        sv_f: '-'
+                    ],
+                    file('${projectDir}/subworkflows/local/filter_lowconf/tests/data/family1.vcf.gz', checkIfExists: true),
+                    file('${projectDir}/subworkflows/local/filter_lowconf/tests/data/family1.vcf.gz.tbi', checkIfExists: true)
+                ])
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(
+                    workflow.out.vcfs.collect { meta, vcf, tbi -> 
+                        [
+                            meta: [id: meta.id],
+                            vcf_exists: file(vcf).exists(),
+                            tbi_exists: file(tbi).exists()
+                        ]
+                    },
+                    workflow.out.versions
+                ).match("without_intersection_stub") }
+            )
+        }
+    }
+}

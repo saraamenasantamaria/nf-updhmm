@@ -1,0 +1,62 @@
+nextflow_process {
+
+    name "Test Process CONCAT_BED"
+    script "../main.nf"
+    process "CONCAT_BED"
+    
+
+    test("concat_bed") {
+
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'family1' ],
+                    [
+                        file('${projectDir}/modules/local/concat_bed/tests/data/proband_sv.bed', checkIfExists: true),
+                        file('${projectDir}/modules/local/concat_bed/tests/data/mother_sv.bed', checkIfExists: true),
+                        file('${projectDir}/modules/local/concat_bed/tests/data/father_sv.bed', checkIfExists: true)
+                    ]
+                ]
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(
+                    process.out.bed,
+                    process.out.versions
+                ).match() }
+            )
+        }
+    }
+
+    test("concat_bed - stub") {
+
+        options "-stub"
+
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'family1' ],
+                    [
+                        file('${projectDir}/modules/local/concat_bed/tests/data/proband_sv.bed', checkIfExists: true),
+                        file('${projectDir}/modules/local/concat_bed/tests/data/mother_sv.bed', checkIfExists: true),
+                        file('${projectDir}/modules/local/concat_bed/tests/data/father_sv.bed', checkIfExists: true)
+                    ]
+                ]
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+}

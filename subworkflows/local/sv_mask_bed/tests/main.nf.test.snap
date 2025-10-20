@@ -1,0 +1,175 @@
+{
+    "with_bed_files": {
+        "content": [
+            [
+                {
+                    "meta": {
+                        "id": "family1_bed"
+                    },
+                    "vcf_exists": true,
+                    "tbi_exists": true
+                }
+            ],
+            [
+                "versions.yml:md5,42e56d1a4dbdfe3634e36f2f23a5ea2a",
+                "versions.yml:md5,646f7b4deb20d79721c9103aec6352c0",
+                "versions.yml:md5,9d0c4dc8d6bf2968d4010ad7f63be803"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.04.6"
+        },
+        "timestamp": "2025-10-12T14:15:58.212556804"
+    },
+    "without_sv_files": {
+        "content": [
+            [
+                {
+                    "meta": {
+                        "id": "family4_no_sv"
+                    },
+                    "vcf_exists": true,
+                    "tbi_exists": true
+                }
+            ],
+            [
+                
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.04.6"
+        },
+        "timestamp": "2025-10-12T14:21:10.939179218"
+    },
+    "with_vcf_sv_files": {
+        "content": [
+            [
+                {
+                    "meta": {
+                        "id": "family2_vcf"
+                    },
+                    "vcf_exists": true,
+                    "tbi_exists": true
+                }
+            ],
+            [
+                "versions.yml:md5,42e56d1a4dbdfe3634e36f2f23a5ea2a",
+                "versions.yml:md5,646f7b4deb20d79721c9103aec6352c0",
+                "versions.yml:md5,9d0c4dc8d6bf2968d4010ad7f63be803",
+                "versions.yml:md5,b91c806192854946efb7883aefd6af06",
+                "versions.yml:md5,b91c806192854946efb7883aefd6af06",
+                "versions.yml:md5,b91c806192854946efb7883aefd6af06"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.04.6"
+        },
+        "timestamp": "2025-10-12T14:18:15.983151497"
+    },
+    "multiple_samples_mixed": {
+        "content": [
+            [
+                {
+                    "meta": {
+                        "id": "family1_bed"
+                    },
+                    "vcf_exists": true,
+                    "tbi_exists": true
+                },
+                {
+                    "meta": {
+                        "id": "family3_vcf_sv"
+                    },
+                    "vcf_exists": true,
+                    "tbi_exists": true
+                }
+            ],
+            [
+                "versions.yml:md5,42e56d1a4dbdfe3634e36f2f23a5ea2a",
+                "versions.yml:md5,42e56d1a4dbdfe3634e36f2f23a5ea2a",
+                "versions.yml:md5,646f7b4deb20d79721c9103aec6352c0",
+                "versions.yml:md5,646f7b4deb20d79721c9103aec6352c0",
+                "versions.yml:md5,9d0c4dc8d6bf2968d4010ad7f63be803",
+                "versions.yml:md5,9d0c4dc8d6bf2968d4010ad7f63be803",
+                "versions.yml:md5,b91c806192854946efb7883aefd6af06",
+                "versions.yml:md5,b91c806192854946efb7883aefd6af06"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.04.6"
+        },
+        "timestamp": "2025-10-12T14:24:12.991225936"
+    },
+    "without_sv_files_stub": {
+        "content": [
+            [
+                {
+                    "meta": {
+                        "id": "family4_no_sv_stub"
+                    },
+                    "vcf_exists": true,
+                    "tbi_exists": true
+                }
+            ],
+            [
+                
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.04.6"
+        },
+        "timestamp": "2025-10-12T14:25:49.671591772"
+    },
+    "with_mixed_sv_files": {
+        "content": [
+            [
+                {
+                    "meta": {
+                        "id": "family3_mixed"
+                    },
+                    "vcf_exists": true,
+                    "tbi_exists": true
+                }
+            ],
+            [
+                "versions.yml:md5,42e56d1a4dbdfe3634e36f2f23a5ea2a",
+                "versions.yml:md5,646f7b4deb20d79721c9103aec6352c0",
+                "versions.yml:md5,9d0c4dc8d6bf2968d4010ad7f63be803",
+                "versions.yml:md5,b91c806192854946efb7883aefd6af06"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.04.6"
+        },
+        "timestamp": "2025-10-12T14:20:53.132597686"
+    },
+    "with_bed_files_stub": {
+        "content": [
+            [
+                {
+                    "meta": {
+                        "id": "family1_bed_stub"
+                    },
+                    "vcf_exists": true,
+                    "tbi_exists": true
+                }
+            ],
+            [
+                "versions.yml:md5,42e56d1a4dbdfe3634e36f2f23a5ea2a",
+                "versions.yml:md5,646f7b4deb20d79721c9103aec6352c0",
+                "versions.yml:md5,af96a8b605d86bc0b1f79efecbe13dca"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.04.6"
+        },
+        "timestamp": "2025-10-12T14:25:31.423844251"
+    }
+}

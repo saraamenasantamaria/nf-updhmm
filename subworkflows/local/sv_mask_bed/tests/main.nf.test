@@ -1,0 +1,265 @@
+nextflow_workflow {
+
+    name "Test Subworkflow SV_MASK_BED"
+    script "../main.nf"
+    workflow "SV_MASK_BED"
+
+    test("sv_mask_bed - sample with bed files") {
+        when {
+            workflow {
+                """
+                input[0] = Channel.of([
+                    [
+                        id: 'family1_bed',
+                        sv_p: '${projectDir}/subworkflows/local/sv_mask_bed/tests/data/proband_sv.bed',
+                        sv_m: '${projectDir}/subworkflows/local/sv_mask_bed/tests/data/mother_sv.bed', 
+                        sv_f: '${projectDir}/subworkflows/local/sv_mask_bed/tests/data/father_sv.bed', 
+                    ],
+                    file('${projectDir}/subworkflows/local/sv_mask_bed/tests/data/family.vcf.gz', checkIfExists: true),
+                    file('${projectDir}/subworkflows/local/sv_mask_bed/tests/data/family.vcf.gz.tbi', checkIfExists: true)
+                ])
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(
+                    workflow.out.vcfs.collect { meta, vcf, tbi -> 
+                        [
+                            meta: [id: meta.id],
+                            vcf_exists: file(vcf).exists(),
+                            tbi_exists: file(tbi).exists()
+                        ]
+                    },
+                    workflow.out.versions
+                ).match("with_bed_files") }
+            )
+        }
+    }
+
+    test("sv_mask_bed - sample with vcf.gz sv files") {
+        when {
+            workflow {
+                """
+                input[0] = Channel.of([
+                    [
+                        id: 'family2_vcf',
+                        sv_p: '${projectDir}/subworkflows/local/sv_mask_bed/tests/data/proband_sv.vcf.gz',
+                        sv_m: '${projectDir}/subworkflows/local/sv_mask_bed/tests/data/mother_sv.vcf.gz',
+                        sv_f: '${projectDir}/subworkflows/local/sv_mask_bed/tests/data/father_sv.vcf.gz'
+                    ],
+                    file('${projectDir}/subworkflows/local/sv_mask_bed/tests/data/family.vcf.gz', checkIfExists: true),
+                    file('${projectDir}/subworkflows/local/sv_mask_bed/tests/data/family.vcf.gz.tbi', checkIfExists: true)
+                ])
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(
+                    workflow.out.vcfs.collect { meta, vcf, tbi -> 
+                        [
+                            meta: [id: meta.id],
+                            vcf_exists: file(vcf).exists(),
+                            tbi_exists: file(tbi).exists()
+                        ]
+                    },
+                    workflow.out.versions
+                ).match("with_vcf_sv_files") }
+            )
+        }
+    }
+
+    test("sv_mask_bed - sample with mixed sv file types") {
+        when {
+            workflow {
+                """
+                input[0] = Channel.of([
+                    [
+                        id: 'family3_mixed',
+                        sv_p: '${projectDir}/subworkflows/local/sv_mask_bed/tests/data/proband_sv.bed',
+                        sv_m: '${projectDir}/subworkflows/local/sv_mask_bed/tests/data/mother_sv.vcf.gz',
+                        sv_f: '${projectDir}/subworkflows/local/sv_mask_bed/tests/data/father_sv.bed'
+                    ],
+                    file('${projectDir}/subworkflows/local/sv_mask_bed/tests/data/family.vcf.gz', checkIfExists: true),
+                    file('${projectDir}/subworkflows/local/sv_mask_bed/tests/data/family.vcf.gz.tbi', checkIfExists: true)
+                ])
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(
+                    workflow.out.vcfs.collect { meta, vcf, tbi -> 
+                        [
+                            meta: [id: meta.id],
+                            vcf_exists: file(vcf).exists(),
+                            tbi_exists: file(tbi).exists()
+                        ]
+                    },
+                    workflow.out.versions
+                ).match("with_mixed_sv_files") }
+            )
+        }
+    }
+
+    test("sv_mask_bed - sample without sv files") {
+        when {
+            workflow {
+                """
+                input[0] = Channel.of([
+                    [
+                        id: 'family4_no_sv',
+                        sv_p: '-',
+                        sv_m: '-',
+                        sv_f: '-'
+                    ],
+                    file('${projectDir}/subworkflows/local/sv_mask_bed/tests/data/family.vcf.gz', checkIfExists: true),
+                    file('${projectDir}/subworkflows/local/sv_mask_bed/tests/data/family.vcf.gz.tbi', checkIfExists: true)
+                ])
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(
+                    workflow.out.vcfs.collect { meta, vcf, tbi -> 
+                        [
+                            meta: [id: meta.id],
+                            vcf_exists: file(vcf).exists(),
+                            tbi_exists: file(tbi).exists()
+                        ]
+                    },
+                    workflow.out.versions
+                ).match("without_sv_files") }
+            )
+        }
+    }
+
+    test("sv_mask_bed - multiple samples mixed") {
+        when {
+            workflow {
+                """
+                input[0] = Channel.of([
+                    [
+                        id: 'family1_bed',
+                        sv_p: '${projectDir}/subworkflows/local/sv_mask_bed/tests/data/proband_sv.bed',
+                        sv_m: '${projectDir}/subworkflows/local/sv_mask_bed/tests/data/mother_sv.bed',
+                        sv_f: '-'
+                    ],
+                    file('${projectDir}/subworkflows/local/sv_mask_bed/tests/data/family.vcf.gz', checkIfExists: true),
+                    file('${projectDir}/subworkflows/local/sv_mask_bed/tests/data/family.vcf.gz.tbi', checkIfExists: true)
+                ],[
+                    [
+                        id: 'family3_vcf_sv',
+                        sv_p: '${projectDir}/subworkflows/local/sv_mask_bed/tests/data/proband_sv.vcf.gz',
+                        sv_m: '-',
+                        sv_f: '${projectDir}/subworkflows/local/sv_mask_bed/tests/data/father_sv.vcf.gz'
+                    ],
+                    file('${projectDir}/subworkflows/local/sv_mask_bed/tests/data/family.vcf.gz', checkIfExists: true),
+                    file('${projectDir}/subworkflows/local/sv_mask_bed/tests/data/family.vcf.gz.tbi', checkIfExists: true)
+                ])
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert workflow.out.vcfs.size() == 2 },
+                { assert snapshot(
+                    workflow.out.vcfs.collect { meta, vcf, tbi -> 
+                        [
+                            meta: [id: meta.id],
+                            vcf_exists: file(vcf).exists(),
+                            tbi_exists: file(tbi).exists()
+                        ]
+                    }.sort { it.meta.id },
+                    workflow.out.versions
+                ).match("multiple_samples_mixed") }
+            )
+        }
+    }
+
+    test("sv_mask_bed - with bed files - stub") {
+        options "-stub"
+
+        when {
+            workflow {
+                """
+                input[0] = Channel.of([
+                    [
+                        id: 'family1_bed_stub',
+                        sv_p: '${projectDir}/subworkflows/local/sv_mask_bed/tests/data/proband_sv.bed',
+                        sv_m: '${projectDir}/subworkflows/local/sv_mask_bed/tests/data/mother_sv.bed',
+                        sv_f: '-'
+                    ],
+                    file('${projectDir}/subworkflows/local/sv_mask_bed/tests/data/family.vcf.gz', checkIfExists: true),
+                    file('${projectDir}/subworkflows/local/sv_mask_bed/tests/data/family.vcf.gz.tbi', checkIfExists: true)
+                ])
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(
+                    workflow.out.vcfs.collect { meta, vcf, tbi -> 
+                        [
+                            meta: [id: meta.id],
+                            vcf_exists: file(vcf).exists(),
+                            tbi_exists: file(tbi).exists()
+                        ]
+                    },
+                    workflow.out.versions
+                ).match("with_bed_files_stub") }
+            )
+        }
+    }
+
+    test("sv_mask_bed - without sv files - stub") {
+        options "-stub"
+
+        when {
+            workflow {
+                """
+                input[0] = Channel.of([
+                    [
+                        id: 'family4_no_sv_stub',
+                        sv_p: '-',
+                        sv_m: '-',
+                        sv_f: '-'
+                    ],
+                    file('${projectDir}/subworkflows/local/sv_mask_bed/tests/data/family.vcf.gz', checkIfExists: true),
+                    file('${projectDir}/subworkflows/local/sv_mask_bed/tests/data/family.vcf.gz.tbi', checkIfExists: true)
+                ])
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(
+                    workflow.out.vcfs.collect { meta, vcf, tbi -> 
+                        [
+                            meta: [id: meta.id],
+                            vcf_exists: file(vcf).exists(),
+                            tbi_exists: file(tbi).exists()
+                        ]
+                    },
+                    workflow.out.versions
+                ).match("without_sv_files_stub") }
+            )
+        }
+    }
+}

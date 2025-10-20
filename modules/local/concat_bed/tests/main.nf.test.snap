@@ -1,0 +1,55 @@
+{
+    "concat_bed": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "family1"
+                    },
+                    "family1_svs_concatenated.bed:md5,faccf5eae23792fab7faf12503295994"
+                ]
+            ],
+            [
+                "versions.yml:md5,bebe22e2d89d945f70cf271742684b3d"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.04.6"
+        },
+        "timestamp": "2025-10-12T19:53:08.613706185"
+    },
+    "concat_bed - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "family1"
+                        },
+                        "family1_svs_concatenated_svs_concatenated.bed:md5,858b67f959466ece8d7075343e9517ff"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,857abed6547e96c0e71cd91d206fdaf9"
+                ],
+                "bed": [
+                    [
+                        {
+                            "id": "family1"
+                        },
+                        "family1_svs_concatenated_svs_concatenated.bed:md5,858b67f959466ece8d7075343e9517ff"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,857abed6547e96c0e71cd91d206fdaf9"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.04.6"
+        },
+        "timestamp": "2025-10-12T19:54:04.124466853"
+    }
+}

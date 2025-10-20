@@ -1,0 +1,15 @@
+repository_type: pipeline
+
+nf_core_version: 3.3.1
+
+lint: {}
+
+template:
+  org: nf-core
+  name: updhmm
+  description: Pipeline for detecting UPD events using R package UPDhmm
+  author: Marta Sevilla Porras <marta.sevilla@upf.edu>
+  version: 1.0.0dev
+  force: true
+  outdir: .
+  is_nfcore: true

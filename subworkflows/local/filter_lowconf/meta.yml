@@ -1,0 +1,48 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/subworkflows/yaml-schema.json
+name: "FILTER_LOWCONF"
+description: Apply hard filters to produce final preprocessed VCF per family with quality and region-based filtering
+keywords:
+  - vcf
+  - filtering
+  - quality control
+  - biallelic
+  - genomic regions
+  - centromeres
+  - segmental duplications
+  - HLA
+  - KIR
+  - bcftools
+components:
+  - bcftools/view
+  - setgt
+input:
+  - vcfs_ch:
+      type: channel
+      description: Channel containing VCF files with metadata and index files ready for quality and region-based filtering
+      pattern: "[meta, vcf, tbi]"
+      structure:
+        - meta: Family metadata map containing family ID and SV paths
+        - vcf: Input VCF file to be filtered
+        - tbi: Corresponding VCF index file
+output:
+  - vcfs:
+      type: channel
+      description: |
+        Final filtered VCF files after applying all quality and region filters.
+        Filters applied: (1) biallelic sites only, (2) exclude reference homozygous,
+        (3) minimum GQ/DP thresholds, (4) exclude problematic genomic regions
+        (centromeres, segmental duplications, HLA/KIR regions)
+      pattern: "[meta, vcf, tbi]"
+      structure:
+        - meta: Family metadata map
+        - vcf: Final filtered VCF file
+        - tbi: Corresponding VCF index file
+        
+  - versions:
+      type: channel
+      description: Channel containing software versions
+      pattern: "versions.yml"
+authors:
+  - "@saramenasantamaria"
+maintainers:
+  - "@saramenasantamaria"

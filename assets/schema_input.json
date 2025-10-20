@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/nf-core/updhmm/master/assets/schema_input.json",
+  "title": "nf-core/updhmm pipeline - params.input schema",
+  "description": "Schema for the file provided with params.input - Family trio VCF and SV data",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "fam_id": {
+        "type": "string",
+        "pattern": "^\\S+$",
+        "errorMessage": "Family ID must be provided and cannot contain spaces",
+        "meta": ["id"]
+      },
+      "proband_id": {
+        "type": "string",
+        "pattern": "^[A-Za-z0-9_.-]+$",
+        "errorMessage": "Proband ID must contain only alphanumeric characters, underscores, dots, or hyphens"
+      },
+      "mother_id": {
+        "type": "string",
+        "pattern": "^[A-Za-z0-9_.-]+$",
+        "errorMessage": "Mother ID must contain only alphanumeric characters, underscores, dots, or hyphens"
+      },
+      "father_id": {
+        "type": "string",
+        "pattern": "^[A-Za-z0-9_.-]+$",
+        "errorMessage": "Father ID must contain only alphanumeric characters, underscores, dots, or hyphens"
+      },
+      "path_vcf_proband": {
+        "type": "string",
+        "format": "file-path",
+        "exists": true,
+        "pattern": "^.+\\.(vcf\\.gz|gvcf\\.gz)$",
+        "errorMessage": "Proband VCF file must be provided, cannot contain spaces and must have extension '.vcf.gz' or '.gvcf.gz'"
+      },
+      "path_vcf_mother": {
+        "type": "string",
+        "format": "file-path",
+        "exists": true,
+        "pattern": "^.+\\.(vcf\\.gz|gvcf\\.gz)$",
+        "errorMessage": "Mother VCF file must be provided, cannot contain spaces and must have extension '.vcf.gz' or '.gvcf.gz'"
+      },
+      "path_vcf_father": {
+        "type": "string",
+        "format": "file-path",
+        "exists": true,
+        "pattern": "^.+\\.(vcf\\.gz|gvcf\\.gz)$",
+        "errorMessage": "Father VCF file must be provided, cannot contain spaces and must have extension '.vcf.gz' or '.gvcf.gz'"
+      },
+      "path_sv_proband": {
+        "type": "string",
+        "format": "file-path",
+        "pattern": "^(.+\\.(bed|vcf\\.gz)|-)$",
+        "errorMessage": "Proband SV file must have extension '.bed' or '.vcf.gz' or be '-' if not available",
+        "if": {
+          "not": {
+            "const": "-"
+          }
+        },
+        "then": {
+          "exists": true
+        }
+      },
+      "path_sv_mother": {
+        "type": "string",
+        "format": "file-path",
+        "pattern": "^(.+\\.(bed|vcf\\.gz)|-)$",
+        "errorMessage": "Mother SV file must have extension '.bed' or '.vcf.gz' or be '-' if not available",
+        "if": {
+          "not": {
+            "const": "-"
+          }
+        },
+        "then": {
+          "exists": true
+        }
+      },
+      "path_sv_father": {
+        "type": "string",
+        "format": "file-path",
+        "pattern": "^(.+\\.(bed|vcf\\.gz)|-)$",
+        "errorMessage": "Father SV file must have extension '.bed' or '.vcf.gz' or be '-' if not available",
+        "if": {
+          "not": {
+            "const": "-"
+          }
+        },
+        "then": {
+          "exists": true
+        }
+      }
+    },
+    "required": [
+      "fam_id",
+      "proband_id", 
+      "mother_id",
+      "father_id",
+      "path_vcf_proband",
+      "path_vcf_mother", 
+      "path_vcf_father",
+      "path_sv_proband",
+      "path_sv_mother",
+      "path_sv_father"
+    ]
+  }
+}

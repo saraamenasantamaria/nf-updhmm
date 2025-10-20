@@ -1,0 +1,322 @@
+nextflow_workflow {
+
+    name "Test Subworkflow PREPROCESS_VCF"
+    script "../main.nf"
+    workflow "PREPROCESS_VCF"
+
+    test("preprocess_vcf - with intersection and no SVs") {
+        when {
+            params {
+                perform_intersection = true
+            }
+            workflow {
+                """
+                input[0] = file('${projectDir}/subworkflows/local/preprocess_vcf/tests/data/samplesheet.csv', checkIfExists: true)
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(
+                    workflow.out.vcfs.collect { meta, vcf, tbi -> 
+                        [
+                            meta: meta,
+                            vcf_exists: file(vcf).exists(),
+                            tbi_exists: file(tbi).exists()
+                        ]
+                    },
+                    workflow.out.versions
+                ).match("with_intersection_no_svs") }
+            )
+        }
+    }
+
+    test("preprocess_vcf - without intersection and no SVs") {
+        when {
+            params {
+                perform_intersection = false
+            }
+            workflow {
+                """
+                input[0] = file('${projectDir}/subworkflows/local/preprocess_vcf/tests/data/samplesheet.csv', checkIfExists: true)
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(
+                    workflow.out.vcfs.collect { meta, vcf, tbi -> 
+                        [
+                            meta: meta,
+                            vcf_exists: file(vcf).exists(),
+                            tbi_exists: file(tbi).exists()
+                        ]
+                    },
+                    workflow.out.versions
+                ).match("without_intersection_no_svs") }
+            )
+        }
+    }
+
+    test("preprocess_vcf - with intersection and with SVs") {
+        when {
+            params {
+                perform_intersection = true
+            }
+            workflow {
+                """
+                input[0] = file('${projectDir}/subworkflows/local/preprocess_vcf/tests/data/samplesheet_with_svs.csv', checkIfExists: true)
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(
+                    workflow.out.vcfs.collect { meta, vcf, tbi -> 
+                        [
+                            meta: meta,
+                            vcf_exists: file(vcf).exists(),
+                            tbi_exists: file(tbi).exists()
+                        ]
+                    },
+                    workflow.out.versions
+                ).match("with_intersection_with_svs") }
+            )
+        }
+    }
+
+    test("preprocess_vcf - without intersection and with SVs") {
+        when {
+            params {
+                perform_intersection = false
+            }
+            workflow {
+                """
+                input[0] = file('${projectDir}/subworkflows/local/preprocess_vcf/tests/data/samplesheet_with_svs.csv', checkIfExists: true)
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(
+                    workflow.out.vcfs.collect { meta, vcf, tbi -> 
+                        [
+                            meta: meta,
+                            vcf_exists: file(vcf).exists(),
+                            tbi_exists: file(tbi).exists()
+                        ]
+                    },
+                    workflow.out.versions
+                ).match("without_intersection_with_svs") }
+            )
+        }
+    }
+
+    test("preprocess_vcf - with intersection and no SVs - stub") {
+        options "-stub"
+
+        when {
+            params {
+                perform_intersection = true
+            }
+            workflow {
+                """
+                input[0] = file('${projectDir}/subworkflows/local/preprocess_vcf/tests/data/samplesheet.csv', checkIfExists: true)
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(
+                    workflow.out.vcfs.collect { meta, vcf, tbi -> 
+                        [
+                            meta: meta,
+                            vcf_exists: file(vcf).exists(),
+                            tbi_exists: file(tbi).exists()
+                        ]
+                    },
+                    workflow.out.versions
+                ).match("with_intersection_no_svs_stub") }
+            )
+        }
+    }
+
+    test("preprocess_vcf - without intersection and no SVs - stub") {
+        options "-stub"
+
+        when {
+            params {
+                perform_intersection = false
+            }
+            workflow {
+                """
+                input[0] = file('${projectDir}/subworkflows/local/preprocess_vcf/tests/data/samplesheet.csv', checkIfExists: true)
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(
+                    workflow.out.vcfs.collect { meta, vcf, tbi -> 
+                        [
+                            meta: meta,
+                            vcf_exists: file(vcf).exists(),
+                            tbi_exists: file(tbi).exists()
+                        ]
+                    },
+                    workflow.out.versions
+                ).match("without_intersection_no_svs_stub") }
+            )
+        }
+    }
+
+    test("preprocess_vcf - with intersection and with SVs - stub") {
+        options "-stub"
+
+        when {
+            params {
+                perform_intersection = true
+            }
+            workflow {
+                """
+                input[0] = file('${projectDir}/subworkflows/local/preprocess_vcf/tests/data/samplesheet_with_svs.csv', checkIfExists: true)
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(
+                    workflow.out.vcfs.collect { meta, vcf, tbi -> 
+                        [
+                            meta: meta,
+                            vcf_exists: file(vcf).exists(),
+                            tbi_exists: file(tbi).exists()
+                        ]
+                    },
+                    workflow.out.versions
+                ).match("with_intersection_with_svs_stub") }
+            )
+        }
+    }
+
+    test("preprocess_vcf - without intersection and with SVs - stub") {
+        options "-stub"
+
+        when {
+            params {
+                perform_intersection = false
+            }
+            workflow {
+                """
+                input[0] = file('${projectDir}/subworkflows/local/preprocess_vcf/tests/data/samplesheet_with_svs.csv', checkIfExists: true)
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(
+                    workflow.out.vcfs.collect { meta, vcf, tbi -> 
+                        [
+                            meta: meta,
+                            vcf_exists: file(vcf).exists(),
+                            tbi_exists: file(tbi).exists()
+                        ]
+                    },
+                    workflow.out.versions
+                ).match("without_intersection_with_svs_stub") }
+            )
+        }
+    }
+
+    test("preprocess_vcf - multiple families") {
+        when {
+            params {
+                perform_intersection = true
+            }
+            workflow {
+                """
+                input[0] = file('${projectDir}/subworkflows/local/preprocess_vcf/tests/data/samplesheet_multiple_families.csv', checkIfExists: true)
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert workflow.out.vcfs.size() == 2 },
+                { assert snapshot(
+                    workflow.out.vcfs.collect { meta, vcf, tbi -> 
+                        [
+                            meta: meta,
+                            vcf_exists: file(vcf).exists(),
+                            tbi_exists: file(tbi).exists()
+                        ]
+                    },
+                    workflow.out.versions
+                ).match("multiple_families") }
+            )
+        }
+    }
+
+    test("preprocess_vcf - multiple families - stub") {
+        options "-stub"
+
+        when {
+            params {
+                perform_intersection = true
+            }
+            workflow {
+                """
+                input[0] = file('${projectDir}/subworkflows/local/preprocess_vcf/tests/data/samplesheet_multiple_families.csv', checkIfExists: true)
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert workflow.out.vcfs.size() == 2 },
+                { assert snapshot(
+                    workflow.out.vcfs.collect { meta, vcf, tbi -> 
+                        [
+                            meta: meta,
+                            vcf_exists: file(vcf).exists(),
+                            tbi_exists: file(tbi).exists()
+                        ]
+                    },
+                    workflow.out.versions
+                ).match("multiple_families_stub") }
+            )
+        }
+    }
+
+    test("preprocess_vcf - error handling - invalid samplesheet") {
+        when {
+            workflow {
+                """
+                input[0] = file('${projectDir}/subworkflows/local/preprocess_vcf/tests/data/invalid_samplesheet.csv', checkIfExists: true)
+                """
+            }
+        }
+
+        then {
+            assert workflow.failed
+        }
+    }
+}

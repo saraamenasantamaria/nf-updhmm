@@ -1,0 +1,40 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/subworkflows/yaml-schema.json
+name: "PREPROCESS_VCF"
+description: Complete VCF preprocessing pipeline for family trio analysis including validation, annotation removal, combination, SV filtering, and quality filtering
+keywords:
+  - vcf
+  - preprocessing
+  - family
+  - trio
+  - validation
+  - annotation
+  - structural variants
+  - quality filtering
+  - samplesheet
+components:
+  - remove_annotations
+  - combine_vcf
+  - sv_mask_bed
+  - filter_lowconf
+input:
+  - samplesheet_path:
+      type: string
+      description: Path to the input samplesheet CSV file containing family trio information with columns for family ID, VCF paths, and SV paths
+      pattern: "*.csv"
+output:
+  - vcfs:
+      type: channel
+      description: Final processed VCF files after complete preprocessing pipeline including annotation removal, VCF combination, structural variant filtering, and quality filtering
+      pattern: "[meta, vcf, tbi]"
+      structure:
+        - meta: Family metadata map containing family ID and SV paths
+        - vcf: Final processed VCF file
+        - tbi: Corresponding VCF index file
+  - versions:
+      type: channel
+      description: Channel containing software versions
+      pattern: "versions.yml"
+authors:
+  - "@saramenasantamaria"
+maintainers:
+  - "@saramenasantamaria"
