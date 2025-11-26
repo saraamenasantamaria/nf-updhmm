@@ -4,7 +4,7 @@ process CALCULATE_EVENTS {
     tag "$meta.id"
     label 'process_updhmm'
     
-    container "/home/u0030001/nf-updhmm_zenodo/updhmm-new_1.3.2.sif"
+    container "/home/u0030001/nf-updhmm_zenodo/updhmm.sif"
 
     input:
     tuple val(meta), path(processed_vcf_rds)
@@ -21,6 +21,7 @@ process CALCULATE_EVENTS {
     def prefix = task.ext.prefix ?: "${meta.id}"
     def verbose = task.ext.verbose ? "--verbose" : ""
     def cpus = task.cpus ?: 1
+    def add_ratios = params.add_ratios ? "--add_ratios" : ""
     
     """
     calculate_events.r \\
@@ -28,6 +29,7 @@ process CALCULATE_EVENTS {
         --output_prefix ${prefix} \\
         --cpus ${cpus} \\
         ${verbose} \\
+        ${add_ratios} \\
         ${args}
 
     """

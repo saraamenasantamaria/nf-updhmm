@@ -4,6 +4,7 @@
 
 include { REMOVE_ANNOTATIONS } from '../../../subworkflows/local/remove_annotations'
 include { COMBINE_VCF } from '../../../subworkflows/local/combine_vcf'
+include { COMBINE_GVCF } from '../../../subworkflows/local/combine_gvcf'
 include { SV_MASK_BED } from '../../../subworkflows/local/sv_mask_bed/main'
 include { FILTER_LOWCONF } from '../../../subworkflows/local/filter_lowconf/main'
 
@@ -47,12 +48,22 @@ workflow PREPROCESS_VCF {
     REMOVE_ANNOTATIONS(samples_ch)
     ch_versions = ch_versions.mix(REMOVE_ANNOTATIONS.out.versions)
     
-    // Step 2: Combine trio VCFs (intersection or union) into a single merged file
-    COMBINE_VCF(REMOVE_ANNOTATIONS.out.vcfs)
-    ch_versions = ch_versions.mix(COMBINE_VCF.out.versions)
+    // Step 2: Combine trio VCFs/GVCFs into a single merged file
+    // Use different subworkflows based on input file type
+    if (params.is_gvcf) {
+        // For GVCF inputs: use GATK4 CombineGVCFs + GenotypeGVCFs
+        COMBINE_GVCF(REMOVE_ANNOTATIONS.out.vcfs)
+        ch_versions = ch_versions.mix(COMBINE_GVCF.out.versions)
+        combined_vcfs_ch = COMBINE_GVCF.out.vcfs
+    } else {
+        // For VCF inputs: use bcftools intersection/merge approach
+        COMBINE_VCF(REMOVE_ANNOTATIONS.out.vcfs)
+        ch_versions = ch_versions.mix(COMBINE_VCF.out.versions)
+        combined_vcfs_ch = COMBINE_VCF.out.vcfs
+    }
 
     // Step 3: Filter Structural Variants
-    SV_MASK_BED(COMBINE_VCF.out.vcfs)
+    SV_MASK_BED(combined_vcfs_ch)
     ch_versions = ch_versions.mix(SV_MASK_BED.out.versions)
     
     // Step 4: Apply low confidence filters

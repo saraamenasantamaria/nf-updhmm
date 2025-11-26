@@ -4,7 +4,7 @@ process COLLAPSE_EVENTS {
     tag "$meta.id"
     label 'process_medium'
     
-    container "/home/u0030001/nf-updhmm_zenodo/updhmm-new_1.3.2.sif"
+    container "/home/u0030001/nf-updhmm_zenodo/updhmm.sif"
 
     input:
     tuple val(meta), path(upd_events_rds)

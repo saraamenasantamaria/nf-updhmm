@@ -5,6 +5,7 @@
 include { TABIX_TABIX } from '../../../modules/nf-core/tabix/tabix/main'
 include { BCFTOOLS_VIEW as BCFTOOLS_VIEW_AUTOSOMES } from '../../../modules/nf-core/bcftools/view/main'
 include { BCFTOOLS_ANNOTATE as BCFTOOLS_DELETE_ANNOTATIONS } from '../../../modules/nf-core/bcftools/annotate/main'
+include { BCFTOOLS_ANNOTATE as BCFTOOLS_DELETE_ANNOTATIONS_GVCF } from '../../../modules/nf-core/bcftools/annotate/main'
 
 workflow REMOVE_ANNOTATIONS {
     
@@ -53,14 +54,24 @@ workflow REMOVE_ANNOTATIONS {
             tuple(meta, vcf, tbi, [], [])
         }
 
-    // Step 6: Remove unused annotations from VCF files
-    BCFTOOLS_DELETE_ANNOTATIONS(annotate_input, [], [], [])
-    ch_versions = ch_versions.mix(BCFTOOLS_DELETE_ANNOTATIONS.out.versions)
+    // Step 6: Remove unused annotations from VCF/GVCF files
+    if (params.is_gvcf) {
+        BCFTOOLS_DELETE_ANNOTATIONS_GVCF(annotate_input, [], [], [])
+        ch_versions = ch_versions.mix(BCFTOOLS_DELETE_ANNOTATIONS_GVCF.out.versions)
+        
+        processed_vcfs_ch = BCFTOOLS_DELETE_ANNOTATIONS_GVCF.out.vcf
+            .join(BCFTOOLS_DELETE_ANNOTATIONS_GVCF.out.tbi)
+    } else {
+        BCFTOOLS_DELETE_ANNOTATIONS(annotate_input, [], [], [])
+        ch_versions = ch_versions.mix(BCFTOOLS_DELETE_ANNOTATIONS.out.versions)
+        
+        processed_vcfs_ch = BCFTOOLS_DELETE_ANNOTATIONS.out.vcf
+            .join(BCFTOOLS_DELETE_ANNOTATIONS.out.tbi)
+    }
     
     // Step 7: Regroup individual processed VCFs back into family trios
     // This maintains the original family structure for downstream trio analysis
-    regrouped_ch = BCFTOOLS_DELETE_ANNOTATIONS.out.vcf
-        .join(BCFTOOLS_DELETE_ANNOTATIONS.out.tbi)
+    regrouped_ch = processed_vcfs_ch
         .map { meta, vcf, tbi ->
             tuple(meta.original_family_id, meta.role, meta, vcf, tbi)
         }
