@@ -1,0 +1,56 @@
+nextflow_process {
+
+    name "Test Process BCFTOOLS_SETGT"
+    script "../main.nf"
+    process "BCFTOOLS_SETGT"
+    tag "modules"
+    tag "modules_local"
+    tag "bcftools"
+    tag "bcftools/setgt"
+
+    test("trio vcf with missing genotypes conversion") {
+
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test_trio' ],
+                    file('${projectDir}/modules/local/bcftools/setgt/tests/data/family.vcf.gz', checkIfExists: true),
+                    []
+                ]
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("trio vcf with missing genotypes conversion - stub") {
+
+        options "-stub"
+
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test_trio' ],
+                    file('${projectDir}/modules/local/bcftools/setgt/tests/data/family.vcf.gz', checkIfExists: true),
+                    []
+                ]
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+}

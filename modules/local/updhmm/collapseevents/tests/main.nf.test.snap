@@ -1,0 +1,132 @@
+{
+    "processed trio rds - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test_trio"
+                        },
+                        "test_trio.upd_collapsed.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test_trio"
+                        },
+                        "test_trio.upd_collapsed.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "2": [
+                    [
+                        {
+                            "id": "test_trio"
+                        },
+                        "test_trio.R_sessionInfo.log:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "3": [
+                    "versions.yml:md5,6e3e5d93df9afbdec15bef3209332ce0"
+                ],
+                "session_info": [
+                    [
+                        {
+                            "id": "test_trio"
+                        },
+                        "test_trio.R_sessionInfo.log:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "upd_collapsed_rds": [
+                    [
+                        {
+                            "id": "test_trio"
+                        },
+                        "test_trio.upd_collapsed.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "upd_collapsed_txt": [
+                    [
+                        {
+                            "id": "test_trio"
+                        },
+                        "test_trio.upd_collapsed.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,6e3e5d93df9afbdec15bef3209332ce0"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.04.6"
+        },
+        "timestamp": "2025-12-28T19:37:18.232052695"
+    },
+    "processed trio rds": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test_trio"
+                        },
+                        "test_trio.upd_collapsed.txt:md5,a408c8a59a0a81f4d82ff493adcfaf4f"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test_trio"
+                        },
+                        "test_trio.upd_collapsed.rds:md5,ea65ee9286a1d934f5c5ec94b51461f2"
+                    ]
+                ],
+                "2": [
+                    [
+                        {
+                            "id": "test_trio"
+                        },
+                        "test_trio.R_sessionInfo.log:md5,49258fb648fd5c33bcbce184beb7973c"
+                    ]
+                ],
+                "3": [
+                    "versions.yml:md5,6e3e5d93df9afbdec15bef3209332ce0"
+                ],
+                "session_info": [
+                    [
+                        {
+                            "id": "test_trio"
+                        },
+                        "test_trio.R_sessionInfo.log:md5,49258fb648fd5c33bcbce184beb7973c"
+                    ]
+                ],
+                "upd_collapsed_rds": [
+                    [
+                        {
+                            "id": "test_trio"
+                        },
+                        "test_trio.upd_collapsed.rds:md5,ea65ee9286a1d934f5c5ec94b51461f2"
+                    ]
+                ],
+                "upd_collapsed_txt": [
+                    [
+                        {
+                            "id": "test_trio"
+                        },
+                        "test_trio.upd_collapsed.txt:md5,a408c8a59a0a81f4d82ff493adcfaf4f"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,6e3e5d93df9afbdec15bef3209332ce0"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.04.6"
+        },
+        "timestamp": "2025-12-28T19:36:51.306252017"
+    }
+}

@@ -1,3 +1,0 @@
-ERROR ~ Workflow `PREPROCESS_VCF` declares 6 input channels but 1 were given
-
- -- Check script '/home/u0030001/nf-updhmm_zenodo/.nf-test-d0fcd2c7a40021efd7d7cc9d9ab6f4a1.nf' at line: 36 or see '/home/u0030001/nf-updhmm_zenodo/.nf-test/tests/d0fcd2c7a40021efd7d7cc9d9ab6f4a1/meta/nextflow.log' file for more details

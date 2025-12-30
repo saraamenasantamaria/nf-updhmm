@@ -1,0 +1,80 @@
+{
+    "multiple bed files": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test_trio",
+                            "sv_p": "-",
+                            "sv_m": "-",
+                            "sv_f": "-"
+                        },
+                        "test_trio.bed:md5,faccf5eae23792fab7faf12503295994"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,6a0b8962a70d1fdb1a8dc74b5b6b17c1"
+                ],
+                "bed": [
+                    [
+                        {
+                            "id": "test_trio",
+                            "sv_p": "-",
+                            "sv_m": "-",
+                            "sv_f": "-"
+                        },
+                        "test_trio.bed:md5,faccf5eae23792fab7faf12503295994"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,6a0b8962a70d1fdb1a8dc74b5b6b17c1"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.04.6"
+        },
+        "timestamp": "2025-12-27T18:42:27.999233902"
+    },
+    "multiple bed files - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test_trio",
+                            "sv_p": "-",
+                            "sv_m": "-",
+                            "sv_f": "-"
+                        },
+                        "test_trio.bed:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,9d2ce48bf1a5e4e84129ad5f5a4edd7f"
+                ],
+                "bed": [
+                    [
+                        {
+                            "id": "test_trio",
+                            "sv_p": "-",
+                            "sv_m": "-",
+                            "sv_f": "-"
+                        },
+                        "test_trio.bed:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,9d2ce48bf1a5e4e84129ad5f5a4edd7f"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.04.6"
+        },
+        "timestamp": "2025-12-27T18:42:55.04900698"
+    }
+}

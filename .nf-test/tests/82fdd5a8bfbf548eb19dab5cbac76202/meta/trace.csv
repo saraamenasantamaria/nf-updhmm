@@ -1,3 +1,0 @@
-task_id	hash	native_id	name	status	exit	submit	duration	realtime	%cpu	peak_rss	peak_vmem	rchar	wchar
-1	59/0d65d5	1756032	COMBINE_VCF:BCFTOOLS_MERGE (family1)	COMPLETED	0	2025-12-11 09:25:44.110	1.3s	781ms	79.0%	4.1 MB	49.7 MB	133 KB	2.3 KB
-2	0d/884fdd	1756028	COMBINE_VCF:BCFTOOLS_MERGE (family2)	COMPLETED	0	2025-12-11 09:25:44.087	1.3s	795ms	88.8%	4.5 MB	49.7 MB	133 KB	2.3 KB

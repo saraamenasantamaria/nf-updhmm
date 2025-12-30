@@ -1,4 +1,0 @@
-task_id	hash	native_id	name	status	exit	submit	duration	realtime	%cpu	peak_rss	peak_vmem	rchar	wchar
-1	6b/9633df	1779672	SV_MASK_BED:CONCAT_BED (family1)	COMPLETED	0	2025-12-11 09:39:36.586	386ms	33ms	40.7%	2.6 MB	3.9 MB	80.6 KB	437 B
-2	0c/e630ff	1779887	SV_MASK_BED:BEDTOOLS_MERGE (family1)	COMPLETED	0	2025-12-11 09:39:37.569	315ms	0ms	29.8%	2.6 MB	4.3 MB	102.6 KB	342 B
-3	6d/1730f5	1780107	SV_MASK_BED:VIEW_MASK (family1)	COMPLETED	0	2025-12-11 09:39:39.207	437ms	107ms	65.2%	3 MB	4.6 MB	115 KB	618 B

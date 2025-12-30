@@ -1,3 +1,0 @@
-task_id	hash	native_id	name	status	exit	submit	duration	realtime	%cpu	peak_rss	peak_vmem	rchar	wchar
-2	b6/40de59	51778	CONCAT_BED (family2)	COMPLETED	0	2025-12-14 11:11:56.996	2.9s	53ms	38.9%	2.6 MB	3.9 MB	154.2 KB	1.4 KB
-1	3b/54c57a	51779	CONCAT_BED (family1)	COMPLETED	0	2025-12-14 11:11:57.113	2.8s	57ms	39.6%	2.6 MB	3.9 MB	154.5 KB	1.6 KB

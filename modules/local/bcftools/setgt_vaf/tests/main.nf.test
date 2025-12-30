@@ -1,0 +1,56 @@
+nextflow_process {
+
+    name "Test Process BCFTOOLS_SETGT_VAF"
+    script "../main.nf"
+    process "BCFTOOLS_SETGT_VAF"
+    tag "modules"
+    tag "modules_local"
+    tag "bcftools"
+    tag "bcftools/setgt_vaf"
+
+    test("trio vcf with vaf correction") {
+
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test_trio' ],
+                    file('${projectDir}/modules/local/bcftools/setgt_vaf/tests/data/family.vcf.gz', checkIfExists: true),
+                    []
+                ]
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("trio vcf with vaf correction - stub") {
+
+        options "-stub"
+
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test_trio' ],
+                    file('${projectDir}/modules/local/bcftools/setgt_vaf/tests/data/family.vcf.gz', checkIfExists: true),
+                    []
+                ]
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+}

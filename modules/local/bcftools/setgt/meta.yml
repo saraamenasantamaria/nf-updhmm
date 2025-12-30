@@ -1,0 +1,87 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
+name: bcftools_setgt
+description: Convert missing genotypes to homozygous reference calls using bcftools setGT plugin
+keywords:
+  - vcf
+  - variant calling
+  - genotype
+  - missing genotype
+  - genotype normalization
+  - bcftools
+  - setgt
+  - homozygous reference
+  - genotype conversion
+
+tools:
+  - bcftools:
+      description: |
+        BCFtools is a set of utilities that manipulate variant calls in the Variant Call Format (VCF) 
+        and its binary counterpart BCF. All commands work transparently with both VCFs and BCFs, both 
+        uncompressed and BGZF-compressed.
+      homepage: http://samtools.github.io/bcftools/bcftools.html
+      documentation: http://samtools.github.io/bcftools/bcftools.html
+      doi: 10.1093/bioinformatics/btp352
+      licence: ["MIT"]
+      identifier: biotools:bcftools
+      args_id: "$args"
+
+input:
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. `[ id:'sample1' ]`
+  - vcf:
+      type: file
+      description: |
+        Input VCF file containing variant calls with missing genotypes (.) 
+        to be converted to homozygous reference calls (0/0)
+      pattern: "*.vcf.gz"
+      ontologies:
+        - edam: "http://edamontology.org/format_3016"
+  - tbi:
+      type: file
+      description: |
+        Tabix index file for input VCF. Optional, as bcftools +setGT reads the file sequentially 
+        and does not require an index. Pass an empty list [] if not available.
+      pattern: "*.tbi"
+      optional: true
+      ontologies:
+        - edam: "http://edamontology.org/format_3616"
+
+output:
+  - vcf:
+      - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1' ]`
+      - "*.vcf.gz":
+          type: file
+          description: Output VCF file with missing genotypes converted to homozygous reference (0/0)
+          pattern: "*.vcf.gz"
+          ontologies:
+            - edam: "http://edamontology.org/format_3016"
+  - tbi:
+      - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1' ]`
+      - "*.vcf.gz.tbi":
+          type: file
+          description: Tabix index file for output VCF
+          pattern: "*.tbi"
+          ontologies:
+            - edam: "http://edamontology.org/format_3616"
+  - versions:
+      - versions.yml:
+          type: file
+          description: File containing software versions
+          pattern: "versions.yml"
+
+authors:
+  - "@saramenasantamaria"
+
+maintainers:
+  - "@saramenasantamaria"

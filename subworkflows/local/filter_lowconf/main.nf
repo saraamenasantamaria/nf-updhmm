@@ -9,17 +9,17 @@
 //   4) Exclude problematic genomic regions (centromeres, segmental duplications, HLA/KIR)
 //
 // Notes:
-//   - SETGT is applied conditionally if val_perform_intersection is false.
+//   - BCFTOOLS_SETGT is applied conditionally if val_perform_intersection is false.
 //   - All bcftools arguments are configured via conf/modules.config.
 //
 
-include { SETGT                                              } from '../../../modules/local/setGT/main'
+include { BCFTOOLS_SETGT                                     } from '../../../modules/local/bcftools/setgt/main'
+include { BCFTOOLS_SETGT_VAF                                 } from '../../../modules/local/bcftools/setgt_vaf/main'
 include { BCFTOOLS_VIEW as BCFTOOLS_VIEW_BIALLELIC           } from '../../../modules/nf-core/bcftools/view/main'
 include { BCFTOOLS_VIEW as BCFTOOLS_VIEW_QUAL_MIN            } from '../../../modules/nf-core/bcftools/view/main'
 include { BCFTOOLS_VIEW as BCFTOOLS_VIEW_REFHOMO_EXCLUDE     } from '../../../modules/nf-core/bcftools/view/main'
 include { BCFTOOLS_VIEW as BCFTOOLS_VIEW_EXCL_ALL            } from '../../../modules/nf-core/bcftools/view/main'
 
-include { BCFTOOLS_SETGT_VAF                                 } from '../../../modules/local/bcftools_setgt_vaf/main'
 
 workflow FILTER_LOWCONF {
     
@@ -32,15 +32,15 @@ workflow FILTER_LOWCONF {
     ch_versions = Channel.empty()
     
     //
-    // Conditionally apply SETGT if intersection is not performed
+    // Conditionally apply BCFTOOLS_SETGT if intersection is not performed
     //
     if (!val_perform_intersection) {
         
-        SETGT(ch_vcfs)
-        ch_versions = ch_versions.mix(SETGT.out.versions)
+        BCFTOOLS_SETGT(ch_vcfs)
+        ch_versions = ch_versions.mix(BCFTOOLS_SETGT.out.versions)
         
-        ch_input_for_filtering = SETGT.out.vcf
-            .join(SETGT.out.tbi)
+        ch_input_for_filtering = BCFTOOLS_SETGT.out.vcf
+            .join(BCFTOOLS_SETGT.out.tbi)
     } else {
         ch_input_for_filtering = ch_vcfs
     }

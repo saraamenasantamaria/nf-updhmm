@@ -1,0 +1,100 @@
+{
+    "trio vcf with vaf correction": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test_trio"
+                        },
+                        "test_trio_gt_corrected.vcf.gz:md5,a5458496e2f16373b4f000cbe89f2528"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test_trio"
+                        },
+                        "test_trio_gt_corrected.vcf.gz.tbi:md5,adcdc5b7ed9803f8432f70b067b32153"
+                    ]
+                ],
+                "2": [
+                    "versions.yml:md5,dac0c1f30aff0dabf59ac12fad34493d"
+                ],
+                "tbi": [
+                    [
+                        {
+                            "id": "test_trio"
+                        },
+                        "test_trio_gt_corrected.vcf.gz.tbi:md5,adcdc5b7ed9803f8432f70b067b32153"
+                    ]
+                ],
+                "vcf": [
+                    [
+                        {
+                            "id": "test_trio"
+                        },
+                        "test_trio_gt_corrected.vcf.gz:md5,a5458496e2f16373b4f000cbe89f2528"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,dac0c1f30aff0dabf59ac12fad34493d"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.04.6"
+        },
+        "timestamp": "2025-12-27T18:12:45.488578957"
+    },
+    "trio vcf with vaf correction - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test_trio"
+                        },
+                        "test_trio_gt_corrected.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test_trio"
+                        },
+                        "test_trio_gt_corrected.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "2": [
+                    "versions.yml:md5,5e9740bea1f0ee797ead5082b8892f38"
+                ],
+                "tbi": [
+                    [
+                        {
+                            "id": "test_trio"
+                        },
+                        "test_trio_gt_corrected.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "vcf": [
+                    [
+                        {
+                            "id": "test_trio"
+                        },
+                        "test_trio_gt_corrected.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,5e9740bea1f0ee797ead5082b8892f38"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.04.6"
+        },
+        "timestamp": "2025-12-27T18:13:12.388179857"
+    }
+}

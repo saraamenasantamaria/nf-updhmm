@@ -1,0 +1,66 @@
+nextflow_process {
+
+    name "Test Process CUSTOM_BEDCONCAT"
+    script "../main.nf"
+    process "CUSTOM_BEDCONCAT"
+    
+    tag "modules"
+    tag "modules_local"
+    tag "custom_bedconcat"
+
+    test("multiple bed files") {
+
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test_trio', sv_p:'-', sv_m:'-', sv_f:'-' ],
+                    [
+                        file('${projectDir}/modules/local/custom/bedconcat/tests/data/proband_sv.bed', checkIfExists: true),
+                        file('${projectDir}/modules/local/custom/bedconcat/tests/data/mother_sv.bed', checkIfExists: true),
+                        file('${projectDir}/modules/local/custom/bedconcat/tests/data/father_sv.bed', checkIfExists: true)
+                    ]
+                ]
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert process.out.bed.size() == 1 },
+                { assert process.out.versions },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+
+    test("multiple bed files - stub") {
+        
+        options "-stub"
+
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test_trio', sv_p:'-', sv_m:'-', sv_f:'-' ],
+                    [
+                        file('${projectDir}/modules/local/custom/bedconcat/tests/data/proband_sv.bed', checkIfExists: true),
+                        file('${projectDir}/modules/local/custom/bedconcat/tests/data/mother_sv.bed', checkIfExists: true),
+                        file('${projectDir}/modules/local/custom/bedconcat/tests/data/father_sv.bed', checkIfExists: true)
+                    ]
+                ]
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+}

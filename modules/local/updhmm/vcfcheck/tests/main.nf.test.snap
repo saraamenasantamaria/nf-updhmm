@@ -1,0 +1,100 @@
+{
+    "trio vcf": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test_trio"
+                        },
+                        "test_trio.processed.rds:md5,49b0e807b3276e23173627af7ee7ddb8"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test_trio"
+                        },
+                        "test_trio.R_sessionInfo.log:md5,742b817f4b50396aee59c3b51077ebef"
+                    ]
+                ],
+                "2": [
+                    "versions.yml:md5,79ab5f22e829932099e5ee24c22a54dc"
+                ],
+                "processed_vcf": [
+                    [
+                        {
+                            "id": "test_trio"
+                        },
+                        "test_trio.processed.rds:md5,49b0e807b3276e23173627af7ee7ddb8"
+                    ]
+                ],
+                "session_info": [
+                    [
+                        {
+                            "id": "test_trio"
+                        },
+                        "test_trio.R_sessionInfo.log:md5,742b817f4b50396aee59c3b51077ebef"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,79ab5f22e829932099e5ee24c22a54dc"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.04.6"
+        },
+        "timestamp": "2025-12-28T18:55:22.435134216"
+    },
+    "trio vcf - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test_trio"
+                        },
+                        "test_trio.processed.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test_trio"
+                        },
+                        "test_trio.R_sessionInfo.log:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "2": [
+                    "versions.yml:md5,79ab5f22e829932099e5ee24c22a54dc"
+                ],
+                "processed_vcf": [
+                    [
+                        {
+                            "id": "test_trio"
+                        },
+                        "test_trio.processed.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "session_info": [
+                    [
+                        {
+                            "id": "test_trio"
+                        },
+                        "test_trio.R_sessionInfo.log:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,79ab5f22e829932099e5ee24c22a54dc"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.04.6"
+        },
+        "timestamp": "2025-12-28T18:56:17.800889826"
+    }
+}

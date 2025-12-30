@@ -1,0 +1,82 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
+name: updhmm_vcfcheck
+description: Validate and format trio VCF files for UPD analysis using UPDhmm
+keywords:
+  - updhmm
+  - vcfcheck
+  - upd
+  - family analysis
+  - trio
+tools:
+  - updhmm:
+      description: "R/Bioconductor package for UPD detection in trio data"
+      homepage: "https://bioconductor.org/packages/UPDhmm/"
+      documentation: "https://bioconductor.org/packages/UPDhmm/"
+      tool_dev_url: "https://github.com/bjdmeest/UPDhmm"
+      doi: "10.1093/bioinformatics/btaa1010"
+      licence: ["GPL-3.0-or-later"]
+      identifier: ""
+      
+input:
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. `[ id:'sample1' ]`
+    - vcf:
+        type: file
+        description: |
+          Input VCF file containing trio variant calls (proband, mother, father)
+          for uniparental disomy analysis
+        pattern: "*.{vcf,vcf.gz}"
+        ontologies:
+          - edam: "http://edamontology.org/format_3016"
+    - tbi:
+        type: file
+        description: Tabix index file for the input VCF
+        pattern: "*.{tbi,csi}"
+        ontologies:
+          - edam: "http://edamontology.org/format_3616"
+
+output:
+  processed_vcf:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1' ]`
+      - "*.processed.rds":
+          type: file
+          description: |
+            Processed VCF data in RDS format containing validated trio genotypes
+            ready for UPDhmm analysis
+          pattern: "*.processed.rds"
+          ontologies:
+            - edam: "http://edamontology.org/format_3590"
+  session_info:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1' ]`
+      - "*.R_sessionInfo.log":
+          type: file
+          description: |
+            R session information log containing package versions and
+            system details for reproducibility
+          pattern: "*.R_sessionInfo.log"
+          ontologies:
+            - edam: "http://edamontology.org/format_2330"
+  versions:
+    - versions.yml:
+        type: file
+        description: File containing software versions
+        pattern: "versions.yml"
+        ontologies:
+          - edam: "http://edamontology.org/format_3750"
+
+authors:
+  - "@saramenasantamaria"
+
+maintainers:
+  - "@saramenasantamaria"

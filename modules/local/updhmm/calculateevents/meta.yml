@@ -1,0 +1,86 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
+name: updhmm_calculateevents
+description: Calculate UPD events from processed trio VCF data using Hidden Markov Model
+keywords:
+  - updhmm
+  - calculateevents
+  - upd
+  - family analysis
+  - trio
+
+tools:
+  - updhmm:
+      description: "R/Bioconductor package for UPD detection in trio data"
+      homepage: "https://bioconductor.org/packages/UPDhmm/"
+      documentation: "https://bioconductor.org/packages/UPDhmm/"
+      tool_dev_url: "https://github.com/bjdmeest/UPDhmm"
+      doi: "10.1093/bioinformatics/btaa1010"
+      licence: ["GPL-3.0-or-later"]
+      identifier: ""
+input:
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. `[ id:'sample1' ]`
+    - processed_vcf_rds:
+        type: file
+        description: |
+          Processed VCF data in RDS format from UPDHMM_VCFCHECK containing
+          validated trio genotypes ready for UPD event detection
+        pattern: "*.processed.rds"
+        ontologies:
+          - edam: "http://edamontology.org/format_3590"
+
+output:
+  upd_events_txt:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1' ]`
+      - "*.upd_events.txt":
+          type: file
+          description: Detected UPD events in tab-delimited text format
+          pattern: "*.upd_events.txt"
+          ontologies:
+            - edam: "http://edamontology.org/format_3475"
+  upd_events_rds:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1' ]`
+      - "*.upd_events.rds":
+          type: file
+          description: Detected UPD events in RDS format
+          pattern: "*.upd_events.rds"
+          ontologies:
+            - edam: "http://edamontology.org/format_3590"
+  session_info:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1' ]`
+      - "*.R_sessionInfo.log":
+          type: file
+          description: |
+            R session information log containing package versions and
+            system details for reproducibility
+          pattern: "*.R_sessionInfo.log"
+          ontologies:
+            - edam: "http://edamontology.org/format_2330"
+  versions:
+    - versions.yml:
+        type: file
+        description: File containing software versions
+        pattern: "versions.yml"
+        ontologies:
+          - edam: "http://edamontology.org/format_3750"
+
+authors:
+  - "@saramenasantamaria"
+
+maintainers:
+  - "@saramenasantamaria"

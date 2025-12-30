@@ -8,9 +8,9 @@
 //   - Event collapsing to summarize UPD regions per sample and chromosome
 //
 
-include { UPDHMM_VCFCHECK        } from '../../../modules/local/updhmm_vcfcheck/main'
-include { UPDHMM_CALCULATEEVENTS } from '../../../modules/local/updhmm_calculateevents/main' 
-include { UPDHMM_COLLAPSEEVENTS  } from '../../../modules/local/updhmm_collapseevents/main'
+include { UPDHMM_VCFCHECK        } from '../../../modules/local/updhmm/vcfcheck/main'
+include { UPDHMM_CALCULATEEVENTS } from '../../../modules/local/updhmm/calculateevents/main' 
+include { UPDHMM_COLLAPSEEVENTS  } from '../../../modules/local/updhmm/collapseevents/main'
 
 workflow EVENT_DETECTION {
     

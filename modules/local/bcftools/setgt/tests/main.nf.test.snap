@@ -1,0 +1,100 @@
+{
+    "trio vcf with missing genotypes conversion": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test_trio"
+                        },
+                        "test_trio.vcf.gz:md5,bf79bfe902f9140728ee0c82a4fafe47"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test_trio"
+                        },
+                        "test_trio.vcf.gz.tbi:md5,d5f4b717bc3bbf0428e1cd851c2b6995"
+                    ]
+                ],
+                "2": [
+                    "versions.yml:md5,9e72e1335453aa329e52e651fc8020e1"
+                ],
+                "tbi": [
+                    [
+                        {
+                            "id": "test_trio"
+                        },
+                        "test_trio.vcf.gz.tbi:md5,d5f4b717bc3bbf0428e1cd851c2b6995"
+                    ]
+                ],
+                "vcf": [
+                    [
+                        {
+                            "id": "test_trio"
+                        },
+                        "test_trio.vcf.gz:md5,bf79bfe902f9140728ee0c82a4fafe47"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,9e72e1335453aa329e52e651fc8020e1"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.04.6"
+        },
+        "timestamp": "2025-12-26T19:10:28.105888916"
+    },
+    "trio vcf with missing genotypes conversion - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test_trio"
+                        },
+                        "test_trio.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test_trio"
+                        },
+                        "test_trio.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "2": [
+                    "versions.yml:md5,9e72e1335453aa329e52e651fc8020e1"
+                ],
+                "tbi": [
+                    [
+                        {
+                            "id": "test_trio"
+                        },
+                        "test_trio.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "vcf": [
+                    [
+                        {
+                            "id": "test_trio"
+                        },
+                        "test_trio.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,9e72e1335453aa329e52e651fc8020e1"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.04.6"
+        },
+        "timestamp": "2025-12-26T19:10:54.422369617"
+    }
+}

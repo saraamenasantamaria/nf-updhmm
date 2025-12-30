@@ -5,7 +5,7 @@
 // merges overlapping regions, and applies the mask to filter variants.
 //
 
-include { CONCAT_BED                 } from '../../../modules/local/concat_bed/main'
+include { CUSTOM_BEDCONCAT                 } from '../../../modules/local/custom/bedconcat/main'
 include { BEDTOOLS_MERGE             } from '../../../modules/nf-core/bedtools/merge/main'
 include { BCFTOOLS_VIEW as VIEW_MASK } from '../../../modules/nf-core/bcftools/view/main'
 include { BCFTOOLS_QUERY             } from '../../../modules/nf-core/bcftools/query/main'
@@ -159,17 +159,17 @@ workflow SV_MASK_BED {
     //
     // Concatenate multiple BED files per sample into one
     //
-    CONCAT_BED(
+    CUSTOM_BEDCONCAT(
         ch_beds_with_vcf.map { meta, beds, vcf, tbi -> 
             [ meta, beds ]
         }
     )
-    ch_versions = ch_versions.mix(CONCAT_BED.out.versions)
+    ch_versions = ch_versions.mix(CUSTOM_BEDCONCAT.out.versions)
     
     //
     // Merge overlapping BED regions into a unified mask
     //
-    BEDTOOLS_MERGE(CONCAT_BED.out.bed)
+    BEDTOOLS_MERGE(CUSTOM_BEDCONCAT.out.bed)
     ch_versions = ch_versions.mix(BEDTOOLS_MERGE.out.versions)
 
     //

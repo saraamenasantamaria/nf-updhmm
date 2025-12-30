@@ -1,5 +1,5 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/subworkflows/yaml-schema.json
-name: "COMBINE_GVCF"
+name: "GVCF_COMBINE"
 description: Perform GVCF combination and joint genotyping operations to combine family trio GVCFs into a single VCF.
 keywords:
   - gvcf
@@ -18,8 +18,8 @@ input:
   - - meta:
         type: map
         description: |
-          Groovy Map containing family information (family ID and GVCF paths)
-          e.g. [ id:'family_001', sv_p:'path/to/proband', sv_m:'path/to/mother', sv_f:'path/to/father' ]
+          Groovy Map containing family information
+          e.g. [ id:'family_001', proband_id:'proband_001', mother_id:'mother_001', father_id:'father_001', sv_p:'path/to/proband', sv_m:'path/to/mother', sv_f:'path/to/father' ]
     - gvcfs:
         type: file
         description: List of GVCF files for family trio (proband, mother, father) to be combined and genotyped
@@ -33,8 +33,8 @@ output:
   - - meta:
           type: map
           description: |
-            Groovy Map containing family information (family ID and GVCF paths)
-            e.g. [ id:'family_001', sv_p:'path/to/proband', sv_m:'path/to/mother', sv_f:'path/to/father' ]
+            Groovy Map containing family information 
+            e.g. [ id:'family_001', proband_id:'proband_001', mother_id:'mother_001', father_id:'father_001', sv_p:'path/to/proband', sv_m:'path/to/mother', sv_f:'path/to/father' ]
       - vcf:
           type: file
           description: Final VCF file containing genotyped variants from family trio members after joint calling and annotation cleanup
