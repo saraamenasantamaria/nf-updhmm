@@ -1,5 +1,5 @@
 {
-    "trio vcf with missing genotypes conversion": {
+    "trio vcf": {
         "content": [
             {
                 "0": [
@@ -7,7 +7,7 @@
                         {
                             "id": "test_trio"
                         },
-                        "test_trio.vcf.gz:md5,bf79bfe902f9140728ee0c82a4fafe47"
+                        "test_trio.upd_events.txt:md5,b5d49ab1a638a7cc814bf1e4d96789b6"
                     ]
                 ],
                 "1": [
@@ -15,30 +15,34 @@
                         {
                             "id": "test_trio"
                         },
-                        "test_trio.vcf.gz.tbi:md5,d5f4b717bc3bbf0428e1cd851c2b6995"
+                        "test_trio.upd_collapsed.txt:md5,03fa0adda3f09607021755024deb3f62"
                     ]
                 ],
                 "2": [
-                    "versions.yml:md5,9e72e1335453aa329e52e651fc8020e1"
+                    "versions.yml:md5,29768249bd7c4736798d2492c42f08ac",
+                    "versions.yml:md5,e062b4169e1ccbf468a83a463b1d4e54",
+                    "versions.yml:md5,ea7117b55ed9c8eeb1edf1b237b55fb7"
                 ],
-                "tbi": [
+                "upd_collapsed_txt": [
                     [
                         {
                             "id": "test_trio"
                         },
-                        "test_trio.vcf.gz.tbi:md5,d5f4b717bc3bbf0428e1cd851c2b6995"
+                        "test_trio.upd_collapsed.txt:md5,03fa0adda3f09607021755024deb3f62"
                     ]
                 ],
-                "vcf": [
+                "upd_events_txt": [
                     [
                         {
                             "id": "test_trio"
                         },
-                        "test_trio.vcf.gz:md5,bf79bfe902f9140728ee0c82a4fafe47"
+                        "test_trio.upd_events.txt:md5,b5d49ab1a638a7cc814bf1e4d96789b6"
                     ]
                 ],
                 "versions": [
-                    "versions.yml:md5,9e72e1335453aa329e52e651fc8020e1"
+                    "versions.yml:md5,29768249bd7c4736798d2492c42f08ac",
+                    "versions.yml:md5,e062b4169e1ccbf468a83a463b1d4e54",
+                    "versions.yml:md5,ea7117b55ed9c8eeb1edf1b237b55fb7"
                 ]
             }
         ],
@@ -46,9 +50,9 @@
             "nf-test": "0.9.3",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2025-12-26T19:10:28.105888916"
+        "timestamp": "2026-01-03T13:20:55.945432118"
     },
-    "trio vcf with missing genotypes conversion - stub": {
+    "trio vcf - stub": {
         "content": [
             {
                 "0": [
@@ -56,7 +60,7 @@
                         {
                             "id": "test_trio"
                         },
-                        "test_trio.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                        "test_trio.upd_events.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "1": [
@@ -64,30 +68,34 @@
                         {
                             "id": "test_trio"
                         },
-                        "test_trio.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test_trio.upd_collapsed.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "2": [
-                    "versions.yml:md5,9e72e1335453aa329e52e651fc8020e1"
+                    "versions.yml:md5,29768249bd7c4736798d2492c42f08ac",
+                    "versions.yml:md5,e062b4169e1ccbf468a83a463b1d4e54",
+                    "versions.yml:md5,ea7117b55ed9c8eeb1edf1b237b55fb7"
                 ],
-                "tbi": [
+                "upd_collapsed_txt": [
                     [
                         {
                             "id": "test_trio"
                         },
-                        "test_trio.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test_trio.upd_collapsed.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
-                "vcf": [
+                "upd_events_txt": [
                     [
                         {
                             "id": "test_trio"
                         },
-                        "test_trio.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                        "test_trio.upd_events.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "versions": [
-                    "versions.yml:md5,9e72e1335453aa329e52e651fc8020e1"
+                    "versions.yml:md5,29768249bd7c4736798d2492c42f08ac",
+                    "versions.yml:md5,e062b4169e1ccbf468a83a463b1d4e54",
+                    "versions.yml:md5,ea7117b55ed9c8eeb1edf1b237b55fb7"
                 ]
             }
         ],
@@ -95,6 +103,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2025-12-26T19:10:54.422369617"
+        "timestamp": "2026-01-03T13:21:27.642381621"
     }
 }

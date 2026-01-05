@@ -1,6 +1,3 @@
-//
-// Index VCF/GVCF files, filter autosomes, remove unused annotations from individual files, and regroup by family
-//
 
 include { TABIX_TABIX                                            } from '../../../modules/nf-core/tabix/tabix/main'
 include { BCFTOOLS_VIEW as BCFTOOLS_VIEW_AUTOSOMES               } from '../../../modules/nf-core/bcftools/view/main'
@@ -97,13 +94,10 @@ workflow REMOVE_ANNOTATIONS {
             .join(BCFTOOLS_DELETE_ANNOTATIONS.out.tbi)
     }
     
-    
-    // VAF: Detect ambiguous VAF variants per individual
-    
+    //
+    // Extract variants with ambiguous VAF per individual
+    //
     if (val_apply_vaf_filter) {
-        //
-        // Extract variants with ambiguous VAF (0.15-0.30 or 0.70-0.85) per individual
-        //
         BCFTOOLS_EXTRACT_AMBIGUOUS_VAF(
             ch_processed_vcfs,
             [],
@@ -113,7 +107,7 @@ workflow REMOVE_ANNOTATIONS {
         ch_versions = ch_versions.mix(BCFTOOLS_EXTRACT_AMBIGUOUS_VAF.out.versions)
         
         //
-        // Convert ambiguous variants to BED format (CHR, START, END)
+        // Convert ambiguous variants to BED format
         //
         BCFTOOLS_QUERY_VAF_TO_BED(
             BCFTOOLS_EXTRACT_AMBIGUOUS_VAF.out.vcf
@@ -132,9 +126,6 @@ workflow REMOVE_ANNOTATIONS {
                 bed.size() > 0
             }
         
-        //
-        // Store BED files in metadata for downstream use (only non-empty ones)
-        //
         ch_processed_with_vaf_bed = ch_processed_vcfs
             .join(ch_non_empty_beds, remainder: true)
             .map { meta, vcf, tbi, bed ->
@@ -146,11 +137,8 @@ workflow REMOVE_ANNOTATIONS {
         ch_processed_with_vaf_bed = ch_processed_vcfs
     }
     
-    
-    
     //
     // Regroup individual processed VCFs/GVCFs back into family trios
-    // This maintains the original family structure for downstream trio analysis
     //
     ch_regrouped = ch_processed_with_vaf_bed
         .map { meta, vcf, tbi ->

@@ -1,23 +1,16 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/subworkflows/yaml-schema.json
-name: "FILTER_LOWCONF"
+name: filter_lowconf
 description: Apply sequential hard filters to produce final high-confidence preprocessed VCF per family.
 keywords:
   - vcf
   - filtering
-  - quality control
+  - quality-control
   - biallelic
-  - genotype quality
-  - depth
-  - genomic regions
-  - centromeres
-  - segmental duplications
-  - HLA
-  - KIR
-  - bcftools
-  - family
   - trio
+  - bcftools
 components:
-  - setgt
+  - bcftools/setgt
+  - bcftools/setgt_vaf
   - bcftools/view
 
 input:
@@ -30,33 +23,56 @@ input:
         type: file
         description: Input VCF file to be filtered for quality and problematic genomic regions
         pattern: "*.{vcf.gz}"
+        ontologies:
+        - edam: "http://edamontology.org/format_3016"
     - tbi:
         type: file
         description: Tabix index file for input VCF
         pattern: "*.tbi"
+        ontologies:
+        - edam: "http://edamontology.org/format_3616"
+  - val_perform_intersection:
+      type: boolean
+      description: |
+        Whether intersection was performed in upstream processing. 
+        If false, BCFTOOLS_SETGT is applied to set missing genotypes to 0/0.
+  - val_apply_vaf_correction:
+      type: boolean
+      description: |
+        Whether to apply VAF-based genotype correction for clear mismatches.
+        Corrects 0/1 calls with VAF < 0.15 to 0/0, and VAF > 0.85 to 1/1.
 
 output:
-  - - meta:
+  - vcf:
+      - meta:
           type: map
           description: |
-            Groovy Map containing family information (family ID and SV paths)
-            e.g. [ id:'family_001', sv_p:'path/to/proband', sv_m:'path/to/mother', sv_f:'path/to/father' ]
+            Groovy Map containing family information
+            e.g. `[id:'family_001', sv_p:'path/to/proband', sv_m:'path/to/mother', sv_f:'path/to/father']`
       - vcf:
           type: file
           description: |
             Final filtered high-confidence VCF file after applying sequential filters:
-            (1) biallelic sites only, (2) exclude all-reference-homozygous variants,
-            (3) minimum GQ/DP thresholds enforced, (4) exclude problematic genomic regions
-            (centromeres, segmental duplications, HLA/KIR regions)
-          pattern: "*.{vcf.gz}"
+            1. Biallelic SNPs only (exclude multiallelic)
+            2. Minimum GQ/DP thresholds (configurable via params.GQ_min, params.DP_min)
+            3. Exclude all-reference homozygous variants (0/0 or 0|0 in all trio members)
+            4. Exclude problematic genomic regions (centromeres, segmental duplications, HLA/KIR)
+          pattern: "*.vcf.gz"
+          ontologies:
+          - edam: "http://edamontology.org/format_3016"
       - tbi:
           type: file
-          description: Tabix index file for final filtered VCF
+          description: Tabix index for the filtered VCF file
           pattern: "*.tbi"
+          ontologies:
+          - edam: "http://edamontology.org/format_3616"
   - versions:
-      type: file
-      description: File containing software versions
-      pattern: "versions.yml"  
+      - versions:
+          type: file
+          description: File containing software versions
+          pattern: "versions.yml"
+          ontologies:
+          - edam: "http://edamontology.org/format_3750"
 
 authors:
   - "@saramenasantamaria"

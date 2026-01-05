@@ -1,5 +1,5 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/subworkflows/yaml-schema.json
-name: "REMOVE_ANNOTATIONS"
+name: "remove_annotations"
 description: Index VCF/GVCF files, filter autosomes, remove unused annotations from individual files, and regroup by family
 keywords:
   - vcf
@@ -14,6 +14,7 @@ components:
   - tabix/tabix
   - bcftools/view
   - bcftools/annotate
+  - bcftools/query
   
 input:
   - - meta:

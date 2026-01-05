@@ -38,6 +38,70 @@
                 }
             }
         },
+      "pipeline_specific_options": {
+          "title": "Pipeline-specific options",
+          "type": "object",
+          "fa_icon": "fas fa-cog",
+          "description": "Parameters specific to the UPDhmm pipeline",
+          "properties": {
+            "genome_build": {
+              "type": "string",
+              "default": "hg38",
+              "enum": ["hg38", "hg19"],
+              "description": "Reference genome build version",
+              "help_text": "Specify the reference genome build used. Must be either 'hg38' (GRCh38) or 'hg19' (GRCh37).",
+              "fa_icon": "fas fa-dna",
+              "errorMessage": "genome_build must be either 'hg38' or 'hg19'."
+            },
+            "GQ_min": {
+              "type": "integer",
+              "default": 0,
+              "minimum": 0,
+              "description": "Minimum Genotype Quality threshold",
+              "help_text": "Minimum genotype quality (GQ) score for variant filtering. Only variants where ALL trio members meet this threshold are retained.",
+              "fa_icon": "fas fa-filter",
+              "errorMessage": "GQ_min must be >= 0."
+            },
+            "DP_min": {
+              "type": "integer",
+              "default": 0,
+              "minimum": 0,
+              "description": "Minimum Depth threshold",
+              "help_text": "Minimum read depth (DP) for variant filtering. Only variants where ALL trio members meet this depth threshold are retained.",
+              "fa_icon": "fas fa-filter",
+              "errorMessage": "DP_min must be >= 0."
+            },
+            "is_gvcf": {
+              "type": "boolean",
+              "default": false,
+              "description": "Input files are in gVCF format",
+              "help_text": "Set to TRUE if input VCF files are in genomic VCF (gVCF/GVCF) format. When enabled, the pipeline uses the GVCF_COMBINE subworkflow which:\n\n• Combines trio gVCFs using GATK4 CombineGVCFs\n• Performs joint genotyping with GATK4 GenotypeGVCFs\n• Follows GATK best practices for multi-sample calling\n\nThis mode REQUIRES --fasta, --fai, and --dict reference genome files. When disabled (default), the pipeline uses bcftools-based VCF merging (VCF_COMBINE subworkflow).",
+              "fa_icon": "fas fa-file-code"
+            },
+            "perform_intersection": {
+              "type": "boolean",
+              "default": false,
+              "description": "Perform variant intersection across trio members",
+              "help_text": "Enable variant intersection mode where only genomic positions with variant calls in ALL three trio members are retained before merging. Implemented in the VCF_COMBINE subworkflow using BCFTOOLS_ISEC with '-n=3 -c all'.\n\n• TRUE: Intersection mode - retains only shared variants\n• FALSE: Union mode - combines all variants directly\n\nWhen enabled, missing genotypes are NOT filled (BCFTOOLS_SETGT is skipped in FILTER_LOWCONF).",
+              "fa_icon": "fas fa-project-diagram"
+            },
+            "apply_vaf_filter": {
+              "type": "boolean",
+              "default": false,
+              "description": "Mask ambiguous VAF regions per individual",
+              "help_text": "Enable detection and masking of genomic regions with ambiguous Variant Allele Frequency (VAF) patterns that may represent technical artifacts, contamination, or mosaicism. Implemented in the REMOVE_ANNOTATIONS subworkflow, which:\n\n• Extracts variants with VAF in ambiguous ranges per individual:\n - 0.15 = VAF = 0.30 \n - 0.70 = VAF = 0.85\n• Converts ambiguous variants to BED format\n• Integrates with SV_MASK_BED subworkflow to exclude these regions", 
+              "fa_icon": "fas fa-filter"
+            },
+            "apply_vaf_correction": {
+              "type": "boolean",
+              "default": false,
+              "description": "Apply VAF-based genotype correction",
+              "help_text": "Enable VAF-based genotype correction to adjust heterozygous calls with extreme allele frequencies. Implemented in the FILTER_LOWCONF subworkflow using BCFTOOLS_SETGT_VAF with sequential corrections:\n\n• GT 0/1 ? 0/0 when VAF < 0.15 \n• GT 0/1 ? 1/1 when VAF > 0.85 \n\nApplied independently to each trio member (proband, mother, father).",
+              "fa_icon": "fas fa-wrench"
+            }
+          }
+        },
+  
         "institutional_config_options": {
             "title": "Institutional config options",
             "type": "object",
@@ -86,6 +150,50 @@
                 }
             }
         },
+        "reference_genome_options": {
+            "title": "Reference genome options",
+            "type": "object",
+            "fa_icon": "fas fa-book",
+            "description": "Reference genome files and masking regions",
+            "properties": {
+              "fasta": {
+                "type": "string",
+                "format": "file-path",
+                "exists": true,
+                "description": "Path to reference genome FASTA file",
+                "help_text": "Path to the reference genome FASTA file. REQUIRED when --is_gvcf is TRUE for GATK operations.\n\nThe reference must:\n• Match the reference used for original variant calling\n• Correspond to the genome build specified in --genome_build (hg38 or hg19)\n• Be indexed (companion .fai file required, see --fai parameter)\n• Have a sequence dictionary (companion .dict file required, see --dict parameter).",
+                "pattern": "^\\S+\\.(fa|fasta|FA|FASTA)(\\.gz)?$",
+                "fa_icon": "fas fa-book"
+              },
+              "fai": {
+                "type": "string",
+                "format": "file-path",
+                "exists": true,
+                "description": "Path to reference genome FAI index",
+                "help_text": "Path to the FASTA index (.fai) file for the reference genome. REQUIRED when --is_gvcf is TRUE for GATK operations. This index file must correspond to the FASTA file specified in --fasta.", 
+                "pattern": "^\\S+\\.fai$",
+                "fa_icon": "fas fa-file-alt"
+              },
+              "dict": {
+                "type": "string",
+                "format": "file-path",
+                "exists": true,
+                "description": "Path to reference genome dictionary",
+                "help_text": "Path to the sequence dictionary (.dict) file for the reference genome. REQUIRED when --is_gvcf is TRUE for GATK operations.\n\nThis dictionary file must correspond to the FASTA file specified in --fasta.",
+                "pattern": "^\\S+\\.dict$",
+                "fa_icon": "fas fa-file-alt"
+              },
+              "excluded_regions_bed": {
+                "type": "string",
+                "format": "file-path",
+                "exists": true,
+                "description": "BED file with regions to exclude",
+                "help_text": "Path to BED file containing genomic regions to exclude from analysis.\n\n• If not provided and --genome_build is specified, the pipeline will automatically download the corresponding excluded regions file from Zenodo.",
+                "pattern": "^\\S+\\.bed(\\.gz)?$",
+                "fa_icon": "fas fa-file-alt"
+              }
+            }
+          },
         "generic_options": {
             "title": "Generic options",
             "type": "object",
@@ -163,10 +271,16 @@
             "$ref": "#/$defs/input_output_options"
         },
         {
+            "$ref": "#/$defs/pipeline_specific_options"
+        },   
+        {   
+            "$ref": "#/$defs/reference_genome_options"
+        },    
+        {
             "$ref": "#/$defs/institutional_config_options"
         },
         {
             "$ref": "#/$defs/generic_options"
         }
-    ]
+    ] 
 }

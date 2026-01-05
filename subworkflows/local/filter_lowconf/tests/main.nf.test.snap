@@ -1,44 +1,87 @@
 {
-    "single sample - without intersection - stub": {
+    "trio vcf with intersection and without vaf correction": {
+        "content": [
+            [
+                {
+                    "meta": {
+                        "id": "trio_test",
+                        "sv_p": "-",
+                        "sv_m": "-",
+                        "sv_f": "-"
+                    },
+                    "vcf_name": "trio_test_filtered_final.vcf.gz",
+                    "tbi_name": "trio_test_filtered_final.vcf.gz.tbi"
+                }
+            ],
+            [
+                "versions.yml:md5,896232e00a81d25fad350d085181da80"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.04.6"
+        },
+        "timestamp": "2025-12-30T19:22:55.934521537"
+    },
+    "trio vcf with intersection and vaf correction": {
+        "content": [
+            [
+                {
+                    "meta": {
+                        "id": "trio_test",
+                        "sv_p": "-",
+                        "sv_m": "-",
+                        "sv_f": "-"
+                    },
+                    "vcf_name": "trio_test_filtered_final.vcf.gz",
+                    "tbi_name": "trio_test_filtered_final.vcf.gz.tbi"
+                }
+            ],
+            [
+                "versions.yml:md5,896232e00a81d25fad350d085181da80",
+                "versions.yml:md5,f94d08df82ebdf2aca48153954dff146"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.04.6"
+        },
+        "timestamp": "2025-12-30T19:23:29.449353202"
+    },
+    "trio vcf - stub": {
         "content": [
             {
                 "0": [
                     [
                         {
-                            "id": "family1",
+                            "id": "trio_test",
                             "sv_p": "-",
                             "sv_m": "-",
                             "sv_f": "-"
                         },
-                        "family1_filtered_final.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
-                        "family1_filtered_final.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "trio_test_filtered_final.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                        "trio_test_filtered_final.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "1": [
-                    "versions.yml:md5,5867bfc7128cd39b20f84aa2ca9213d1",
-                    "versions.yml:md5,ba1671b8d8c27bc942b34f1f5b9bff92",
-                    "versions.yml:md5,e6bdc637f49435b94f30740c3dc85cdf",
-                    "versions.yml:md5,f7c5aa38dea8fcfba5d81066887120d7",
-                    "versions.yml:md5,faa362b7645bf78f2fe2cf02199408f3"
+                    "versions.yml:md5,896232e00a81d25fad350d085181da80",
+                    "versions.yml:md5,aa445c9fad49d5c92ea99d05ba8968a8"
                 ],
                 "vcf": [
                     [
                         {
-                            "id": "family1",
+                            "id": "trio_test",
                             "sv_p": "-",
                             "sv_m": "-",
                             "sv_f": "-"
                         },
-                        "family1_filtered_final.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
-                        "family1_filtered_final.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "trio_test_filtered_final.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                        "trio_test_filtered_final.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "versions": [
-                    "versions.yml:md5,5867bfc7128cd39b20f84aa2ca9213d1",
-                    "versions.yml:md5,ba1671b8d8c27bc942b34f1f5b9bff92",
-                    "versions.yml:md5,e6bdc637f49435b94f30740c3dc85cdf",
-                    "versions.yml:md5,f7c5aa38dea8fcfba5d81066887120d7",
-                    "versions.yml:md5,faa362b7645bf78f2fe2cf02199408f3"
+                    "versions.yml:md5,896232e00a81d25fad350d085181da80",
+                    "versions.yml:md5,aa445c9fad49d5c92ea99d05ba8968a8"
                 ]
             }
         ],
@@ -46,224 +89,57 @@
             "nf-test": "0.9.3",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2025-12-11T14:43:38.864209958"
+        "timestamp": "2025-12-30T19:24:41.553080875"
     },
-    "single sample - with intersection - stub": {
-        "content": [
-            {
-                "0": [
-                    [
-                        {
-                            "id": "family2",
-                            "sv_p": "-",
-                            "sv_m": "-",
-                            "sv_f": "-"
-                        },
-                        "family2_filtered_final.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
-                        "family2_filtered_final.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ]
-                ],
-                "1": [
-                    "versions.yml:md5,5867bfc7128cd39b20f84aa2ca9213d1",
-                    "versions.yml:md5,ba1671b8d8c27bc942b34f1f5b9bff92",
-                    "versions.yml:md5,e6bdc637f49435b94f30740c3dc85cdf",
-                    "versions.yml:md5,f7c5aa38dea8fcfba5d81066887120d7"
-                ],
-                "vcf": [
-                    [
-                        {
-                            "id": "family2",
-                            "sv_p": "-",
-                            "sv_m": "-",
-                            "sv_f": "-"
-                        },
-                        "family2_filtered_final.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
-                        "family2_filtered_final.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ]
-                ],
-                "versions": [
-                    "versions.yml:md5,5867bfc7128cd39b20f84aa2ca9213d1",
-                    "versions.yml:md5,ba1671b8d8c27bc942b34f1f5b9bff92",
-                    "versions.yml:md5,e6bdc637f49435b94f30740c3dc85cdf",
-                    "versions.yml:md5,f7c5aa38dea8fcfba5d81066887120d7"
-                ]
-            }
-        ],
-        "meta": {
-            "nf-test": "0.9.3",
-            "nextflow": "25.04.6"
-        },
-        "timestamp": "2025-12-11T14:44:00.687714567"
-    },
-    "single sample - without intersection": {
+    "trio vcf without intersection and with vaf correction": {
         "content": [
             [
                 {
                     "meta": {
-                        "id": "family1",
+                        "id": "trio_test",
                         "sv_p": "-",
                         "sv_m": "-",
                         "sv_f": "-"
                     },
-                    "vcf_name": "family1_filtered_final.vcf.gz",
-                    "tbi_name": "family1_filtered_final.vcf.gz.tbi"
+                    "vcf_name": "trio_test_filtered_final.vcf.gz",
+                    "tbi_name": "trio_test_filtered_final.vcf.gz.tbi"
                 }
             ],
             [
-                "versions.yml:md5,5867bfc7128cd39b20f84aa2ca9213d1",
-                "versions.yml:md5,ba1671b8d8c27bc942b34f1f5b9bff92",
-                "versions.yml:md5,e6bdc637f49435b94f30740c3dc85cdf",
-                "versions.yml:md5,f7c5aa38dea8fcfba5d81066887120d7",
-                "versions.yml:md5,faa362b7645bf78f2fe2cf02199408f3"
+                "versions.yml:md5,896232e00a81d25fad350d085181da80",
+                "versions.yml:md5,aa445c9fad49d5c92ea99d05ba8968a8",
+                "versions.yml:md5,f94d08df82ebdf2aca48153954dff146"
             ]
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2025-12-11T14:42:23.29565611"
+        "timestamp": "2025-12-30T19:24:08.06620053"
     },
-    "multiple samples - mixed intersection modes - stub": {
-        "content": [
-            {
-                "0": [
-                    [
-                        {
-                            "id": "family1",
-                            "sv_p": "-",
-                            "sv_m": "-",
-                            "sv_f": "-"
-                        },
-                        "family1_filtered_final.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
-                        "family1_filtered_final.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ],
-                    [
-                        {
-                            "id": "family2",
-                            "sv_p": "-",
-                            "sv_m": "-",
-                            "sv_f": "-"
-                        },
-                        "family2_filtered_final.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
-                        "family2_filtered_final.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ]
-                ],
-                "1": [
-                    "versions.yml:md5,5867bfc7128cd39b20f84aa2ca9213d1",
-                    "versions.yml:md5,5867bfc7128cd39b20f84aa2ca9213d1",
-                    "versions.yml:md5,ba1671b8d8c27bc942b34f1f5b9bff92",
-                    "versions.yml:md5,ba1671b8d8c27bc942b34f1f5b9bff92",
-                    "versions.yml:md5,e6bdc637f49435b94f30740c3dc85cdf",
-                    "versions.yml:md5,e6bdc637f49435b94f30740c3dc85cdf",
-                    "versions.yml:md5,f7c5aa38dea8fcfba5d81066887120d7",
-                    "versions.yml:md5,f7c5aa38dea8fcfba5d81066887120d7"
-                ],
-                "vcf": [
-                    [
-                        {
-                            "id": "family1",
-                            "sv_p": "-",
-                            "sv_m": "-",
-                            "sv_f": "-"
-                        },
-                        "family1_filtered_final.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
-                        "family1_filtered_final.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ],
-                    [
-                        {
-                            "id": "family2",
-                            "sv_p": "-",
-                            "sv_m": "-",
-                            "sv_f": "-"
-                        },
-                        "family2_filtered_final.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
-                        "family2_filtered_final.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ]
-                ],
-                "versions": [
-                    "versions.yml:md5,5867bfc7128cd39b20f84aa2ca9213d1",
-                    "versions.yml:md5,5867bfc7128cd39b20f84aa2ca9213d1",
-                    "versions.yml:md5,ba1671b8d8c27bc942b34f1f5b9bff92",
-                    "versions.yml:md5,ba1671b8d8c27bc942b34f1f5b9bff92",
-                    "versions.yml:md5,e6bdc637f49435b94f30740c3dc85cdf",
-                    "versions.yml:md5,e6bdc637f49435b94f30740c3dc85cdf",
-                    "versions.yml:md5,f7c5aa38dea8fcfba5d81066887120d7",
-                    "versions.yml:md5,f7c5aa38dea8fcfba5d81066887120d7"
-                ]
-            }
-        ],
-        "meta": {
-            "nf-test": "0.9.3",
-            "nextflow": "25.04.6"
-        },
-        "timestamp": "2025-12-11T14:44:24.251894174"
-    },
-    "single sample - with intersection": {
+    "trio vcf without intersection and vaf correction": {
         "content": [
             [
                 {
                     "meta": {
-                        "id": "family2",
+                        "id": "trio_test",
                         "sv_p": "-",
                         "sv_m": "-",
                         "sv_f": "-"
                     },
-                    "vcf_name": "family2_filtered_final.vcf.gz",
-                    "tbi_name": "family2_filtered_final.vcf.gz.tbi"
+                    "vcf_name": "trio_test_filtered_final.vcf.gz",
+                    "tbi_name": "trio_test_filtered_final.vcf.gz.tbi"
                 }
             ],
             [
-                "versions.yml:md5,5867bfc7128cd39b20f84aa2ca9213d1",
-                "versions.yml:md5,ba1671b8d8c27bc942b34f1f5b9bff92",
-                "versions.yml:md5,e6bdc637f49435b94f30740c3dc85cdf",
-                "versions.yml:md5,f7c5aa38dea8fcfba5d81066887120d7"
+                "versions.yml:md5,896232e00a81d25fad350d085181da80",
+                "versions.yml:md5,aa445c9fad49d5c92ea99d05ba8968a8"
             ]
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2025-12-11T14:42:47.729419994"
-    },
-    "multiple samples - mixed intersection modes": {
-        "content": [
-            [
-                {
-                    "meta": {
-                        "id": "family1",
-                        "sv_p": "-",
-                        "sv_m": "-",
-                        "sv_f": "-"
-                    },
-                    "vcf_name": "family1_filtered_final.vcf.gz",
-                    "tbi_name": "family1_filtered_final.vcf.gz.tbi"
-                },
-                {
-                    "meta": {
-                        "id": "family2",
-                        "sv_p": "-",
-                        "sv_m": "-",
-                        "sv_f": "-"
-                    },
-                    "vcf_name": "family2_filtered_final.vcf.gz",
-                    "tbi_name": "family2_filtered_final.vcf.gz.tbi"
-                }
-            ],
-            [
-                "versions.yml:md5,5867bfc7128cd39b20f84aa2ca9213d1",
-                "versions.yml:md5,5867bfc7128cd39b20f84aa2ca9213d1",
-                "versions.yml:md5,ba1671b8d8c27bc942b34f1f5b9bff92",
-                "versions.yml:md5,ba1671b8d8c27bc942b34f1f5b9bff92",
-                "versions.yml:md5,e6bdc637f49435b94f30740c3dc85cdf",
-                "versions.yml:md5,e6bdc637f49435b94f30740c3dc85cdf",
-                "versions.yml:md5,f7c5aa38dea8fcfba5d81066887120d7",
-                "versions.yml:md5,f7c5aa38dea8fcfba5d81066887120d7"
-            ]
-        ],
-        "meta": {
-            "nf-test": "0.9.3",
-            "nextflow": "25.04.6"
-        },
-        "timestamp": "2025-12-11T14:43:16.121147742"
+        "timestamp": "2025-12-30T19:22:29.325345843"
     }
 }

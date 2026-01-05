@@ -50,7 +50,7 @@ opt <- list(
     output_prefix = ifelse('$task.ext.prefix' == 'null', '$meta.id', '$task.ext.prefix'),
     processed_vcf_rds = '$processed_vcf_rds',
     verbose = TRUE,
-    add_ratios = FALSE,
+    add_ratios = TRUE,
     hmm = NULL,
     field_DP = NULL,
     cpus = $task.cpus

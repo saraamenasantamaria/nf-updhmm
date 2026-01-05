@@ -1,5 +1,3 @@
-#!/usr/bin/env nextflow
-
 process UPDHMM_CALCULATEEVENTS {
     tag "$meta.id"
     label 'process_high'

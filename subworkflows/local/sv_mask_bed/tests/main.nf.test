@@ -56,6 +56,52 @@ nextflow_workflow {
             )
         }
     }
+    
+    test("single sample - all bed files and ambiguous vaf") {
+
+        when {
+            workflow {
+                """
+                input[0] = Channel.of([
+                    [
+                        id: 'family1',
+                        sv_p: '${projectDir}/subworkflows/local/sv_mask_bed/tests/data/proband_sv.bed',
+                        sv_m: '${projectDir}/subworkflows/local/sv_mask_bed/tests/data/mother_sv.bed', 
+                        sv_f: '${projectDir}/subworkflows/local/sv_mask_bed/tests/data/father_sv.bed',
+                        vaf_bed_p: null,
+                        vaf_bed_m: '${projectDir}/subworkflows/local/sv_mask_bed/tests/data/mother_vaf_ambiguous.bed',
+                        vaf_bed_f: '${projectDir}/subworkflows/local/sv_mask_bed/tests/data/father_vaf_ambiguous.bed'
+                    ],
+                    file('${projectDir}/subworkflows/local/sv_mask_bed/tests/data/family.vcf.gz', checkIfExists: true),
+                    file('${projectDir}/subworkflows/local/sv_mask_bed/tests/data/family.vcf.gz.tbi', checkIfExists: true)
+                ])
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert workflow.trace.tasks().size() > 0 },
+                { assert workflow.out.vcf.size() == 1 },
+                { assert snapshot(
+                    workflow.out.vcf.collect { meta, vcf, tbi -> 
+                        [
+                            meta: [
+                                id: meta.id,
+                                sv_p: meta.sv_p,
+                                sv_m: meta.sv_m,
+                                sv_f: meta.sv_f
+                            ],
+                            vcf_name: file(vcf).name,
+                            tbi_name: file(tbi).name
+                        ]
+                    },
+                    workflow.out.versions
+                ).match() }
+            )
+        }
+    }
 
     test("single sample - all vcf.gz sv files") {
 

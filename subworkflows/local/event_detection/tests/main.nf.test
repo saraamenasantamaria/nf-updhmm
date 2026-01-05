@@ -1,0 +1,60 @@
+nextflow_workflow {
+
+    name "Test Subworkflow EVENT_DETECTION"
+    script "../main.nf"
+    workflow "EVENT_DETECTION"
+
+    tag "subworkflows"
+    tag "subworkflows_local"
+    tag "subworkflows/event_detection"
+    tag "updhmm"
+    tag "updhmm/vcfcheck"
+    tag "updhmm/calculateevents"
+    tag "updhmm/collapseevents"
+
+    test("trio vcf") {
+
+        when {
+            workflow {
+                """
+                input[0] = channel.of([
+                    [ id:'test_trio' ],
+                    file('${projectDir}/subworkflows/local/event_detection/tests/data/family.vcf.gz', checkIfExists: true),
+                    []
+                ])
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(workflow.out).match() }
+            )
+        }
+    }
+
+    test("trio vcf - stub") {
+
+        options "-stub"
+
+        when {
+            workflow {
+                """
+                input[0] = channel.of([
+                    [ id:'test_trio' ],
+                    file('${projectDir}/subworkflows/local/event_detection/tests/data/family.vcf.gz', checkIfExists: true),
+                    []
+                ])
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(workflow.out).match() }
+            )
+        }
+    }
+}

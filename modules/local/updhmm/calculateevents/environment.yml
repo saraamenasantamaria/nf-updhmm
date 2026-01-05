@@ -3,7 +3,6 @@
 channels:
   - conda-forge
   - bioconda
-  - defaults
 dependencies:
   - conda-forge::r-base=4.3.0
   - bioconda::bioconductor-updhmm=1.5.2
