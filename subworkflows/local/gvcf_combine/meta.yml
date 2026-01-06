@@ -28,26 +28,36 @@ input:
         type: file
         description: Tabix index files for input GVCF files
         pattern: "*.tbi"
+        ontologies:
+        - edam: "http://edamontology.org/format_3616"
 
 output:
-  - - meta:
+  - vcf:
+      - meta:
           type: map
           description: |
-            Groovy Map containing family information 
+            Groovy Map containing family information
             e.g. [ id:'family_001', proband_id:'proband_001', mother_id:'mother_001', father_id:'father_001', sv_p:'path/to/proband', sv_m:'path/to/mother', sv_f:'path/to/father' ]
       - vcf:
           type: file
           description: Final VCF file containing genotyped variants from family trio members after joint calling and annotation cleanup
-          pattern: "*.{vcf.gz}"
+          pattern: "*.vcf.gz"
+          ontologies:
+          - edam: "http://edamontology.org/format_3016"
       - tbi:
           type: file
-          description: Tabix index file for final VCF
+          description: Tabix index for the final VCF file
           pattern: "*.tbi"
+          ontologies:
+          - edam: "http://edamontology.org/format_3616"
   - versions:
-      type: file
-      description: File containing software versions
-      pattern: "versions.yml"
-
+      - versions:
+          type: file
+          description: File containing software versions
+          pattern: "versions.yml"
+          ontologies:
+          - edam: "http://edamontology.org/format_3750"
+          
 authors:
   - "@saramenasantamaria"
 

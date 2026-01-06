@@ -31,33 +31,44 @@ Where appropriate, modules are reused or patched from [nf-core/modules](https://
 
 ## Pipeline summary
 
-This pipeline standardizes the detection of uniparental disomy (UPD) events in trio sequencing data.  
-It includes preprocessing of raw VCF/GVCF files to ensure compatibility with the UPDhmm R package, application of a Hidden Markov Model to detect UPD segments, and postprocessing filters to refine the final set of events.
+This pipeline standardizes the detection of uniparental disomy (UPD) events in trio sequencing data. The workflow consists of two main phases:
 
-Default steps:
+### 1. Preprocessing
 
-1. **Preprocessing (`PREPROCESS_VCF`)**  
-   Prepares the trio data by combining individual VCFs/GVCFs (if required) and applying filters to keep only high-quality biallelic SNVs.
-   
-   - **`REMOVE_ANNOTATIONS`** – filters autosomes, removes annotations from individual VCF files, and regroups by family.
-   - **`COMBINE_VCF`** – merges the VCFs from father, mother, and proband into a joint file, keeping either only variants shared by all three individuals (`perform_intersection = TRUE`) or all variants (`perform_intersection = FALSE`).
-   - **`COMBINE_GVCF`** –
-   - **`SV_MASK_BED`** *(optional)* – removes variants overlapping large structural changes using BED files.
-   - **`FILTER_LOWCONF`** – applies hard filters to generate the final preprocessed VCF per family.
+Prepares trio data by combining individual VCFs/GVCFs and applying filters to retain only high-quality biallelic SNVs.
 
-        - **`BCFTOOLS_VIEW_BIALLELIC`** – retains only biallelic sites.
-        - **`BCFTOOLS_VIEW_QUAL_MIN`** – filters variants by minimum genotype quality (GQ) and depth (DP).  
-        - **`BCFTOOLS_VIEW_REFHOMO_EXCLUDE`** – excludes variants homozygous for the reference allele (0/0 or 0|0) in all trio members.
-        - **`BCFTOOLS_VIEW_EXCL_ALL`** – excludes problematic genomic regions (centromeres, segmental duplications, and highly polymorphic HLA/KIR regions).
+**Annotation removal and filtering:**
 
-> **Note:** If merging is performed instead of intersection, the **SETGT** module is applied to convert missing genotypes in VCF files to homozygous reference.
-> This ensures that all genotypes are explicitly defined before downstream analysis.
+- **`REMOVE_ANNOTATIONS`** – Indexes VCF/GVCF files, filters for autosomes (chr1-22), removes unused annotations, and regroups files by family. Optionally extracts variants with ambiguous variant allele frequency (VAF) for downstream masking (`--apply_vaf_filter`).
 
-2. **UPD detection (`EVENT_DETECTION`)**  
-   Runs the UPDhmm core functions to detect genomic blocks consistent with UPD.  
-   - **`VCF_CHECK`** – validates and formats the combined VCF as a `largeCollapsedVcf` object.  
-   - **`CALCULATE_EVENTS`** – applies the HMM (Viterbi algorithm) to infer hidden states, groups variants into blocks, and annotates each block with confidence metrics.
-   - **`COLLAPSE_EVENTS`** – merges overlapping blocks of the same UPD type within a chromosome.
+**Trio combination:**
+
+- **`COMBINE_VCF`** – Merges VCFs from proband, mother, and father into a joint file. Retains either all variants (union mode, default) or only shared variants (intersection mode, `--perform_intersection true`).
+- **`COMBINE_GVCF`** – For gVCF input (`--is_gvcf true`), performs GVCF combination and joint genotyping using GATK to generate a single combined VCF per family trio.
+
+**Variant masking:**
+
+- **`SV_MASK_BED`** – Removes variants overlapping structural variants and regions with ambiguous VAF if mask files are provided.
+
+**Quality filtering:**
+
+- **`FILTER_LOWCONF`** – Applies hard filters to generate the final preprocessed VCF per family:
+  - Genotype correction (optional):
+    - `SETGT` – Sets missing genotypes to homozygous reference (0/0) when `--perform_intersection false`
+    - `SETGT_VAF` – Corrects genotypes based on VAF thresholds when `--apply_vaf_correction true`
+  - Variant filtering:
+    - Retain only biallelic SNVs
+    - Apply minimum genotype quality (GQ ≥ `--GQ_min`) and depth (DP ≥ `--DP_min`) thresholds
+    - Exclude variants where all trio members are homozygous reference (0/0 or 0|0)
+    - Exclude problematic genomic regions (centromeres, segmental duplications, HLA/KIR loci)
+
+### 2. UPD Detection
+
+Runs the UPDhmm core functions to identify genomic blocks consistent with uniparental disomy patterns.
+
+- **`VCF_CHECK`** – Trio VCF preprocessing with quality-aware genotype encoding
+- **`CALCULATE_EVENTS`** – Hidden Markov Model (HMM)-based UPD event detection across autosomes
+- **`COLLAPSE_EVENTS`** – Event collapsing to merge adjacent/overlapping UPD regions per family
 
 > Each step is implemented as a separate DSL2 module. Outputs are organized by step and method.
 
@@ -71,25 +82,26 @@ Prepare a **CSV file** with your input data.
 Each row represents a family (trio), with identifiers for father, mother, and proband, and paths to the corresponding VCFs.  
 Structural variant VCFs can also be included (set to `-` if not available).
 
-`samplesheet.csv`:
-
-```csv
+```csv title="samplesheet.csv"
 fam_id,proband_id,mother_id,father_id,path_vcf_proband,path_vcf_mother,path_vcf_father,path_sv_proband,path_sv_mother,path_sv_father
-FAM001,FAM001_PROBAND,FAM001_MOTHER,FAM001_FATHER,/path/to/proband.vcf.gz,/path/to/mother.vcf.gz,/path/to/father.vcf.gz,/path/to/proband.bed,/path/to/mother.sv.bed,/path/to/father.sv.bed
+FAM001,PROBAND_01,MOTHER_01,FATHER_01,/data/vcfs/proband_01.vcf.gz,/data/vcfs/mother_01.vcf.gz,/data/vcfs/father_01.vcf.gz,-,-,-
+FAM002,PROBAND_02,MOTHER_02,FATHER_02,/data/vcfs/proband_02.vcf.gz,/data/vcfs/mother_02.vcf.gz,/data/vcfs/father_02.vcf.gz,/data/svs/proband_02_sv.bed,/data/svs/mother_02_sv.bed,/data/svs/father_02_sv.bed
 ```
 
-**Field description:**
+**Samplesheet format:**
 
-- fam_id: family identifier  
-- proband_id: proband sample identifier
-- mother_id: mother sample identifier   
-- father_id: father sample identifier  
-- path_vcf_proband: SNV VCF file for the proband
-- path_vcf_mother: SNV VCF file for the mother  
-- path_vcf_father: SNV VCF file for the father   
-- path_sv_proband: structural variant VCF for the proband (- if not available)
-- path_sv_mother: structural variant VCF for the mother (- if not available)
-- path_sv_father: structural variant VCF for the father (- if not available)  
+| Column             | Description                                                                                          |
+| ------------------ | ---------------------------------------------------------------------------------------------------- |
+| `fam_id`           | Family identifier. This will be used to name output files.                                           |
+| `proband_id`       | Sample ID for the proband.                                                                           |
+| `mother_id`        | Sample ID for the mother.                                                                            |
+| `father_id`        | Sample ID for the father                                              .                              |
+| `path_vcf_proband` | Full path to proband VCF/gVCF file (must be bgzipped).                                  |
+| `path_vcf_mother`  | Full path to mother VCF/gVCF file (must be bgzipped).                                   |
+| `path_vcf_father`  | Full path to father VCF/gVCF file (must be bgzipped).                                   |
+| `path_sv_proband`  | Full path to structural variant BED/VCF file for proband (use `-` if not available).                 |
+| `path_sv_mother`   | Full path to structural variant BED/VCF file for mother (use `-` if not available).                  |
+| `path_sv_father`   | Full path to structural variant BED/VCF file for father (use `-` if not available).                  |
 
 
 Then, you can run the pipeline using:
@@ -102,14 +114,13 @@ nextflow run nf-core/updhmm \
    --input samplesheet.csv \
    --outdir <OUTDIR> \
    --genome_build <hg38/hg19> \
-   --perform_intersection <TRUE/FALSE>
 ```
 
 ## Output summary
 
 For each trio, the pipeline generates two main tab-delimited files:  
 
-1. **Raw events (`<trio>.raw.txt`)**  
+1. **Raw events (`<trio>.upd_events.txt`)**  
    Direct output of the `UPDhmm::calculateEvents` function. This file contains all detected UPD candidate events without additional filtering.  
 
 The core UPDhmm function, `calculateEvents`, returns a **data.frame** containing all detected UPD events for a given trio.  
@@ -117,31 +128,41 @@ If no events are found, an empty data.frame is returned.
 
 **Output columns:**  
 
-| Column name          | Description                                                                           |
-|----------------------|---------------------------------------------------------------------------------------|
-| seqnames             | Chromosome                                                                            |
-| start                | Start position of the block                                                           |
-| end                  | End position of the block                                                             |
-| n_snps               | Number of variants within the event                                                   |
-| group                | Predicted UPD state (e.g. iso_mat, het_fat)                                           |
-| n_mendelian_error    | Number of Mendelian errors supporting the event                                       |
-| ratio_proband        | (Optional) Ratio of average depth inside vs. outside the event for the proband        |
-| ratio_mother         | (Optional) Ratio of average depth inside vs. outside the event for the mother         |
-| ratio_father         | (Optional) Ratio of average depth inside vs. outside the event for the father         |
+| Column              | Description                                                      |
+| ------------------- | ---------------------------------------------------------------- |
+| `ID`                | Identifier of the proband (child sample)                         |
+| `chromosome`        | Chromosome identifier                                            |
+| `start`             | Start genomic position of the UPD block                          |
+| `end`               | End genomic position of the UPD block                            |
+| `group`             | Predicted UPD type (`iso_mat`, `iso_fat`, `het_mat`, `het_fat`)  |
+| `n_snps`            | Number of informative SNVs within the event                      |
+| `ratio_proband`     | Ratio of average read depth inside the event vs. the genome-wide average (including the event) for the proband. A value close to 1 indicates balanced coverage; deviations may suggest copy-number changes. |
+| `ratio_mother`      | Ratio of average read depth inside the event vs. genome-wide average (including the event) for the mother |
+| `ratio_father`      | Ratio of average read depth inside the event vs. genome-wide average (including the event) for the father |
+| `n_mendelian_error` | Number of Mendelian inheritance errors supporting the event      |
 
-2. **Collapsed events (`<trio>.collapsed.txt`)**  
+
+2. **Collapsed events (`<trio>.udp_collapsed.txt`)**  
    Postprocessed and filtered results. Overlapping events of the same type within the same chromosome (e.g. paternal isodisomy) are merged into a single representative block.  
-   Additional columns report the start and end coordinates of the merged region, together with a semicolon-separated list of all original raw events collapsed.
+   
+**Output columns:**  
 
-
-**Example collapsed output:**  
-
-| chromosome | UPD type | n_events | total_mendelian_error | collapsed_event_ranges                                      | min_start | max_end   |
-|------------|----------|----------|-----------------------|-------------------------------------------------------------|-----------|-----------|
-| chr12      | iso_mat  | 2        | 108                   | chr12:16885604-25756939; chr12:25866874-29838830            | 16885604  | 29838830  |
-| chr17      | het_mat  | 1        | 3                     | chr17:45990746-46714277                                     | 45990746  | 46714277  |
-| chr7       | het_mat  | 1        | 11                    | chr7:55624055-56153077                                      | 55624055  | 56153077  |
-| chr2       | het_fat  | 1        | 3                     | chr2:89791539-96090799                                      | 89791539  | 96090799  |
+| Column                 | Description                                                                 |
+|------------------------|-----------------------------------------------------------------------------|
+| `ID`                   | Identifier of the proband (child sample)                                    |
+| `chromosome`           | Chromosome identifier                                                        |
+| `start`                | Start genomic position of the UPD block                                      |
+| `end`                  | End genomic position of the UPD block                                        |
+| `group`                | Predicted UPD type (`iso_mat`, `iso_fat`, `het_mat`, `het_fat`)             |
+| `n_events`             | Number of raw events that were collapsed into this entry                     |
+| `total_mendelian_error`| Sum of Mendelian errors from all collapsed events                             |
+| `total_size`           | Total genomic span covered by the collapsed events                           |
+| `total_snps`           | Total number of SNPs in the overlapping events                               |
+| `prop_covered`         | Proportion of the region covered by the merged events                        |
+| `collapsed_events`     | Comma-separated list of the original event coordinates that were merged      |
+| `ratio_proband`        | Weighted mean ratio of read depth for the proband across the collapsed events |
+| `ratio_mother`         | Weighted mean ratio of read depth for the mother across the collapsed events  |
+| `ratio_father`         | Weighted mean ratio of read depth for the father across the collapsed events  |
 
 
 ## Test execution
@@ -159,9 +180,7 @@ Run the pipeline in **test mode** with:
 nextflow run nf-core/updhmm \
    -profile <docker/singularity>,test \
    --outdir <OUTDIR> \
-   --genome_build <hg38/hg19> \
-   --perform_intersection <TRUE/FALSE>
-   -- AÑADIR AQUÍ TODOS LOS PARÁMETROS CONFIGURABLES QUE SE PUEDEN INTRODUCIR
+   --genome_build <hg38/hg19>
 ```
 
 ## Credits

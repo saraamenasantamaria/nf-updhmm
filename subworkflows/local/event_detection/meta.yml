@@ -47,7 +47,7 @@ output:
             e.g. [ id:'family_001', proband_id:'proband_001', mother_id:'mother_001', father_id:'father_001', sv_p:'path/to/proband.bed', sv_m:'path/to/mother.bed', sv_f:'-' ]
       - txt:
           type: file
-          description: description: Collapsed UPD events file per sample, chromosome, and group, summarizing total event counts (n_events), cumulative Mendelian errors (total_mendelian_error), total genomic span size (total_size), and merged event coordinates (collapsed_events, min_start, max_end)
+          description: Collapsed UPD events file per sample, chromosome, and group, summarizing total event counts (n_events), cumulative Mendelian errors (total_mendelian_error), total genomic span size (total_size), and merged event coordinates (collapsed_events, min_start, max_end)
           pattern: "*.upd_collapsed.txt"
           ontologies:
             - edam: "http://edamontology.org/format_3475"

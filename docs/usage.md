@@ -6,50 +6,45 @@
 
 ## Introduction
 
+**nf-core/updhmm** is a pipeline for detecting uniparental disomy (UPD) events in trio sequencing data (proband, mother and father). The pipeline processes VCF or gVCF files to identify genomic regions where both chromosome copies are inherited from a single parent.
+
 <!-- TODO nf-core: Add documentation about anything specific to running your pipeline. For general topics, please point to (and add to) the main nf-core website. -->
 
 ## Samplesheet input
 
-You will need to create a samplesheet with information about the samples you would like to analyse before running the pipeline. Use this parameter to specify its location. It has to be a comma-separated file with 3 columns, and a header row as shown in the examples below.
+You will need to create a samplesheet with information about the trios you would like to analyze before running the pipeline. Use this parameter to specify its location.
 
 ```bash
 --input '[path to samplesheet file]'
 ```
 
-### Multiple runs of the same sample
+### Samplesheet format
 
-The `sample` identifiers have to be the same when you have re-sequenced the same sample more than once e.g. to increase sequencing depth. The pipeline will concatenate the raw reads before performing any downstream analysis. Below is an example for the same sample sequenced across 3 lanes:
-
-```csv title="samplesheet.csv"
-sample,fastq_1,fastq_2
-CONTROL_REP1,AEG588A1_S1_L002_R1_001.fastq.gz,AEG588A1_S1_L002_R2_001.fastq.gz
-CONTROL_REP1,AEG588A1_S1_L003_R1_001.fastq.gz,AEG588A1_S1_L003_R2_001.fastq.gz
-CONTROL_REP1,AEG588A1_S1_L004_R1_001.fastq.gz,AEG588A1_S1_L004_R2_001.fastq.gz
-```
-
-### Full samplesheet
-
-The pipeline will auto-detect whether a sample is single- or paired-end using the information provided in the samplesheet. The samplesheet can have as many columns as you desire, however, there is a strict requirement for the first 3 columns to match those defined in the table below.
-
-A final samplesheet file consisting of both single- and paired-end data may look something like the one below. This is for 6 samples, where `TREATMENT_REP3` has been sequenced twice.
+The samplesheet must be a **comma-separated file (CSV)** with the following 10 columns and a header row:
 
 ```csv title="samplesheet.csv"
-sample,fastq_1,fastq_2
-CONTROL_REP1,AEG588A1_S1_L002_R1_001.fastq.gz,AEG588A1_S1_L002_R2_001.fastq.gz
-CONTROL_REP2,AEG588A2_S2_L002_R1_001.fastq.gz,AEG588A2_S2_L002_R2_001.fastq.gz
-CONTROL_REP3,AEG588A3_S3_L002_R1_001.fastq.gz,AEG588A3_S3_L002_R2_001.fastq.gz
-TREATMENT_REP1,AEG588A4_S4_L003_R1_001.fastq.gz,
-TREATMENT_REP2,AEG588A5_S5_L003_R1_001.fastq.gz,
-TREATMENT_REP3,AEG588A6_S6_L003_R1_001.fastq.gz,
-TREATMENT_REP3,AEG588A6_S6_L004_R1_001.fastq.gz,
+fam_id,proband_id,mother_id,father_id,path_vcf_proband,path_vcf_mother,path_vcf_father,path_sv_proband,path_sv_mother,path_sv_father
 ```
+| Column             | Description                                                                                          |
+| ------------------ | ---------------------------------------------------------------------------------------------------- |
+| `fam_id`           | Family identifier. This will be used to name output files.                                           |
+| `proband_id`       | Sample ID for the proband.                                                                           |
+| `mother_id`        | Sample ID for the mother.                                                                            |
+| `father_id`        | Sample ID for the father                                              .                              |
+| `path_vcf_proband` | Full path to proband VCF/gVCF file (must be bgzipped).                                  |
+| `path_vcf_mother`  | Full path to mother VCF/gVCF file (must be bgzipped).                                   |
+| `path_vcf_father`  | Full path to father VCF/gVCF file (must be bgzipped).                                   |
+| `path_sv_proband`  | Full path to structural variant BED/VCF file for proband (use `-` if not available).                 |
+| `path_sv_mother`   | Full path to structural variant BED/VCF file for mother (use `-` if not available).                  |
+| `path_sv_father`   | Full path to structural variant BED/VCF file for father (use `-` if not available).                  |
 
-| Column    | Description                                                                                                                                                                            |
-| --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `sample`  | Custom sample name. This entry will be identical for multiple sequencing libraries/runs from the same sample. Spaces in sample names are automatically converted to underscores (`_`). |
-| `fastq_1` | Full path to FastQ file for Illumina short reads 1. File has to be gzipped and have the extension ".fastq.gz" or ".fq.gz".                                                             |
-| `fastq_2` | Full path to FastQ file for Illumina short reads 2. File has to be gzipped and have the extension ".fastq.gz" or ".fq.gz".                                                             |
+### Example samplesheet
 
+```csv title="samplesheet.csv"
+fam_id,proband_id,mother_id,father_id,path_vcf_proband,path_vcf_mother,path_vcf_father,path_sv_proband,path_sv_mother,path_sv_father
+FAM001,PROBAND_01,MOTHER_01,FATHER_01,/data/vcfs/proband_01.vcf.gz,/data/vcfs/mother_01.vcf.gz,/data/vcfs/father_01.vcf.gz,-,-,-
+FAM002,PROBAND_02,MOTHER_02,FATHER_02,/data/vcfs/proband_02.vcf.gz,/data/vcfs/mother_02.vcf.gz,/data/vcfs/father_02.vcf.gz,/data/svs/proband_02_sv.bed,/data/svs/mother_02_sv.bed,/data/svs/father_02_sv.bed
+```
 An [example samplesheet](../assets/samplesheet.csv) has been provided with the pipeline.
 
 ## Running the pipeline
@@ -57,7 +52,11 @@ An [example samplesheet](../assets/samplesheet.csv) has been provided with the p
 The typical command for running the pipeline is as follows:
 
 ```bash
-nextflow run nf-core/updhmm --input ./samplesheet.csv --outdir ./results --genome GRCh37 -profile docker
+nextflow run nf-core/updhmm \
+   --input ./samplesheet.csv \
+   --outdir ./results \
+   --genome_build hg38 \
+   -profile docker
 ```
 
 This will launch the pipeline with the `docker` configuration profile. See below for more information about profiles.
@@ -89,7 +88,7 @@ with:
 ```yaml title="params.yaml"
 input: './samplesheet.csv'
 outdir: './results/'
-genome: 'GRCh37'
+genome_build: 'hg38'
 <...>
 ```
 

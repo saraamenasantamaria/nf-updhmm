@@ -28,29 +28,41 @@ input:
         type: file
         description: Input VCF file to be filtered using structural variant masks
         pattern: "*.{vcf.gz}"
+        ontologies:
+        - edam: "http://edamontology.org/format_3016"
     - tbi:
         type: file
         description: Tabix index file for input VCF
         pattern: "*.tbi"
+        ontologies:
+        - edam: "http://edamontology.org/format_3616"
 
 output:
-  - - meta:
+  - vcf:
+      - meta:
           type: map
           description: |
-            Groovy Map containing family information (family ID and SV paths)
-            e.g. [ id:'family_001', sv_p:'path/to/proband.bed', sv_m:'path/to/mother.vcf.gz', sv_f:'-' ]
+            Groovy Map containing family information
+            e.g. `[id:'family_001', sv_p:'path/to/proband', sv_m:'path/to/mother', sv_f:'path/to/father']`
       - vcf:
           type: file
           description: Filtered VCF file with structural variants removed based on BED mask regions, or original VCF if no SV files provided
-          pattern: "*.{vcf.gz}"
+          pattern: "*.vcf.gz"
+          ontologies:
+          - edam: "http://edamontology.org/format_3016"
       - tbi:
           type: file
-          description: Tabix index file for filtered VCF
+          description: Tabix index for the filtered VCF file
           pattern: "*.tbi"
+          ontologies:
+          - edam: "http://edamontology.org/format_3616"
   - versions:
-      type: file
-      description: File containing software versions
-      pattern: "versions.yml"   
+      - versions:
+          type: file
+          description: File containing software versions
+          pattern: "versions.yml"
+          ontologies:
+          - edam: "http://edamontology.org/format_3750" 
 
 authors:
   - "@saramenasantamaria"
