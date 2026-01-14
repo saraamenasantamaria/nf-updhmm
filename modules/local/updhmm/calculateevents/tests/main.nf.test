@@ -18,7 +18,11 @@ nextflow_process {
             process {
                 """
                 input[0] = [
-                    [ id:'test_trio' ],
+                    [ id:'test_trio',
+                      proband_id: 'NA19685',
+                      mother_id: 'NA19688',
+                      father_id: 'NA19689' 
+                    ],
                     file('${projectDir}/modules/local/updhmm/calculateevents/tests/data/family.processed.rds', checkIfExists: true),
                     []
                 ]
@@ -43,7 +47,11 @@ nextflow_process {
             process {
                 """
                 input[0] = [
-                    [ id:'test_trio' ],
+                    [ id:'test_trio',
+                      proband_id: 'NA19685',
+                      mother_id: 'NA19688',
+                      father_id: 'NA19689' 
+                    ],
                     file('${projectDir}/modules/local/updhmm/calculateevents/tests/data/family.processed.rds', checkIfExists: true)
                 ]
                 """
@@ -67,7 +75,11 @@ nextflow_process {
             process {
                 """
                 input[0] = [
-                    [ id:'test_trio' ],
+                    [ id:'test_trio',
+                      proband_id: 'NA19685',
+                      mother_id: 'NA19688',
+                      father_id: 'NA19689'  
+                    ],
                     file('${projectDir}/modules/local/updhmm/calculateevents/tests/data/family.processed.rds', checkIfExists: true)
                 ]
                 """
@@ -91,7 +103,11 @@ nextflow_process {
             process {
                 """
                 input[0] = [
-                    [ id:'test_trio' ],
+                    [ id:'test_trio',
+                      proband_id: 'NA19685',
+                      mother_id: 'NA19688',
+                      father_id: 'NA19689' 
+                    ],
                     file('${projectDir}/modules/local/updhmm/calculateevents/tests/data/family.processed.rds', checkIfExists: true)
                 ]
                 """
@@ -115,7 +131,11 @@ nextflow_process {
             process {
                 """
                 input[0] = [
-                    [ id:'test_trio' ],
+                    [ id:'test_trio',
+                      proband_id: 'NA19685',
+                      mother_id: 'NA19688',
+                      father_id: 'NA19689' 
+                    ],
                     file('${projectDir}/modules/local/updhmm/calculateevents/tests/data/family.processed.rds', checkIfExists: true),
                     []
                 ]

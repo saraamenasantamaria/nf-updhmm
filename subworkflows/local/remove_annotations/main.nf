@@ -149,6 +149,9 @@ workflow REMOVE_ANNOTATIONS {
             // Reconstruct the original metadata
             def family_meta = [
                 id   : family_id,
+                proband_id : metas[0].proband_id,
+                mother_id  : metas[0].mother_id,
+                father_id  : metas[0].father_id,
                 sv_p : metas[0].sv_p,
                 sv_m : metas[0].sv_m,
                 sv_f : metas[0].sv_f  

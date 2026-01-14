@@ -50,7 +50,10 @@ opt <- list(
     output_prefix = ifelse('$task.ext.prefix' == 'null', '$meta.id', '$task.ext.prefix'),
     vcf = '$vcf',
     tbi = '$tbi',
-    genome_build = 'hg38'
+    genome_build = 'hg38',
+    proband_id = '$meta.proband_id',    
+    mother_id = '$meta.mother_id',      
+    father_id = '$meta.father_id'       
 )
 
 opt_types <- lapply(opt, class)
@@ -70,7 +73,7 @@ for (ao in names(args_opt)){
 }
 
 # Check if required parameters have been provided
-required_opts <- c('vcf', 'output_prefix', 'genome_build')
+required_opts <- c('vcf', 'output_prefix', 'genome_build', 'proband_id', 'mother_id', 'father_id')
 missing <- required_opts[!unlist(lapply(opt[required_opts], is_valid_string)) | !required_opts %in% names(opt)]
 
 if (length(missing) > 0){
@@ -110,24 +113,15 @@ vcf <- readVcf(opt\$vcf, opt\$genome_build)
 
 ################################################
 ################################################
-## EXTRACT SAMPLE INFORMATION                ##
-################################################
-################################################
-
-sample_names <- colnames(geno(vcf)\$GT)
-
-
-################################################
-################################################
 ## RUN VCF CHECK                             ##
 ################################################
 ################################################
 
 tryCatch({
     processedVcf <- vcfCheck(vcf, 
-                           proband = sample_names[1], 
-                           mother = sample_names[2], 
-                           father = sample_names[3])
+                           proband = opt\$proband_id, 
+                           mother = opt\$mother_id, 
+                           father = opt\$father_id)
 }, error = function(e) {
     cat("ERROR in vcfCheck:", conditionMessage(e), "\\n")
     quit(status = 1)

@@ -21,7 +21,7 @@
 ---
 ## Introduction
 
-**CIBERER/GdTBioinfo-nf-UPDhmm** is a best-practice analysis pipeline for the **detection of uniparental disomy (UPD)** in trio sequencing data, using [UPDhmm](https://github.com/saraamenasantamaria/UPDhmm-project) and additional preprocessing and postprocessing steps tailored to clinical datasets.
+**CIBERER/GdTBioinfo-nf-UPDhmm** is a best-practice analysis pipeline for the **detection of uniparental disomy (UPD)** in trio sequencing data, using [UPDhmm](https://github.com/saraamenasantamaria/UPDhmm-project) and additional preprocessing steps tailored to clinical datasets.
 
 The pipeline is built using [Nextflow](https://www.nextflow.io) DSL2, enabling portability across HPC and cloud infrastructures. Each process runs within its own container, ensuring reproducibility and simplifying software management. Containers from [Biocontainers](https://biocontainers.pro/) are used whenever possible.  
 
@@ -54,8 +54,8 @@ Prepares trio data by combining individual VCFs/GVCFs and applying filters to re
 
 - **`FILTER_LOWCONF`** – Applies hard filters to generate the final preprocessed VCF per family:
   - Genotype correction (optional):
-    - `SETGT` – Sets missing genotypes to homozygous reference (0/0) when `--perform_intersection false`
-    - `SETGT_VAF` – Corrects genotypes based on VAF thresholds when `--apply_vaf_correction true`
+    - **`SETGT`** – Sets missing genotypes to homozygous reference (0/0) when `--perform_intersection false`
+    - **`SETGT_VAF`** – Corrects genotypes based on VAF thresholds when `--apply_vaf_correction true`
   - Variant filtering:
     - Retain only biallelic SNVs
     - Apply minimum genotype quality (GQ ≥ `--GQ_min`) and depth (DP ≥ `--DP_min`) thresholds
@@ -116,11 +116,16 @@ nextflow run nf-core/updhmm \
    --genome_build <hg38/hg19> \
 ```
 
+For more details and further functionality, please refer to the [usage](usage.md) documentation.
+
 ## Output summary
 
-For each trio, the pipeline generates two main tab-delimited files:  
+For each trio, the pipeline generates two main types of output:  
 
-1. **Raw events (`<trio>.upd_events.txt`)**  
+1. **Preprocessed VCF (`<fam_id>_filtered_final.vcf.gz`)**  
+   High-quality, filtered VCF produced by the preprocessing phase. This file contains only **biallelic SNVs** that passed all quality control filters and serves as input for UPD detection analyses. The VCF is compressed (.vcf.gz) and accompanied by a tabix index (.tbi). It includes three samples in order: proband, mother, and father, with minimal FORMAT annotations retained (GT, AD, DP, GQ).  
+
+2. **Raw events (`<fam_id>.upd_events.txt`)**  
    Direct output of the `UPDhmm::calculateEvents` function. This file contains all detected UPD candidate events without additional filtering.  
 
 The core UPDhmm function, `calculateEvents`, returns a **data.frame** containing all detected UPD events for a given trio.  
@@ -141,9 +146,21 @@ If no events are found, an empty data.frame is returned.
 | `ratio_father`      | Ratio of average read depth inside the event vs. genome-wide average (including the event) for the father |
 | `n_mendelian_error` | Number of Mendelian inheritance errors supporting the event      |
 
+   **Example output:**
 
-2. **Collapsed events (`<trio>.udp_collapsed.txt`)**  
-   Postprocessed and filtered results. Overlapping events of the same type within the same chromosome (e.g. paternal isodisomy) are merged into a single representative block.  
+   | ID  | chromosome | start | end | group    | n_snps | n_mendelian_error | ratio_proband | ratio_mother | ratio_father |
+   |-----|------------|-------|-----|---------|--------|-----------------|---------------|--------------|--------------|
+   | S1  | 1          | 50    | 70  | iso_mat | 5      | 1               | 0.98          | 1.00         | 0.95         |
+   | S1  | 1          | 75    | 85  | iso_mat | 3      | 5               | 1.01          | 1.03         | 0.97         |
+   | S1  | 1          | 100   | 120 | iso_mat | 8      | 5               | 0.99          | 1.01         | 0.96         |
+   | S1  | 1          | 150   | 180 | iso_mat | 10     | 10              | 1.02          | 1.04         | 0.98         |
+   | S1  | 1          | 300   | 320 | het_pat | 6      | 3               | 0.97          | 0.98         | 0.99         |
+   | S2  | 2          | 500   | 520 | iso_mat | 12     | 50              | 1.03          | 1.05         | 1.00         |
+   | S2  | 2          | 550   | 580 | iso_mat | 7      | 30              | 1.01          | 1.02         | 0.99         |
+
+
+3. **Collapsed events (`<fam_id>.udp_collapsed.txt`)**  
+   Postprocessed and filtered results. Overlapping events of the same type within the same chromosome are merged into a single representative block.  
    
 **Output columns:**  
 
@@ -164,6 +181,17 @@ If no events are found, an empty data.frame is returned.
 | `ratio_mother`         | Weighted mean ratio of read depth for the mother across the collapsed events  |
 | `ratio_father`         | Weighted mean ratio of read depth for the father across the collapsed events  |
 
+**Example output:**
+
+   | ID  | chromosome | start | end | group    | n_events | total_mendelian_error | total_size | total_snps | prop_covered | ratio_proband | ratio_mother | ratio_father | collapsed_events            |
+   |-----|------------|-------|-----|---------|----------|---------------------|------------|------------|--------------|---------------|--------------|--------------|----------------------------|
+   | S1  | 1          | 300   | 320 | het_pat | 1        | 3                   | 20         | 6          | 1.00         | 0.97          | 0.98         | 0.99         | 1:300-320                  |
+   | S1  | 1          | 100   | 180 | iso_mat | 2        | 15                  | 50         | 18         | 0.625        | 1.01          | 1.03         | 0.97         | 1:100-120,1:150-180        |
+   | S2  | 2          | 500   | 580 | iso_mat | 2        | 80                  | 50         | 19         | 0.625        | 1.02          | 1.04         | 1.00         | 2:500-520,2:550-580        |
+ 
+These are generated from the **raw events** using the `collapseEvents(subset_df = df, min_ME = 2, min_size = 200)` function.
+
+For more details, please refer to the [output](output.md) documentation.
 
 ## Test execution
 

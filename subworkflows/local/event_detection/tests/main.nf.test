@@ -18,7 +18,11 @@ nextflow_workflow {
             workflow {
                 """
                 input[0] = channel.of([
-                    [ id:'test_trio' ],
+                    [ id:'test_trio',
+                      proband_id: 'NA19675',
+                      mother_id: 'NA19678',
+                      father_id: 'NA19679'
+                      ],
                     file('${projectDir}/subworkflows/local/event_detection/tests/data/family.vcf.gz', checkIfExists: true),
                     []
                 ])
@@ -42,7 +46,11 @@ nextflow_workflow {
             workflow {
                 """
                 input[0] = channel.of([
-                    [ id:'test_trio' ],
+                    [ id:'test_trio',
+                      proband_id: 'NA19675',
+                      mother_id: 'NA19678',
+                      father_id: 'NA19679'
+                    ],
                     file('${projectDir}/subworkflows/local/event_detection/tests/data/family.vcf.gz', checkIfExists: true),
                     []
                 ])

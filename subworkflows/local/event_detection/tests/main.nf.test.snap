@@ -5,44 +5,56 @@
                 "0": [
                     [
                         {
-                            "id": "test_trio"
+                            "id": "test_trio",
+                            "proband_id": "NA19675",
+                            "mother_id": "NA19678",
+                            "father_id": "NA19679"
                         },
-                        "test_trio.upd_events.txt:md5,b5d49ab1a638a7cc814bf1e4d96789b6"
+                        "test_trio.upd_events.txt:md5,a3f743b6a965ff94b271290cc5c8e5c0"
                     ]
                 ],
                 "1": [
                     [
                         {
-                            "id": "test_trio"
+                            "id": "test_trio",
+                            "proband_id": "NA19675",
+                            "mother_id": "NA19678",
+                            "father_id": "NA19679"
                         },
-                        "test_trio.upd_collapsed.txt:md5,03fa0adda3f09607021755024deb3f62"
+                        "test_trio.upd_collapsed.txt:md5,745fe77b3caf8e31ddb21ece9f88e426"
                     ]
                 ],
                 "2": [
-                    "versions.yml:md5,29768249bd7c4736798d2492c42f08ac",
-                    "versions.yml:md5,e062b4169e1ccbf468a83a463b1d4e54",
-                    "versions.yml:md5,ea7117b55ed9c8eeb1edf1b237b55fb7"
+                    "versions.yml:md5,3e6bd7e57a84b17d6bb100b7b773ebae",
+                    "versions.yml:md5,aa39d82f74bbfdb6f139f1ea9681a528",
+                    "versions.yml:md5,eae3fe255923db30bf1d3abad7c97608"
                 ],
                 "upd_collapsed_txt": [
                     [
                         {
-                            "id": "test_trio"
+                            "id": "test_trio",
+                            "proband_id": "NA19675",
+                            "mother_id": "NA19678",
+                            "father_id": "NA19679"
                         },
-                        "test_trio.upd_collapsed.txt:md5,03fa0adda3f09607021755024deb3f62"
+                        "test_trio.upd_collapsed.txt:md5,745fe77b3caf8e31ddb21ece9f88e426"
                     ]
                 ],
                 "upd_events_txt": [
                     [
                         {
-                            "id": "test_trio"
+                            "id": "test_trio",
+                            "proband_id": "NA19675",
+                            "mother_id": "NA19678",
+                            "father_id": "NA19679"
                         },
-                        "test_trio.upd_events.txt:md5,b5d49ab1a638a7cc814bf1e4d96789b6"
+                        "test_trio.upd_events.txt:md5,a3f743b6a965ff94b271290cc5c8e5c0"
                     ]
                 ],
                 "versions": [
-                    "versions.yml:md5,29768249bd7c4736798d2492c42f08ac",
-                    "versions.yml:md5,e062b4169e1ccbf468a83a463b1d4e54",
-                    "versions.yml:md5,ea7117b55ed9c8eeb1edf1b237b55fb7"
+                    "versions.yml:md5,3e6bd7e57a84b17d6bb100b7b773ebae",
+                    "versions.yml:md5,aa39d82f74bbfdb6f139f1ea9681a528",
+                    "versions.yml:md5,eae3fe255923db30bf1d3abad7c97608"
                 ]
             }
         ],
@@ -50,7 +62,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2026-01-03T13:20:55.945432118"
+        "timestamp": "2026-01-14T09:15:31.70638783"
     },
     "trio vcf - stub": {
         "content": [
@@ -58,7 +70,10 @@
                 "0": [
                     [
                         {
-                            "id": "test_trio"
+                            "id": "test_trio",
+                            "proband_id": "NA19675",
+                            "mother_id": "NA19678",
+                            "father_id": "NA19679"
                         },
                         "test_trio.upd_events.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
@@ -66,20 +81,26 @@
                 "1": [
                     [
                         {
-                            "id": "test_trio"
+                            "id": "test_trio",
+                            "proband_id": "NA19675",
+                            "mother_id": "NA19678",
+                            "father_id": "NA19679"
                         },
                         "test_trio.upd_collapsed.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "2": [
-                    "versions.yml:md5,29768249bd7c4736798d2492c42f08ac",
-                    "versions.yml:md5,e062b4169e1ccbf468a83a463b1d4e54",
-                    "versions.yml:md5,ea7117b55ed9c8eeb1edf1b237b55fb7"
+                    "versions.yml:md5,3e6bd7e57a84b17d6bb100b7b773ebae",
+                    "versions.yml:md5,aa39d82f74bbfdb6f139f1ea9681a528",
+                    "versions.yml:md5,eae3fe255923db30bf1d3abad7c97608"
                 ],
                 "upd_collapsed_txt": [
                     [
                         {
-                            "id": "test_trio"
+                            "id": "test_trio",
+                            "proband_id": "NA19675",
+                            "mother_id": "NA19678",
+                            "father_id": "NA19679"
                         },
                         "test_trio.upd_collapsed.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
@@ -87,15 +108,18 @@
                 "upd_events_txt": [
                     [
                         {
-                            "id": "test_trio"
+                            "id": "test_trio",
+                            "proband_id": "NA19675",
+                            "mother_id": "NA19678",
+                            "father_id": "NA19679"
                         },
                         "test_trio.upd_events.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "versions": [
-                    "versions.yml:md5,29768249bd7c4736798d2492c42f08ac",
-                    "versions.yml:md5,e062b4169e1ccbf468a83a463b1d4e54",
-                    "versions.yml:md5,ea7117b55ed9c8eeb1edf1b237b55fb7"
+                    "versions.yml:md5,3e6bd7e57a84b17d6bb100b7b773ebae",
+                    "versions.yml:md5,aa39d82f74bbfdb6f139f1ea9681a528",
+                    "versions.yml:md5,eae3fe255923db30bf1d3abad7c97608"
                 ]
             }
         ],
@@ -103,6 +127,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2026-01-03T13:21:27.642381621"
+        "timestamp": "2026-01-14T09:16:43.673533746"
     }
 }

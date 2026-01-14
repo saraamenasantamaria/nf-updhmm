@@ -1,63 +1,23 @@
-Jan-04 01:34:34.006 [main] INFO  com.askimed.nf.test.App - nf-test 0.9.3
-Jan-04 01:34:34.016 [main] INFO  com.askimed.nf.test.App - Arguments: [test, subworkflows/local/sv_mask_bed/tests, --profile, singularity]
-Jan-04 01:34:34.927 [main] INFO  com.askimed.nf.test.App - Nextflow Version: 25.04.6
-Jan-04 01:34:34.928 [main] INFO  com.askimed.nf.test.commands.RunTestsCommand - Load config from file /home/u0030001/nf-updhmm_zenodo/nf-test.config...
-Jan-04 01:34:46.121 [main] INFO  com.askimed.nf.test.lang.dependencies.DependencyResolver - Loaded 50 files from directory /home/u0030001/nf-updhmm_zenodo in 10.335 sec
-Jan-04 01:34:46.126 [main] INFO  com.askimed.nf.test.lang.dependencies.DependencyResolver - Found 1 files containing tests.
-Jan-04 01:34:46.126 [main] DEBUG com.askimed.nf.test.lang.dependencies.DependencyResolver - Found files: [/home/u0030001/nf-updhmm_zenodo/subworkflows/local/sv_mask_bed/tests/main.nf.test]
-Jan-04 01:34:47.280 [main] INFO  com.askimed.nf.test.commands.RunTestsCommand - Found 10 tests to execute.
-Jan-04 01:34:47.281 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Started test plan
-Jan-04 01:34:47.281 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Running testsuite 'Test Subworkflow SV_MASK_BED' from file '/home/u0030001/nf-updhmm_zenodo/subworkflows/local/sv_mask_bed/tests/main.nf.test'.
-Jan-04 01:34:47.281 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Run test 'a237e733: single sample - all bed files'. type: com.askimed.nf.test.lang.workflow.WorkflowTest
-Jan-04 01:35:09.380 [main] DEBUG com.askimed.nf.test.lang.extensions.SnapshotFile - Init new snapshot file '/home/u0030001/nf-updhmm_zenodo/subworkflows/local/sv_mask_bed/tests/main.nf.test.snap'
-Jan-04 01:35:09.381 [main] DEBUG com.askimed.nf.test.lang.extensions.Snapshot - Snapshot 'single sample - all bed files' not found.
-Jan-04 01:35:09.381 [main] DEBUG com.askimed.nf.test.lang.extensions.SnapshotFile - Created snapshot 'single sample - all bed files'
-Jan-04 01:35:09.429 [main] DEBUG com.askimed.nf.test.lang.extensions.SnapshotFile - Wrote snapshots to file '/home/u0030001/nf-updhmm_zenodo/subworkflows/local/sv_mask_bed/tests/main.nf.test.snap'
-Jan-04 01:35:09.430 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Test 'a237e733: single sample - all bed files' finished. status: PASSED
-Jan-04 01:35:09.434 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Run test 'a4203e0f: single sample - all bed files and ambiguous vaf'. type: com.askimed.nf.test.lang.workflow.WorkflowTest
-Jan-04 01:35:32.459 [main] DEBUG com.askimed.nf.test.lang.extensions.Snapshot - Snapshot 'single sample - all bed files and ambiguous vaf' not found.
-Jan-04 01:35:32.460 [main] DEBUG com.askimed.nf.test.lang.extensions.SnapshotFile - Created snapshot 'single sample - all bed files and ambiguous vaf'
-Jan-04 01:35:32.478 [main] DEBUG com.askimed.nf.test.lang.extensions.SnapshotFile - Wrote snapshots to file '/home/u0030001/nf-updhmm_zenodo/subworkflows/local/sv_mask_bed/tests/main.nf.test.snap'
-Jan-04 01:35:32.478 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Test 'a4203e0f: single sample - all bed files and ambiguous vaf' finished. status: PASSED
-Jan-04 01:35:32.479 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Run test '6716e074: single sample - all vcf.gz sv files'. type: com.askimed.nf.test.lang.workflow.WorkflowTest
-Jan-04 01:35:57.589 [main] DEBUG com.askimed.nf.test.lang.extensions.Snapshot - Snapshot 'single sample - all vcf.gz sv files' not found.
-Jan-04 01:35:57.589 [main] DEBUG com.askimed.nf.test.lang.extensions.SnapshotFile - Created snapshot 'single sample - all vcf.gz sv files'
-Jan-04 01:35:57.640 [main] DEBUG com.askimed.nf.test.lang.extensions.SnapshotFile - Wrote snapshots to file '/home/u0030001/nf-updhmm_zenodo/subworkflows/local/sv_mask_bed/tests/main.nf.test.snap'
-Jan-04 01:35:57.640 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Test '6716e074: single sample - all vcf.gz sv files' finished. status: PASSED
-Jan-04 01:35:57.640 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Run test '90eb557d: single sample - mixed sv file types'. type: com.askimed.nf.test.lang.workflow.WorkflowTest
-Jan-04 01:36:22.125 [main] DEBUG com.askimed.nf.test.lang.extensions.Snapshot - Snapshot 'single sample - mixed sv file types' not found.
-Jan-04 01:36:22.125 [main] DEBUG com.askimed.nf.test.lang.extensions.SnapshotFile - Created snapshot 'single sample - mixed sv file types'
-Jan-04 01:36:22.192 [main] DEBUG com.askimed.nf.test.lang.extensions.SnapshotFile - Wrote snapshots to file '/home/u0030001/nf-updhmm_zenodo/subworkflows/local/sv_mask_bed/tests/main.nf.test.snap'
-Jan-04 01:36:22.193 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Test '90eb557d: single sample - mixed sv file types' finished. status: PASSED
-Jan-04 01:36:22.193 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Run test 'c9de1d4a: single sample - no sv files'. type: com.askimed.nf.test.lang.workflow.WorkflowTest
-Jan-04 01:36:39.792 [main] DEBUG com.askimed.nf.test.lang.extensions.Snapshot - Snapshot 'single sample - no sv files' not found.
-Jan-04 01:36:39.792 [main] DEBUG com.askimed.nf.test.lang.extensions.SnapshotFile - Created snapshot 'single sample - no sv files'
-Jan-04 01:36:39.859 [main] DEBUG com.askimed.nf.test.lang.extensions.SnapshotFile - Wrote snapshots to file '/home/u0030001/nf-updhmm_zenodo/subworkflows/local/sv_mask_bed/tests/main.nf.test.snap'
-Jan-04 01:36:39.859 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Test 'c9de1d4a: single sample - no sv files' finished. status: PASSED
-Jan-04 01:36:39.860 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Run test '28df54a1: multiple samples - mixed scenarios'. type: com.askimed.nf.test.lang.workflow.WorkflowTest
-Jan-04 01:37:07.054 [main] DEBUG com.askimed.nf.test.lang.extensions.Snapshot - Snapshot 'multiple samples - mixed scenarios' not found.
-Jan-04 01:37:07.054 [main] DEBUG com.askimed.nf.test.lang.extensions.SnapshotFile - Created snapshot 'multiple samples - mixed scenarios'
-Jan-04 01:37:07.112 [main] DEBUG com.askimed.nf.test.lang.extensions.SnapshotFile - Wrote snapshots to file '/home/u0030001/nf-updhmm_zenodo/subworkflows/local/sv_mask_bed/tests/main.nf.test.snap'
-Jan-04 01:37:07.112 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Test '28df54a1: multiple samples - mixed scenarios' finished. status: PASSED
-Jan-04 01:37:07.113 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Run test '26f66969: single sample - all bed files - stub'. type: com.askimed.nf.test.lang.workflow.WorkflowTest
-Jan-04 01:37:29.841 [main] DEBUG com.askimed.nf.test.lang.extensions.Snapshot - Snapshot 'single sample - all bed files - stub' not found.
-Jan-04 01:37:29.841 [main] DEBUG com.askimed.nf.test.lang.extensions.SnapshotFile - Created snapshot 'single sample - all bed files - stub'
-Jan-04 01:37:29.898 [main] DEBUG com.askimed.nf.test.lang.extensions.SnapshotFile - Wrote snapshots to file '/home/u0030001/nf-updhmm_zenodo/subworkflows/local/sv_mask_bed/tests/main.nf.test.snap'
-Jan-04 01:37:29.898 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Test '26f66969: single sample - all bed files - stub' finished. status: PASSED
-Jan-04 01:37:29.899 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Run test 'f0a19e00: single sample - all vcf.gz sv files - stub'. type: com.askimed.nf.test.lang.workflow.WorkflowTest
-Jan-04 01:37:53.317 [main] DEBUG com.askimed.nf.test.lang.extensions.Snapshot - Snapshot 'single sample - all vcf.gz sv files - stub' not found.
-Jan-04 01:37:53.317 [main] DEBUG com.askimed.nf.test.lang.extensions.SnapshotFile - Created snapshot 'single sample - all vcf.gz sv files - stub'
-Jan-04 01:37:53.452 [main] DEBUG com.askimed.nf.test.lang.extensions.SnapshotFile - Wrote snapshots to file '/home/u0030001/nf-updhmm_zenodo/subworkflows/local/sv_mask_bed/tests/main.nf.test.snap'
-Jan-04 01:37:53.453 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Test 'f0a19e00: single sample - all vcf.gz sv files - stub' finished. status: PASSED
-Jan-04 01:37:53.453 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Run test '60255a9e: single sample - mixed sv file types - stub'. type: com.askimed.nf.test.lang.workflow.WorkflowTest
-Jan-04 01:38:16.780 [main] DEBUG com.askimed.nf.test.lang.extensions.Snapshot - Snapshot 'single sample - mixed sv file types - stub' not found.
-Jan-04 01:38:16.780 [main] DEBUG com.askimed.nf.test.lang.extensions.SnapshotFile - Created snapshot 'single sample - mixed sv file types - stub'
-Jan-04 01:38:16.868 [main] DEBUG com.askimed.nf.test.lang.extensions.SnapshotFile - Wrote snapshots to file '/home/u0030001/nf-updhmm_zenodo/subworkflows/local/sv_mask_bed/tests/main.nf.test.snap'
-Jan-04 01:38:16.869 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Test '60255a9e: single sample - mixed sv file types - stub' finished. status: PASSED
-Jan-04 01:38:16.869 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Run test 'f9f607fd: multiple samples - mixed scenarios - stub'. type: com.askimed.nf.test.lang.workflow.WorkflowTest
-Jan-04 01:38:43.358 [main] DEBUG com.askimed.nf.test.lang.extensions.Snapshot - Snapshot 'multiple samples - mixed scenarios - stub' not found.
-Jan-04 01:38:43.358 [main] DEBUG com.askimed.nf.test.lang.extensions.SnapshotFile - Created snapshot 'multiple samples - mixed scenarios - stub'
-Jan-04 01:38:43.521 [main] DEBUG com.askimed.nf.test.lang.extensions.SnapshotFile - Wrote snapshots to file '/home/u0030001/nf-updhmm_zenodo/subworkflows/local/sv_mask_bed/tests/main.nf.test.snap'
-Jan-04 01:38:43.521 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Test 'f9f607fd: multiple samples - mixed scenarios - stub' finished. status: PASSED
-Jan-04 01:38:43.521 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Testsuite 'Test Subworkflow SV_MASK_BED' finished. snapshot file: true, skipped tests: false, failed tests: false
-Jan-04 01:38:43.523 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Executed 10 tests. 0 tests failed. Done!
+Jan-14 09:13:48.199 [main] INFO  com.askimed.nf.test.App - nf-test 0.9.3
+Jan-14 09:13:48.211 [main] INFO  com.askimed.nf.test.App - Arguments: [test, subworkflows/local/event_detection/tests, --profile, singularity]
+Jan-14 09:13:49.108 [main] INFO  com.askimed.nf.test.App - Nextflow Version: 25.04.6
+Jan-14 09:13:49.109 [main] INFO  com.askimed.nf.test.commands.RunTestsCommand - Load config from file /home/u0030001/nf-updhmm_zenodo/nf-test.config...
+Jan-14 09:13:56.405 [main] INFO  com.askimed.nf.test.lang.dependencies.DependencyResolver - Loaded 49 files from directory /home/u0030001/nf-updhmm_zenodo in 6.314 sec
+Jan-14 09:13:56.406 [main] INFO  com.askimed.nf.test.lang.dependencies.DependencyResolver - Found 1 files containing tests.
+Jan-14 09:13:56.406 [main] DEBUG com.askimed.nf.test.lang.dependencies.DependencyResolver - Found files: [/home/u0030001/nf-updhmm_zenodo/subworkflows/local/event_detection/tests/main.nf.test]
+Jan-14 09:13:56.776 [main] INFO  com.askimed.nf.test.commands.RunTestsCommand - Found 2 tests to execute.
+Jan-14 09:13:56.871 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Started test plan
+Jan-14 09:13:56.871 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Running testsuite 'Test Subworkflow EVENT_DETECTION' from file '/home/u0030001/nf-updhmm_zenodo/subworkflows/local/event_detection/tests/main.nf.test'.
+Jan-14 09:13:56.871 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Run test '9de272ec: trio vcf'. type: com.askimed.nf.test.lang.workflow.WorkflowTest
+Jan-14 09:15:31.704 [main] DEBUG com.askimed.nf.test.lang.extensions.SnapshotFile - Init new snapshot file '/home/u0030001/nf-updhmm_zenodo/subworkflows/local/event_detection/tests/main.nf.test.snap'
+Jan-14 09:15:31.706 [main] DEBUG com.askimed.nf.test.lang.extensions.Snapshot - Snapshot 'trio vcf' not found.
+Jan-14 09:15:31.706 [main] DEBUG com.askimed.nf.test.lang.extensions.SnapshotFile - Created snapshot 'trio vcf'
+Jan-14 09:15:31.752 [main] DEBUG com.askimed.nf.test.lang.extensions.SnapshotFile - Wrote snapshots to file '/home/u0030001/nf-updhmm_zenodo/subworkflows/local/event_detection/tests/main.nf.test.snap'
+Jan-14 09:15:31.752 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Test '9de272ec: trio vcf' finished. status: PASSED
+Jan-14 09:15:31.754 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Run test '15bc349c: trio vcf - stub'. type: com.askimed.nf.test.lang.workflow.WorkflowTest
+Jan-14 09:16:43.673 [main] DEBUG com.askimed.nf.test.lang.extensions.Snapshot - Snapshot 'trio vcf - stub' not found.
+Jan-14 09:16:43.673 [main] DEBUG com.askimed.nf.test.lang.extensions.SnapshotFile - Created snapshot 'trio vcf - stub'
+Jan-14 09:16:43.753 [main] DEBUG com.askimed.nf.test.lang.extensions.SnapshotFile - Wrote snapshots to file '/home/u0030001/nf-updhmm_zenodo/subworkflows/local/event_detection/tests/main.nf.test.snap'
+Jan-14 09:16:43.755 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Test '15bc349c: trio vcf - stub' finished. status: PASSED
+Jan-14 09:16:43.755 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Testsuite 'Test Subworkflow EVENT_DETECTION' finished. snapshot file: true, skipped tests: false, failed tests: false
+Jan-14 09:16:43.760 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Executed 2 tests. 0 tests failed. Done!

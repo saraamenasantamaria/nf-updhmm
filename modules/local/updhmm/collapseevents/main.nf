@@ -2,7 +2,7 @@ process UPDHMM_COLLAPSEEVENTS {
     tag "$meta.id"
     label 'process_medium'
     
-    container "/home/u0030001/nf-updhmm_zenodo/updhmm_v1.5.2.sif"
+    container "/home/u0030001/nf-updhmm_zenodo/updhmm_v1.5.3.sif"
 
     input:
     tuple val(meta), path(upd_events_rds)

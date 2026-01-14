@@ -18,23 +18,23 @@ Prepares trio data by combining individual VCFs/GVCFs and applying filters to re
 
 **Annotation removal and filtering:**
 
-- `REMOVE_ANNOTATIONS` – Indexes VCF/GVCF files, filters for autosomes (chr1-22), removes unused annotations, and regroups files by family. Optionally extracts variants with ambiguous variant allele frequency (VAF) for downstream masking (`--apply_vaf_filter`).
+- **`REMOVE_ANNOTATIONS`** – Indexes VCF/GVCF files, filters for autosomes (chr1-22), removes unused annotations, and regroups files by family. Optionally extracts variants with ambiguous variant allele frequency (VAF) for downstream masking (`--apply_vaf_filter`).
 
 **Trio combination:**
 
-- `COMBINE_VCF` – Merges VCFs from proband, mother, and father into a joint file. Retains either all variants (union mode, default) or only shared variants (intersection mode, `--perform_intersection true`).
-- `COMBINE_GVCF` – For gVCF input (`--is_gvcf true`), performs GVCF combination and joint genotyping using GATK to generate a single combined VCF per family trio.
+- **`COMBINE_VCF`** – Merges VCFs from proband, mother, and father into a joint file. Retains either all variants (union mode, default) or only shared variants (intersection mode, `--perform_intersection true`).
+- **`COMBINE_GVCF`** – For gVCF input (`--is_gvcf true`), performs GVCF combination and joint genotyping using GATK to generate a single combined VCF per family trio.
 
 **Variant masking:**
 
-- `SV_MASK_BED` – Removes variants overlapping structural variants and regions with ambiguous VAF if mask files are provided.
+- **`SV_MASK_BED`** – Removes variants overlapping structural variants and regions with ambiguous VAF if mask files are provided.
 
 **Quality filtering:**
 
-- `FILTER_LOWCONF` – Applies hard filters to generate the final preprocessed VCF per family:
+- **`FILTER_LOWCONF`** – Applies hard filters to generate the final preprocessed VCF per family:
   - Genotype correction (optional):
-    - `SETGT` – Sets missing genotypes to homozygous reference (0/0) when `--perform_intersection false`
-    - `SETGT_VAF` – Corrects genotypes based on VAF thresholds when `--apply_vaf_correction true`
+    - **`SETGT`** – Sets missing genotypes to homozygous reference (0/0) when `--perform_intersection false`
+    - **`SETGT_VAF`** – Corrects genotypes based on VAF thresholds when `--apply_vaf_correction true`
   - Variant filtering:
     - Retain only biallelic SNVs
     - Apply minimum genotype quality (GQ = `--GQ_min`) and depth (DP = `--DP_min`) thresholds
@@ -45,18 +45,38 @@ Prepares trio data by combining individual VCFs/GVCFs and applying filters to re
 
 Runs the UPDhmm core functions to identify genomic blocks consistent with uniparental disomy patterns.
 
-- `VCF_CHECK` – Trio VCF preprocessing with quality-aware genotype encoding
-- `CALCULATE_EVENTS` – Hidden Markov Model (HMM)-based UPD event detection across autosomes
-- `COLLAPSE_EVENTS` – Event collapsing to merge adjacent/overlapping UPD regions per family 
+- **`VCF_CHECK`** – Trio VCF preprocessing with quality-aware genotype encoding
+- **`CALCULATE_EVENTS`** – Hidden Markov Model (HMM)-based UPD event detection across autosomes
+- **`COLLAPSE_EVENTS`** – Event collapsing to merge adjacent/overlapping UPD regions per family 
+
+
+## Preprocessing Results
+
+<details markdown="1">
+<summary>Output files</summary>
+
+- `PREPROCESS/RESULTS/`
+  - `<fam_id>_filtered_final.vcf.gz`: Final filtered VCF file after all preprocessing steps.
+  - `<fam_id>_filtered_final.vcf.gz.tbi`: Index file for the filtered VCF.
+
+</details>
+
+The preprocessing phase produces a high-quality, filtered VCF file for each trio that serves as input to the UPD detection analyses. This file contains only biallelic SNVs that have passed all quality control filters.
+
+**Key characteristics:**
+- **Format**: Compressed VCF (`.vcf.gz`) with tabix index (`.tbi`)
+- **Samples**: Three columns in order: proband, mother, father
+- **Annotations**: Minimal annotation set retained (`GT`, `AD`, `DP`, `GQ` FORMAT fields)
+
 
 ## UPD Detection Results
 
 <details markdown="1">
 <summary>Output files</summary>
 
-- `event_detection/`
-  - `<fam_id>.upd_events.txt`: All detected UPD candidate events before collapsing.
-  - `<fam_id>.upd_collapsed.txt`: Filtered and merged UPD events.
+- `UPD_ANALYSIS/`
+  - `<fam_id>_upd_events.txt`: All detected UPD candidate events before collapsing.
+  - `<fam_id>_upd_collapsed.txt`: Filtered and merged UPD events.
 
 </details>
 
@@ -64,7 +84,7 @@ These are the primary results of the pipeline. For each trio (family), two tab-d
 
 The **upd events file** contains all UPD candidate events detected without post-processing. Each row represents a distinct genomic region with statistical evidence of uniparental inheritance. If no events are detected for a trio, the file will contain only the header row.
 
-**Column descriptions (upd_events.txt):**
+**Column descriptions (<fam_id>.upd_events.txt):**
 | Column              | Type    | Description                                                      |
 | ------------------- | ------- | ---------------------------------------------------------------- |
 | `ID`                | String  | Identifier of the proband (child sample)                          |
@@ -80,7 +100,7 @@ The **upd events file** contains all UPD candidate events detected without post-
 
 The **upd collapsed events file** contains post-processed results where overlapping or adjacent events of the same UPD type within a chromosome are merged into a single representative block. This file is recommended for clinical interpretation as it provides a simplified view of UPD regions.
 
-**Column descriptions (upd_collapsed.txt):**
+**Column descriptions (<fam_id>.upd_collapsed.txt):**
 
 | Column                 | Type    | Description                                                                 |
 |------------------------|---------|-----------------------------------------------------------------------------|

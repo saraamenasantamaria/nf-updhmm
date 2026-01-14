@@ -5,40 +5,52 @@
                 "0": [
                     [
                         {
-                            "id": "test_trio"
+                            "id": "test_trio",
+                            "proband_id": "NA19685",
+                            "mother_id": "NA19688",
+                            "father_id": "NA19689"
                         },
-                        "test_trio.processed.rds:md5,49b0e807b3276e23173627af7ee7ddb8"
+                        "test_trio.processed.rds:md5,86dc625e75b4f187c86aa678a4033288"
                     ]
                 ],
                 "1": [
                     [
                         {
-                            "id": "test_trio"
+                            "id": "test_trio",
+                            "proband_id": "NA19685",
+                            "mother_id": "NA19688",
+                            "father_id": "NA19689"
                         },
-                        "test_trio.R_sessionInfo.log:md5,742b817f4b50396aee59c3b51077ebef"
+                        "test_trio.R_sessionInfo.log:md5,0e5fc8fd810bc0cf647e6f3cb3cacd0c"
                     ]
                 ],
                 "2": [
-                    "versions.yml:md5,79ab5f22e829932099e5ee24c22a54dc"
+                    "versions.yml:md5,05d91eab8cb0d63e19b8ede2bb65d24d"
                 ],
                 "processed_vcf": [
                     [
                         {
-                            "id": "test_trio"
+                            "id": "test_trio",
+                            "proband_id": "NA19685",
+                            "mother_id": "NA19688",
+                            "father_id": "NA19689"
                         },
-                        "test_trio.processed.rds:md5,49b0e807b3276e23173627af7ee7ddb8"
+                        "test_trio.processed.rds:md5,86dc625e75b4f187c86aa678a4033288"
                     ]
                 ],
                 "session_info": [
                     [
                         {
-                            "id": "test_trio"
+                            "id": "test_trio",
+                            "proband_id": "NA19685",
+                            "mother_id": "NA19688",
+                            "father_id": "NA19689"
                         },
-                        "test_trio.R_sessionInfo.log:md5,742b817f4b50396aee59c3b51077ebef"
+                        "test_trio.R_sessionInfo.log:md5,0e5fc8fd810bc0cf647e6f3cb3cacd0c"
                     ]
                 ],
                 "versions": [
-                    "versions.yml:md5,79ab5f22e829932099e5ee24c22a54dc"
+                    "versions.yml:md5,05d91eab8cb0d63e19b8ede2bb65d24d"
                 ]
             }
         ],
@@ -46,7 +58,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2025-12-28T18:55:22.435134216"
+        "timestamp": "2026-01-14T08:32:07.299114621"
     },
     "trio vcf - stub": {
         "content": [
@@ -54,7 +66,10 @@
                 "0": [
                     [
                         {
-                            "id": "test_trio"
+                            "id": "test_trio",
+                            "proband_id": "NA19685",
+                            "mother_id": "NA19688",
+                            "father_id": "NA19689"
                         },
                         "test_trio.processed.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
@@ -62,18 +77,24 @@
                 "1": [
                     [
                         {
-                            "id": "test_trio"
+                            "id": "test_trio",
+                            "proband_id": "NA19685",
+                            "mother_id": "NA19688",
+                            "father_id": "NA19689"
                         },
                         "test_trio.R_sessionInfo.log:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "2": [
-                    "versions.yml:md5,79ab5f22e829932099e5ee24c22a54dc"
+                    "versions.yml:md5,05d91eab8cb0d63e19b8ede2bb65d24d"
                 ],
                 "processed_vcf": [
                     [
                         {
-                            "id": "test_trio"
+                            "id": "test_trio",
+                            "proband_id": "NA19685",
+                            "mother_id": "NA19688",
+                            "father_id": "NA19689"
                         },
                         "test_trio.processed.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
@@ -81,13 +102,16 @@
                 "session_info": [
                     [
                         {
-                            "id": "test_trio"
+                            "id": "test_trio",
+                            "proband_id": "NA19685",
+                            "mother_id": "NA19688",
+                            "father_id": "NA19689"
                         },
                         "test_trio.R_sessionInfo.log:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "versions": [
-                    "versions.yml:md5,79ab5f22e829932099e5ee24c22a54dc"
+                    "versions.yml:md5,05d91eab8cb0d63e19b8ede2bb65d24d"
                 ]
             }
         ],
@@ -95,6 +119,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2025-12-28T18:56:17.800889826"
+        "timestamp": "2026-01-14T08:33:03.79260344"
     }
 }
