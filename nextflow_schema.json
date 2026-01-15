@@ -75,14 +75,14 @@
               "type": "boolean",
               "default": false,
               "description": "Input files are in gVCF format",
-              "help_text": "Set to TRUE if input VCF files are in genomic VCF (gVCF/GVCF) format. When enabled, the pipeline uses the GVCF_COMBINE subworkflow which:\n\n• Combines trio gVCFs using GATK4 CombineGVCFs\n• Performs joint genotyping with GATK4 GenotypeGVCFs\n• Follows GATK best practices for multi-sample calling\n\nThis mode REQUIRES --fasta, --fai, and --dict reference genome files. When disabled (default), the pipeline uses bcftools-based VCF merging (VCF_COMBINE subworkflow).",
+              "help_text": "Set to TRUE if input files are in  gVCF format. When enabled, the pipeline uses the GVCF_COMBINE subworkflow which:\n\n• Combines trio gVCFs using GATK4 CombineGVCFs\n• Performs joint genotyping with GATK4 GenotypeGVCFs\n\nThis mode REQUIRES --fasta, --fai, and --dict reference genome files. When disabled (default), the pipeline uses bcftools-based VCF merging (VCF_COMBINE subworkflow).",
               "fa_icon": "fas fa-file-code"
             },
             "perform_intersection": {
               "type": "boolean",
               "default": false,
               "description": "Perform variant intersection across trio members",
-              "help_text": "Enable variant intersection mode where only genomic positions with variant calls in ALL three trio members are retained before merging. Implemented in the VCF_COMBINE subworkflow using BCFTOOLS_ISEC with '-n=3 -c all'.\n\n• TRUE: Intersection mode - retains only shared variants\n• FALSE: Union mode - combines all variants directly\n\nWhen enabled, missing genotypes are NOT filled (BCFTOOLS_SETGT is skipped in FILTER_LOWCONF).",
+              "help_text": "Enable variant intersection mode, retaining exclusively those genomic positions with variant calls shared by all three trio members before merging.\n\n• TRUE: Intersection mode - retains only shared variants\n• FALSE: Union mode - combines all variants directly\n\nWhen enabled, missing genotypes are NOT filled (BCFTOOLS_SETGT is skipped in FILTER_LOWCONF).",
               "fa_icon": "fas fa-project-diagram"
             },
             "apply_vaf_filter": {
@@ -188,7 +188,7 @@
                 "format": "file-path",
                 "exists": true,
                 "description": "BED file with regions to exclude",
-                "help_text": "Path to BED file containing genomic regions to exclude from analysis.\n\n• If not provided and --genome_build is specified, the pipeline will automatically download the corresponding excluded regions file from Zenodo.",
+                "help_text": "Path to BED file containing genomic regions to exclude from analysis.\n\n• If not provided the pipeline will automatically use the corresponding excluded regions file from assets/ based on --genome_build (hg38 or hg19).",
                 "pattern": "^\\S+\\.bed(\\.gz)?$",
                 "fa_icon": "fas fa-file-alt"
               }

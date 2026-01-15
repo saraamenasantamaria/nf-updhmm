@@ -12,20 +12,20 @@
                         "sv_m": "-",
                         "sv_f": "-",
                         "vaf_bed_p": null,
-                        "vaf_bed_m": "family1_02_vaf_ambiguous.bed:md5,c3464e2aeb1f54e06d73b11051a494a8",
+                        "vaf_bed_m": null,
                         "vaf_bed_f": "family1_03_vaf_ambiguous.bed:md5,7cfc6accaee44b21c4ebc829dec33225"
                     },
                     "vcf_count": 3,
                     "tbi_count": 3,
                     "vcf_names": [
-                        "family1_01_filtered.vcf.gz:md5,cae0da14868dcd7ce67c31be2e971ff9",
-                        "family1_02_filtered.vcf.gz:md5,09a734b271e1e1f2cee0ec5a122adff3",
-                        "family1_03_filtered.vcf.gz:md5,1a02cbed82c456d94a5b83434d266187"
+                        "family1_01_filtered.vcf.gz:md5,6dd91707f5c910e3b6690139369aa8f6",
+                        "family1_02_filtered.vcf.gz:md5,a02e16a88d9ed067c5d3712c43b3ab9a",
+                        "family1_03_filtered.vcf.gz:md5,d008a38ead9a3dbb53e61fe0e75ae51a"
                     ],
                     "tbi_names": [
-                        "family1_01_filtered.vcf.gz.tbi:md5,2076bae0a1453139a6b74e4d5b8ef2b5",
-                        "family1_02_filtered.vcf.gz.tbi:md5,53f1d363c39e5684ccb7f2d4f83fc6c6",
-                        "family1_03_filtered.vcf.gz.tbi:md5,668e0cd0f6608281314241b949e97efb"
+                        "family1_01_filtered.vcf.gz.tbi:md5,1d1cd3f6ecac7b260466e6b51ae5b4a7",
+                        "family1_02_filtered.vcf.gz.tbi:md5,b2e62063fa76fbbe839449f11b49cce1",
+                        "family1_03_filtered.vcf.gz.tbi:md5,ed98904a5775b89c35585b749c587439"
                     ]
                 }
             ],
@@ -51,7 +51,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2026-01-13T09:49:34.959490708"
+        "timestamp": "2026-01-15T08:26:55.202906413"
     },
     "single family - vaf filter": {
         "content": [
@@ -66,20 +66,20 @@
                         "sv_m": "-",
                         "sv_f": "-",
                         "vaf_bed_p": null,
-                        "vaf_bed_m": "family1_02_vaf_ambiguous.bed:md5,c3464e2aeb1f54e06d73b11051a494a8",
+                        "vaf_bed_m": null,
                         "vaf_bed_f": "family1_03_vaf_ambiguous.bed:md5,7cfc6accaee44b21c4ebc829dec33225"
                     },
                     "vcf_count": 3,
                     "tbi_count": 3,
                     "vcf_names": [
-                        "family1_01_filtered.vcf.gz:md5,40d42cd0dbcee53b1f307fd6cefc6b1c",
-                        "family1_02_filtered.vcf.gz:md5,a0afbca7b28019a12d0fba57c74ca022",
-                        "family1_03_filtered.vcf.gz:md5,788f406b3521deb99c213c78d71795e6"
+                        "family1_01_filtered.vcf.gz:md5,941ec2e31c7dcbafb725459650a688b2",
+                        "family1_02_filtered.vcf.gz:md5,ded85b1e74113468ac43189d3541cffa",
+                        "family1_03_filtered.vcf.gz:md5,4ce3eb97d3f68ee17a3778baff843e39"
                     ],
                     "tbi_names": [
-                        "family1_01_filtered.vcf.gz.tbi:md5,1d837cc00a63187a76c5154559d33cbe",
-                        "family1_02_filtered.vcf.gz.tbi:md5,893d7ba6a94e9265e09580b230a175bd",
-                        "family1_03_filtered.vcf.gz.tbi:md5,ed6aa49fa55d0334ae12da998d0558e0"
+                        "family1_01_filtered.vcf.gz.tbi:md5,8ae512c4868b9903042527ab96f931fc",
+                        "family1_02_filtered.vcf.gz.tbi:md5,9712b6990e11ee8f79d39d7f4e363a3e",
+                        "family1_03_filtered.vcf.gz.tbi:md5,242ba3870f71aca8cc7d90bc96fc42fb"
                     ]
                 }
             ],
@@ -105,7 +105,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2026-01-13T09:46:48.6066775"
+        "timestamp": "2026-01-15T08:24:08.645582598"
     },
     "single family": {
         "content": [
@@ -123,14 +123,14 @@
                     "vcf_count": 3,
                     "tbi_count": 3,
                     "vcf_names": [
-                        "family1_01_filtered.vcf.gz:md5,40d42cd0dbcee53b1f307fd6cefc6b1c",
-                        "family1_02_filtered.vcf.gz:md5,a0afbca7b28019a12d0fba57c74ca022",
-                        "family1_03_filtered.vcf.gz:md5,788f406b3521deb99c213c78d71795e6"
+                        "family1_01_filtered.vcf.gz:md5,941ec2e31c7dcbafb725459650a688b2",
+                        "family1_02_filtered.vcf.gz:md5,ded85b1e74113468ac43189d3541cffa",
+                        "family1_03_filtered.vcf.gz:md5,4ce3eb97d3f68ee17a3778baff843e39"
                     ],
                     "tbi_names": [
-                        "family1_01_filtered.vcf.gz.tbi:md5,1d837cc00a63187a76c5154559d33cbe",
-                        "family1_02_filtered.vcf.gz.tbi:md5,893d7ba6a94e9265e09580b230a175bd",
-                        "family1_03_filtered.vcf.gz.tbi:md5,ed6aa49fa55d0334ae12da998d0558e0"
+                        "family1_01_filtered.vcf.gz.tbi:md5,8ae512c4868b9903042527ab96f931fc",
+                        "family1_02_filtered.vcf.gz.tbi:md5,9712b6990e11ee8f79d39d7f4e363a3e",
+                        "family1_03_filtered.vcf.gz.tbi:md5,242ba3870f71aca8cc7d90bc96fc42fb"
                     ]
                 }
             ],
@@ -150,7 +150,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2026-01-13T09:46:00.060016164"
+        "timestamp": "2026-01-15T08:23:21.036769879"
     },
     "single family - gvcf mode": {
         "content": [
@@ -168,14 +168,14 @@
                     "vcf_count": 3,
                     "tbi_count": 3,
                     "vcf_names": [
-                        "family1_01_filtered.vcf.gz:md5,cae0da14868dcd7ce67c31be2e971ff9",
-                        "family1_02_filtered.vcf.gz:md5,09a734b271e1e1f2cee0ec5a122adff3",
-                        "family1_03_filtered.vcf.gz:md5,1a02cbed82c456d94a5b83434d266187"
+                        "family1_01_filtered.vcf.gz:md5,6dd91707f5c910e3b6690139369aa8f6",
+                        "family1_02_filtered.vcf.gz:md5,a02e16a88d9ed067c5d3712c43b3ab9a",
+                        "family1_03_filtered.vcf.gz:md5,d008a38ead9a3dbb53e61fe0e75ae51a"
                     ],
                     "tbi_names": [
-                        "family1_01_filtered.vcf.gz.tbi:md5,2076bae0a1453139a6b74e4d5b8ef2b5",
-                        "family1_02_filtered.vcf.gz.tbi:md5,53f1d363c39e5684ccb7f2d4f83fc6c6",
-                        "family1_03_filtered.vcf.gz.tbi:md5,668e0cd0f6608281314241b949e97efb"
+                        "family1_01_filtered.vcf.gz.tbi:md5,1d1cd3f6ecac7b260466e6b51ae5b4a7",
+                        "family1_02_filtered.vcf.gz.tbi:md5,b2e62063fa76fbbe839449f11b49cce1",
+                        "family1_03_filtered.vcf.gz.tbi:md5,ed98904a5775b89c35585b749c587439"
                     ]
                 }
             ],
@@ -195,7 +195,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2026-01-13T09:48:44.956424648"
+        "timestamp": "2026-01-15T08:26:05.303242873"
     },
     "multiple families": {
         "content": [
@@ -210,14 +210,14 @@
                     "vcf_count": 3,
                     "tbi_count": 3,
                     "vcf_names": [
-                        "family1_01_filtered.vcf.gz:md5,40d42cd0dbcee53b1f307fd6cefc6b1c",
-                        "family1_02_filtered.vcf.gz:md5,a0afbca7b28019a12d0fba57c74ca022",
-                        "family1_03_filtered.vcf.gz:md5,788f406b3521deb99c213c78d71795e6"
+                        "family1_01_filtered.vcf.gz:md5,941ec2e31c7dcbafb725459650a688b2",
+                        "family1_02_filtered.vcf.gz:md5,ded85b1e74113468ac43189d3541cffa",
+                        "family1_03_filtered.vcf.gz:md5,4ce3eb97d3f68ee17a3778baff843e39"
                     ],
                     "tbi_names": [
-                        "family1_01_filtered.vcf.gz.tbi:md5,1d837cc00a63187a76c5154559d33cbe",
-                        "family1_02_filtered.vcf.gz.tbi:md5,893d7ba6a94e9265e09580b230a175bd",
-                        "family1_03_filtered.vcf.gz.tbi:md5,ed6aa49fa55d0334ae12da998d0558e0"
+                        "family1_01_filtered.vcf.gz.tbi:md5,8ae512c4868b9903042527ab96f931fc",
+                        "family1_02_filtered.vcf.gz.tbi:md5,9712b6990e11ee8f79d39d7f4e363a3e",
+                        "family1_03_filtered.vcf.gz.tbi:md5,242ba3870f71aca8cc7d90bc96fc42fb"
                     ]
                 },
                 {
@@ -230,14 +230,14 @@
                     "vcf_count": 3,
                     "tbi_count": 3,
                     "vcf_names": [
-                        "family2_01_filtered.vcf.gz:md5,40d42cd0dbcee53b1f307fd6cefc6b1c",
-                        "family2_02_filtered.vcf.gz:md5,a0afbca7b28019a12d0fba57c74ca022",
-                        "family2_03_filtered.vcf.gz:md5,788f406b3521deb99c213c78d71795e6"
+                        "family2_01_filtered.vcf.gz:md5,941ec2e31c7dcbafb725459650a688b2",
+                        "family2_02_filtered.vcf.gz:md5,ded85b1e74113468ac43189d3541cffa",
+                        "family2_03_filtered.vcf.gz:md5,4ce3eb97d3f68ee17a3778baff843e39"
                     ],
                     "tbi_names": [
-                        "family2_01_filtered.vcf.gz.tbi:md5,1d837cc00a63187a76c5154559d33cbe",
-                        "family2_02_filtered.vcf.gz.tbi:md5,893d7ba6a94e9265e09580b230a175bd",
-                        "family2_03_filtered.vcf.gz.tbi:md5,ed6aa49fa55d0334ae12da998d0558e0"
+                        "family2_01_filtered.vcf.gz.tbi:md5,8ae512c4868b9903042527ab96f931fc",
+                        "family2_02_filtered.vcf.gz.tbi:md5,9712b6990e11ee8f79d39d7f4e363a3e",
+                        "family2_03_filtered.vcf.gz.tbi:md5,242ba3870f71aca8cc7d90bc96fc42fb"
                     ]
                 }
             ],
@@ -266,7 +266,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2026-01-13T09:47:25.942630812"
+        "timestamp": "2026-01-15T08:24:48.14439546"
     },
     "single family - stub": {
         "content": [
@@ -345,7 +345,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2026-01-13T09:48:06.076885278"
+        "timestamp": "2026-01-15T08:25:28.59018474"
     },
     "single family - gvcf mode - stub": {
         "content": [
@@ -424,6 +424,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2026-01-13T09:50:12.424014067"
+        "timestamp": "2026-01-15T08:27:33.942682786"
     }
 }

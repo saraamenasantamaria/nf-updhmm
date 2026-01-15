@@ -93,9 +93,9 @@ The **upd events file** contains all UPD candidate events detected without post-
 | `end`               | Integer | End genomic position of the UPD block                             |
 | `group`             | String  | Predicted UPD type (`iso_mat`, `iso_fat`, `het_mat`, `het_fat`)  |
 | `n_snps`            | Integer | Number of informative SNVs within the event                      |
-| `ratio_proband`     | Float   | Ratio of average read depth inside the event vs. the genome-wide average (including the event) for the proband. A value close to 1 indicates balanced coverage; deviations may suggest copy-number changes. |
-| `ratio_mother`      | Float   | Ratio of average read depth inside the event vs. genome-wide average (including the event) for the mother |
-| `ratio_father`      | Float   | Ratio of average read depth inside the event vs. genome-wide average (including the event) for the father |
+| `ratio_father`      | Ratio of average read depth inside the event vs. genome-wide average (including the event) for the father. A value close to 1 indicates balanced coverage; deviations may suggest copy-number changes. |
+| `ratio_mother`      | Ratio of average read depth inside the event vs. genome-wide average (including the event) for the mother |
+| `ratio_proband`     | Ratio of average read depth inside the event vs. the genome-wide average (including the event) for the proband |
 | `n_mendelian_error` | Integer | Number of Mendelian inheritance errors supporting the event      |
 
 The **upd collapsed events file** contains post-processed results where overlapping or adjacent events of the same UPD type within a chromosome are merged into a single representative block. This file is recommended for clinical interpretation as it provides a simplified view of UPD regions.
@@ -115,9 +115,9 @@ The **upd collapsed events file** contains post-processed results where overlapp
 | `total_snps`           | Integer | Total number of SNPs in the overlapping events                               |
 | `prop_covered`         | Float   | Proportion of the region covered by the merged events                        |
 | `collapsed_events`     | String  | Comma-separated list of the original event coordinates that were merged      |
-| `ratio_proband`        | Float   | Weighted mean ratio of read depth for the proband across the collapsed events |
-| `ratio_mother`         | Float   | Weighted mean ratio of read depth for the mother across the collapsed events  |
-| `ratio_father`         | Float   | Weighted mean ratio of read depth for the father across the collapsed events  |
+| `ratio_father`         | Weighted mean ratio of read depth for the father across the collapsed events  |
+| `ratio_mother`         | Weighted mean ratio of read depth for the mother across the collapsed events  |
+| `ratio_proband`        | Weighted mean ratio of read depth for the proband across the collapsed events |
 
 ### Pipeline information
 

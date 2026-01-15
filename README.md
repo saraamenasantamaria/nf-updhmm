@@ -141,22 +141,23 @@ If no events are found, an empty data.frame is returned.
 | `end`               | End genomic position of the UPD block                            |
 | `group`             | Predicted UPD type (`iso_mat`, `iso_fat`, `het_mat`, `het_fat`)  |
 | `n_snps`            | Number of informative SNVs within the event                      |
-| `ratio_proband`     | Ratio of average read depth inside the event vs. the genome-wide average (including the event) for the proband. A value close to 1 indicates balanced coverage; deviations may suggest copy-number changes. |
+| `ratio_father`      | Ratio of average read depth inside the event vs. genome-wide average (including the event) for the father. A value close to 1 indicates balanced coverage; deviations may suggest copy-number changes. |
 | `ratio_mother`      | Ratio of average read depth inside the event vs. genome-wide average (including the event) for the mother |
-| `ratio_father`      | Ratio of average read depth inside the event vs. genome-wide average (including the event) for the father |
+| `ratio_proband`     | Ratio of average read depth inside the event vs. the genome-wide average (including the event) for the proband |
 | `n_mendelian_error` | Number of Mendelian inheritance errors supporting the event      |
 
    **Example output:**
 
-   | ID  | chromosome | start | end | group    | n_snps | n_mendelian_error | ratio_proband | ratio_mother | ratio_father |
-   |-----|------------|-------|-----|---------|--------|-----------------|---------------|--------------|--------------|
-   | S1  | 1          | 50    | 70  | iso_mat | 5      | 1               | 0.98          | 1.00         | 0.95         |
-   | S1  | 1          | 75    | 85  | iso_mat | 3      | 5               | 1.01          | 1.03         | 0.97         |
-   | S1  | 1          | 100   | 120 | iso_mat | 8      | 5               | 0.99          | 1.01         | 0.96         |
-   | S1  | 1          | 150   | 180 | iso_mat | 10     | 10              | 1.02          | 1.04         | 0.98         |
-   | S1  | 1          | 300   | 320 | het_pat | 6      | 3               | 0.97          | 0.98         | 0.99         |
-   | S2  | 2          | 500   | 520 | iso_mat | 12     | 50              | 1.03          | 1.05         | 1.00         |
-   | S2  | 2          | 550   | 580 | iso_mat | 7      | 30              | 1.01          | 1.02         | 0.99         |
+   | ID  | chromosome | start | end | group    | n_snps | n_mendelian_error | ratio_father | ratio_mother | ratio_proband |
+   |-----|------------|-------|-----|---------|--------|-----------------|--------------|--------------|---------------|
+   | S1  | 1          | 50    | 70  | iso_mat | 5      | 1               | 0.95         | 1.00         | 0.98          |
+   | S1  | 1          | 75    | 85  | iso_mat | 3      | 5               | 0.97         | 1.03         | 1.01          |
+   | S1  | 1          | 100   | 120 | iso_mat | 8      | 5               | 0.96         | 1.01         | 0.99          |
+   | S1  | 1          | 150   | 180 | iso_mat | 10     | 10              | 0.98         | 1.04         | 1.02          |
+   | S1  | 1          | 300   | 320 | het_pat | 6      | 3               | 0.99         | 0.98         | 0.97          |
+   | S2  | 2          | 500   | 520 | iso_mat | 12     | 50              | 1.00         | 1.05         | 1.03          |
+   | S2  | 2          | 550   | 580 | iso_mat | 7      | 30              | 0.99         | 1.02         | 1.01          |
+
 
 
 3. **Collapsed events (`<fam_id>.udp_collapsed.txt`)**  
@@ -177,18 +178,21 @@ If no events are found, an empty data.frame is returned.
 | `total_snps`           | Total number of SNPs in the overlapping events                               |
 | `prop_covered`         | Proportion of the region covered by the merged events                        |
 | `collapsed_events`     | Comma-separated list of the original event coordinates that were merged      |
-| `ratio_proband`        | Weighted mean ratio of read depth for the proband across the collapsed events |
-| `ratio_mother`         | Weighted mean ratio of read depth for the mother across the collapsed events  |
 | `ratio_father`         | Weighted mean ratio of read depth for the father across the collapsed events  |
+| `ratio_mother`         | Weighted mean ratio of read depth for the mother across the collapsed events  |
+| `ratio_proband`        | Weighted mean ratio of read depth for the proband across the collapsed events |
 
-**Example output:**
 
-   | ID  | chromosome | start | end | group    | n_events | total_mendelian_error | total_size | total_snps | prop_covered | ratio_proband | ratio_mother | ratio_father | collapsed_events            |
-   |-----|------------|-------|-----|---------|----------|---------------------|------------|------------|--------------|---------------|--------------|--------------|----------------------------|
-   | S1  | 1          | 300   | 320 | het_pat | 1        | 3                   | 20         | 6          | 1.00         | 0.97          | 0.98         | 0.99         | 1:300-320                  |
-   | S1  | 1          | 100   | 180 | iso_mat | 2        | 15                  | 50         | 18         | 0.625        | 1.01          | 1.03         | 0.97         | 1:100-120,1:150-180        |
-   | S2  | 2          | 500   | 580 | iso_mat | 2        | 80                  | 50         | 19         | 0.625        | 1.02          | 1.04         | 1.00         | 2:500-520,2:550-580        |
- 
+
+  **Example output:**
+  
+  | ID  | chromosome | start | end | group    | n_events | total_mendelian_error | total_size | total_snps | prop_covered | ratio_father | ratio_mother | ratio_proband | collapsed_events            |
+  |-----|------------|-------|-----|---------|----------|---------------------|------------|------------|--------------|--------------|--------------|---------------|----------------------------|
+  | S1  | 1          | 300   | 320 | het_pat | 1        | 3                   | 20         | 6          | 1.00         | 0.99         | 0.98         | 0.97          | 1:300-320                  |
+  | S1  | 1          | 100   | 180 | iso_mat | 2        | 15                  | 50         | 18         | 0.625        | 0.97         | 1.03         | 1.01          | 1:100-120,1:150-180        |
+  | S2  | 2          | 500   | 580 | iso_mat | 2        | 80                  | 50         | 19         | 0.625        | 1.00         | 1.04         | 1.02          | 2:500-520,2:550-580        |
+
+
 These are generated from the **raw events** using the `collapseEvents(subset_df = df, min_ME = 2, min_size = 200)` function.
 
 For more details, please refer to the [output](output.md) documentation.

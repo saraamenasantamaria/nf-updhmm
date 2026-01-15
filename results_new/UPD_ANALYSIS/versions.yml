@@ -1,0 +1,3 @@
+"NFCORE_UPDHMM:UPDHMM:EVENT_DETECTION:UPDHMM_COLLAPSEEVENTS":
+    r-base: 4.5.2
+    bioconductor-updhmm: 1.5.3

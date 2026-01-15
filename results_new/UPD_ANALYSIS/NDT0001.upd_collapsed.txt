@@ -1,0 +1,1 @@
+ID	chromosome	start	end	group	n_events	total_mendelian_error	total_size	total_snps	prop_covered	ratio_father	ratio_mother	ratio_proband	collapsed_events

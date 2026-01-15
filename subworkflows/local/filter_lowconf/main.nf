@@ -53,13 +53,24 @@ workflow FILTER_LOWCONF {
         ch_input_for_filtering = BCFTOOLS_SETGT_VAF.out.vcf
             .join(BCFTOOLS_SETGT_VAF.out.tbi)
     }
-
-   //
+    
+    
+    //
+    // Prepare excluded regions BED file
+    //
+    def excluded_regions_bed = params.excluded_regions_bed ? 
+        file(params.excluded_regions_bed, checkIfExists: true) :
+        file("${projectDir}/assets/${params.genome_build}_excluded_regions.bed", checkIfExists: true)
+    
+    ch_excluded_regions = Channel.value(excluded_regions_bed)
+    
+    
+    //
     // Apply all filters
     // 
     BCFTOOLS_VIEW_FILTER_ALL(
         ch_input_for_filtering,
-        [],
+        ch_excluded_regions,
         [],
         []
     )
