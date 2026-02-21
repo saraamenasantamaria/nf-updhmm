@@ -1,6 +1,6 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
 name: bcftools_setgt_vaf
-description: Correct genotypes based on variant allele frequency (VAF) thresholds using bcftools setGT plugin
+description: Correct genotypes based on variant allele frequency (VAF)
+  thresholds using bcftools setGT plugin
 keywords:
   - vcf
   - variant calling
@@ -12,7 +12,6 @@ keywords:
   - setgt
   - genotype correction
   - multi-tool
-
 tools:
   - bcftools:
       description: |
@@ -22,7 +21,8 @@ tools:
       homepage: http://samtools.github.io/bcftools/bcftools.html
       documentation: http://samtools.github.io/bcftools/bcftools.html
       doi: 10.1093/bioinformatics/btp352
-      licence: ["MIT"]
+      licence:
+        - "MIT"
       identifier: biotools:bcftools
       args_id: "$args"
   - bgzip:
@@ -31,51 +31,53 @@ tools:
         with tabix indexing and allows random access to compressed data.
       homepage: http://www.htslib.org/doc/bgzip.html
       documentation: http://www.htslib.org/doc/bgzip.html
-      licence: ["MIT"]
+      licence:
+        - "MIT"
       identifier: ""
-
 input:
-  - meta:
-      type: map
-      description: |
-        Groovy Map containing sample information
-        e.g. `[ id:'sample1' ]`
-  - vcf:
-      type: file
-      description: |
-        Input VCF file containing variant calls with allelic depth (AD) format fields. 
-        Default configuration corrects genotypes for three samples based on VAF thresholds 
-        (VAF < 0.15 ? 0/0, VAF > 0.85 ? 1/1), but can be customized via ext.args.
-      pattern: "*.vcf.gz"
-      ontologies:
-        - edam: "http://edamontology.org/format_3016"
-  - tbi:
-      type: file
-      description: |
-        Tabix index file for input VCF. Optional, as bcftools +setGT reads the file sequentially 
-        and does not require an index. Pass an empty list [] if not available.
-      pattern: "*.tbi"
-      optional: true
-      ontologies:
-        - edam: "http://edamontology.org/format_3616"
-
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. `[ id:'sample1' ]`
+    - vcf:
+        type: file
+        description: |
+          Input VCF file containing variant calls with allelic depth (AD) format fields. 
+          Default configuration corrects genotypes for three samples based on VAF thresholds 
+          (VAF < 0.15 ? 0/0, VAF > 0.85 ? 1/1), but can be customized via ext.args.
+        pattern: "*.vcf.gz"
+        ontologies:
+          - edam: "http://edamontology.org/format_3016"
+          - edam: http://edamontology.org/format_3989
+    - tbi:
+        type: file
+        description: |
+          Tabix index file for input VCF. Optional, as bcftools +setGT reads the file sequentially 
+          and does not require an index. Pass an empty list [] if not available.
+        pattern: "*.tbi"
+        optional: true
+        ontologies:
+          - edam: "http://edamontology.org/format_3616"
 output:
-  - vcf:
-      - meta:
+  vcf:
+    - - meta:
           type: map
           description: |
             Groovy Map containing sample information
             e.g. `[ id:'sample1' ]`
       - "*.vcf.gz":
           type: file
-          description: Output VCF file with genotypes corrected based on VAF thresholds.
-          Heterozygous calls are converted to homozygous reference (0/0) or 
+          description: |
+            Output VCF file with genotypes corrected based on VAF thresholds.
+            Heterozygous calls are converted to homozygous reference (0/0) or 
             homozygous alternate (1/1) when VAF thresholds are met.
           pattern: "*.vcf.gz"
           ontologies:
             - edam: "http://edamontology.org/format_3016"
-  - tbi:
-      - meta:
+            - edam: http://edamontology.org/format_3989
+  tbi:
+    - - meta:
           type: map
           description: |
             Groovy Map containing sample information
@@ -86,14 +88,28 @@ output:
           pattern: "*.tbi"
           ontologies:
             - edam: "http://edamontology.org/format_3616"
-  - versions:
-      - versions.yml:
-          type: file
-          description: File containing software versions
-          pattern: "versions.yml"
-
+  versions_bcftools:
+    - - "${task.process}":
+          type: string
+          description: The process the versions were collected from
+      - "bcftools":
+          type: string
+          description: The tool name
+      - "bcftools --version | head -n1 | cut -d' ' -f2":
+          type: eval
+          description: The expression to obtain the version of the tool
+topics:
+  versions:
+    - - "${task.process}":
+          type: string
+          description: The process the versions were collected from
+      - "bcftools":
+          type: string
+          description: The tool name
+      - "bcftools --version | head -n1 | cut -d' ' -f2":
+          type: eval
+          description: The expression to obtain the version of the tool
 authors:
   - "@saramenasantamaria"
-
 maintainers:
   - "@saramenasantamaria"

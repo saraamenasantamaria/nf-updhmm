@@ -12,57 +12,35 @@ keywords:
   - family
   - trio
 components:
-  - concat_bed
+  - custom/bedconcat
   - bedtools/merge
   - bcftools/view
+  - bcftools/view/exclude
   - bcftools/query
 
 input:
-  - - meta:
-        type: map
-        description: |
-          Groovy Map containing family information (family ID and SV paths)
-          e.g. [ id:'family_001', sv_p:'path/to/proband.bed', sv_m:'path/to/mother.vcf.gz', sv_f:'-' ]
-          SV paths can be BED files, VCF.GZ files, or '-' for samples without SVs
-    - vcf:
-        type: file
-        description: Input VCF file to be filtered using structural variant masks
-        pattern: "*.{vcf.gz}"
-        ontologies:
-        - edam: "http://edamontology.org/format_3016"
-    - tbi:
-        type: file
-        description: Tabix index file for input VCF
-        pattern: "*.tbi"
-        ontologies:
-        - edam: "http://edamontology.org/format_3616"
+  - ch_vcfs:
+      type: channel
+      description: |
+        Channel containing family metadata, VCF file to be filtered and its tabix index
+        Structure: [ meta, vcf, tbi ]
+        Where meta is a Groovy Map containing family information and SV paths
+        e.g. [ id:'family_001', sv_p:'path/to/proband.bed', sv_m:'path/to/mother.vcf.gz', sv_f:'-' ]
+        SV paths can be BED files, VCF.GZ files, or '-' for samples without SVs
+      pattern: "[ meta, *.vcf.gz, *.tbi ]"
+  - val_apply_vaf_filter:
+      type: boolean
+      description: Whether to apply additional VAF-based filtering for ambiguous variants after SV masking.
 
 output:
   - vcf:
-      - meta:
-          type: map
-          description: |
-            Groovy Map containing family information
-            e.g. `[id:'family_001', sv_p:'path/to/proband', sv_m:'path/to/mother', sv_f:'path/to/father']`
-      - vcf:
-          type: file
-          description: Filtered VCF file with structural variants removed based on BED mask regions, or original VCF if no SV files provided
-          pattern: "*.vcf.gz"
-          ontologies:
-          - edam: "http://edamontology.org/format_3016"
-      - tbi:
-          type: file
-          description: Tabix index for the filtered VCF file
-          pattern: "*.tbi"
-          ontologies:
-          - edam: "http://edamontology.org/format_3616"
-  - versions:
-      - versions:
-          type: file
-          description: File containing software versions
-          pattern: "versions.yml"
-          ontologies:
-          - edam: "http://edamontology.org/format_3750" 
+      type: channel
+      description: |
+        Channel containing family metadata, filtered VCF file and its tabix index
+        Structure: [ meta, vcf, tbi ]
+        Filtered VCF file with structural variants masked and optionally VAF-filtered,
+        or original VCF if no SV files provided
+      pattern: "[ meta, *.vcf.gz, *.tbi ]"
 
 authors:
   - "@saramenasantamaria"

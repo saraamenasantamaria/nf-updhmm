@@ -17,34 +17,29 @@ components:
   - bcftools/query
   
 input:
-  - - meta:
-        type: map
-        description: |
-          Groovy Map containing family information (family ID and SV paths)
-          e.g. [ id:'family_001', sv_p:'path/to/proband', sv_m:'path/to/mother', sv_f:'path/to/father' ]
-    - vcfs:
-        type: file
-        description: List of VCF/GVCF files for family trio (proband, mother, father)
-        pattern: "*.{vcf.gz}"
+  - ch_samples:
+      type: channel
+      description: |
+        Channel containing family metadata and list of VCF/GVCF files
+        Structure: [ meta, vcfs ]
+        Where meta is a Groovy Map containing family information (family ID and SV paths)
+        e.g. [ id:'family_001', sv_p:'path/to/proband', sv_m:'path/to/mother', sv_f:'path/to/father' ]
+        vcfs: List of VCF/GVCF files for family trio (proband, mother, father)
+      pattern: "[ meta, [*.vcf.gz] ]"
+  - val_is_gvcf:
+      type: boolean
+      description: Whether input files are GVCFs (true) or VCFs (false). Determines annotation removal strategy.
 
 output:
-  - - meta:
-        type: map
-        description: |
-          Groovy Map containing family information (family ID and SV paths)
-          e.g. [ id:'family_001', sv_p:'path/to/proband', sv_m:'path/to/mother', sv_f:'path/to/father' ]
-    - vcfs:
-        type: file
-        description: Processed VCF/GVCF files filtered for autosomes with annotations removed
-        pattern: "*.{vcf.gz}"
-    - tbis:
-        type: file
-        description: Tabix index files for processed VCF/GVCF files
-        pattern: "*.tbi"
-  - versions:
-      type: file
-      description: File containing software versions
-      pattern: "versions.yml"   
+  - vcf:
+      type: channel
+      description: |
+        Channel containing family metadata, processed VCF/GVCF files and their tabix indices
+        Structure: [ meta, vcfs, tbis ]
+        Where vcfs are processed VCF/GVCF files filtered for autosomes with annotations removed
+        and tbis are the corresponding tabix index files
+        Files are sorted by role: proband, mother, father
+      pattern: "[ meta, [*.vcf.gz], [*.tbi] ]"
        
 authors:
   - "@saramenasantamaria"

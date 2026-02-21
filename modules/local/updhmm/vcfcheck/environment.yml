@@ -4,6 +4,6 @@ channels:
   - conda-forge
   - bioconda
 dependencies:
-  - conda-forge::r-base=4.3.0
-  - bioconda::bioconductor-updhmm=1.5.2
+  - bioconda::bioconductor-updhmm=1.5.3
   - bioconda::bioconductor-variantannotation=1.50.0
+  - conda-forge::r-base=4.3.0

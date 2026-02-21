@@ -4,15 +4,15 @@ process CUSTOM_BEDCONCAT {
 
     conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'https://depot.galaxyproject.org/singularity/ubuntu:20.04' :
-        'ubuntu:20.04' }"
+    'https://depot.galaxyproject.org/singularity/coreutils:9.5' :
+    'biocontainers/coreutils:9.5' }"
 
     input:
     tuple val(meta), path(beds)  // Multiple BED files to merge
 
     output:
     tuple val(meta), path("*.bed"), emit: bed
-    path "versions.yml"           , emit: versions
+    tuple val("${task.process}"), val("coreutils"), eval("coreutils --version | head -n1 | cut -d' ' -f4"), emit: versions_coreutils, topic: versions
     
     when:
     task.ext.when == null || task.ext.when
@@ -31,11 +31,6 @@ process CUSTOM_BEDCONCAT {
         | sort -k1,1 -k2,2n \\
         | uniq ${args} \\
         > ${prefix}.bed
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        coreutils: \$(sort --version 2>&1 | head -n1 | sed 's/^.* //g')
-    END_VERSIONS
     """
 
     stub:
@@ -43,10 +38,5 @@ process CUSTOM_BEDCONCAT {
     
     """
     touch ${prefix}.bed
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        coreutils: 9.5
-    END_VERSIONS
     """
 }

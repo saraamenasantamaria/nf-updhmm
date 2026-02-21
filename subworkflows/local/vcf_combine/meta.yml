@@ -13,39 +13,33 @@ components:
   - bcftools/merge
 
 input:
-  - - meta:
-        type: map
-        description: |
-          Groovy Map containing family information (family ID and SV paths)
-          e.g. [ id:'family_001', sv_p:'path/to/proband', sv_m:'path/to/mother', sv_f:'path/to/father' ]
-    - vcfs:
-        type: file
-        description: List of VCF files for family trio (proband, mother, father) to be intersected and merged
-        pattern: "*.{vcf.gz}"
-    - tbis:
-        type: file
-        description: Tabix index files for input VCF files
-        pattern: "*.tbi"
+  - ch_vcfs:
+      type: channel
+      description: |
+        Channel containing family metadata, list of VCF files and their tabix indices
+        Structure: [ meta, vcfs, tbis ]
+        Where meta is a Groovy Map containing family information (family ID and SV paths)
+        e.g. [ id:'family_001', sv_p:'path/to/proband', sv_m:'path/to/mother', sv_f:'path/to/father' ]
+        vcfs: List of VCF files for family trio (proband, mother, father) to be intersected and merged
+        tbis: Tabix index files for input VCF files
+      pattern: "[ meta, [*.vcf.gz], [*.tbi] ]"
+  - val_perform_intersection:
+      type: boolean
+      description: |
+        Whether to perform intersection before merging.
+        If true, only shared variants among trio members are retained (intersection mode).
+        If false, all variants from the trio are combined directly (union mode).
 
 output:
-  - - meta:
-        type: map
-        description: |
-          Groovy Map containing family information (family ID and SV paths)
-          e.g. [ id:'family_001', sv_p:'path/to/proband', sv_m:'path/to/mother', sv_f:'path/to/father' ]
-    - vcf:
-        type: file
-        description: Merged VCF file containing variants from family trio members after optional intersection
-        pattern: "*.{vcf.gz}"
-    - tbi:
-        type: file
-        description: Tabix index file for merged VCF
-        pattern: "*.tbi"
-  - versions:
-      type: file
-      description: File containing software versions
-      pattern: "versions.yml"
-
+  - vcf:
+      type: channel
+      description: |
+        Channel containing family metadata, merged VCF file and its tabix index
+        Structure: [ meta, vcf, tbi ]
+        Where vcf is the merged VCF file containing variants from family trio members after optional intersection
+        and tbi is the tabix index file for the merged VCF
+      pattern: "[ meta, *.vcf.gz, *.tbi ]"
+  
 authors:
   - "@saramenasantamaria"
 

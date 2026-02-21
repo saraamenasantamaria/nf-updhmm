@@ -9,6 +9,43 @@ nextflow_process {
     tag "updhmm"
     tag "updhmm/calculateevents"
 
+    setup {
+        run("BCFTOOLS_VIEW") {
+            script "../../../../nf-core/bcftools/view/main.nf"
+            process {
+                """
+                input[0] = Channel.of([
+                    [ id:'test_trio' ],
+                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/vcf/ped/justhusky_minimal.vcf.gz', checkIfExists: true),
+                    []
+                ])
+                input[1] = []  // regions
+                input[2] = []  // targets
+                input[3] = []  // samples
+                """
+            }
+        }
+        
+        run("UPDHMM_VCFCHECK") {
+            script "../../vcfcheck/main.nf"
+            process {
+                """
+                input[0] = BCFTOOLS_VIEW.out.vcf.map { meta, vcf ->
+                    [
+                        [ id:'test_trio',
+                          proband_id: 'hugelymodelbat',
+                          mother_id: 'slowlycivilbuck',
+                          father_id: 'earlycasualcaiman' 
+                        ],
+                        vcf,
+                        []
+                    ]
+                }
+                """
+            }
+        }
+    }
+
     test("processed trio rds") {
     
         config './default.config'
@@ -17,15 +54,9 @@ nextflow_process {
         
             process {
                 """
-                input[0] = [
-                    [ id:'test_trio',
-                      proband_id: 'NA19685',
-                      mother_id: 'NA19688',
-                      father_id: 'NA19689' 
-                    ],
-                    file('${projectDir}/modules/local/updhmm/calculateevents/tests/data/family.processed.rds', checkIfExists: true),
-                    []
-                ]
+                input[0] = UPDHMM_VCFCHECK.out.processed_vcf.map { meta, rds ->
+                    [ meta, rds ]
+                }
                 """
             }
         }
@@ -33,7 +64,10 @@ nextflow_process {
         then {
             assertAll(
                 { assert process.success },
-                { assert snapshot(process.out).match() }
+                { assert snapshot(process.out).match() },
+                { assert process.out.versions_rbase },
+                { assert process.out.versions_updhmm },
+                { assert process.out.versions_biocparallel }
             )
         }
     }
@@ -46,14 +80,9 @@ nextflow_process {
             
             process {
                 """
-                input[0] = [
-                    [ id:'test_trio',
-                      proband_id: 'NA19685',
-                      mother_id: 'NA19688',
-                      father_id: 'NA19689' 
-                    ],
-                    file('${projectDir}/modules/local/updhmm/calculateevents/tests/data/family.processed.rds', checkIfExists: true)
-                ]
+                input[0] = UPDHMM_VCFCHECK.out.processed_vcf.map { meta, rds ->
+                    [ meta, rds ]
+                }
                 """
             }
         }
@@ -61,35 +90,10 @@ nextflow_process {
         then {
             assertAll(
                 { assert process.success },
-                { assert snapshot(process.out).match() }
-            )
-        }
-    }
-    
-    test("processed trio rds with custom HMM") {
-    
-        config './custom_hmm.config'
-
-        when {
-        
-            process {
-                """
-                input[0] = [
-                    [ id:'test_trio',
-                      proband_id: 'NA19685',
-                      mother_id: 'NA19688',
-                      father_id: 'NA19689'  
-                    ],
-                    file('${projectDir}/modules/local/updhmm/calculateevents/tests/data/family.processed.rds', checkIfExists: true)
-                ]
-                """
-            }
-        }
-
-        then {
-            assertAll(
-                { assert process.success },
-                { assert snapshot(process.out).match() }
+                { assert snapshot(process.out).match() },
+                { assert process.out.versions_rbase },
+                { assert process.out.versions_updhmm },
+                { assert process.out.versions_biocparallel }
             )
         }
     }
@@ -102,14 +106,9 @@ nextflow_process {
             
             process {
                 """
-                input[0] = [
-                    [ id:'test_trio',
-                      proband_id: 'NA19685',
-                      mother_id: 'NA19688',
-                      father_id: 'NA19689' 
-                    ],
-                    file('${projectDir}/modules/local/updhmm/calculateevents/tests/data/family.processed.rds', checkIfExists: true)
-                ]
+                input[0] = UPDHMM_VCFCHECK.out.processed_vcf.map { meta, rds ->
+                    [ meta, rds ]
+                }
                 """
             }
         }
@@ -117,7 +116,10 @@ nextflow_process {
         then {
             assertAll(
                 { assert process.success },
-                { assert snapshot(process.out).match() }
+                { assert snapshot(process.out).match() },
+                { assert process.out.versions_rbase },
+                { assert process.out.versions_updhmm },
+                { assert process.out.versions_biocparallel }
             )
         }
     }
@@ -130,15 +132,9 @@ nextflow_process {
         when {
             process {
                 """
-                input[0] = [
-                    [ id:'test_trio',
-                      proband_id: 'NA19685',
-                      mother_id: 'NA19688',
-                      father_id: 'NA19689' 
-                    ],
-                    file('${projectDir}/modules/local/updhmm/calculateevents/tests/data/family.processed.rds', checkIfExists: true),
-                    []
-                ]
+                input[0] = UPDHMM_VCFCHECK.out.processed_vcf.map { meta, rds ->
+                    [ meta, rds ]
+                }
                 """
             }
         }
@@ -146,7 +142,10 @@ nextflow_process {
         then {
             assertAll(
                 { assert process.success },
-                { assert snapshot(process.out).match() }
+                { assert snapshot(process.out).match() },
+                { assert process.out.versions_rbase },
+                { assert process.out.versions_updhmm },
+                { assert process.out.versions_biocparallel }
             )
         }
     }

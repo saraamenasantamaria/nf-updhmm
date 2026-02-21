@@ -1,0 +1,364 @@
+{
+    "single sample - all vcf.gz sv files": {
+        "content": [
+            [
+                {
+                    "meta": {
+                        "id": "family2",
+                        "sv_p": "proband_sv.vcf.gz:md5,29be59c0b7db32f25a251ef03fe130fc",
+                        "sv_m": "mother_sv.vcf.gz:md5,1f5b22b680fdd7c0f5e9af23a22812b0",
+                        "sv_f": "father_sv.vcf.gz:md5,d2bb7b382e8b12db3cec19e0ad3cdd74"
+                    },
+                    "vcf_name": "family2_preprocessed.vcf.gz",
+                    "tbi_name": "family2_preprocessed.vcf.gz.tbi"
+                }
+            ],
+            null
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.04.6"
+        },
+        "timestamp": "2026-02-17T13:28:49.678791541"
+    },
+    "single sample - no sv files": {
+        "content": [
+            [
+                {
+                    "meta": {
+                        "id": "family4",
+                        "sv_p": "-",
+                        "sv_m": "-",
+                        "sv_f": "-"
+                    },
+                    "vcf_name": "family.vcf.gz",
+                    "tbi_name": "family.vcf.gz.tbi"
+                }
+            ],
+            null
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.04.6"
+        },
+        "timestamp": "2026-02-17T13:29:31.38301414"
+    },
+    "multiple samples - mixed scenarios - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "family1",
+                            "sv_p": "proband_sv.bed:md5,5d5132e465696c191d87fdb5674753b3",
+                            "sv_m": "mother_sv.bed:md5,0d173bc2b09f8456445d137f20976cd4",
+                            "sv_f": "father_sv.bed:md5,9c6fd169c930c8d38e5161b6e8651291"
+                        },
+                        "family1_preprocessed.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                        "family1_preprocessed.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        {
+                            "id": "family2",
+                            "sv_p": "proband_sv.vcf.gz:md5,29be59c0b7db32f25a251ef03fe130fc",
+                            "sv_m": "mother_sv.vcf.gz:md5,1f5b22b680fdd7c0f5e9af23a22812b0",
+                            "sv_f": "father_sv.vcf.gz:md5,d2bb7b382e8b12db3cec19e0ad3cdd74"
+                        },
+                        "family2_preprocessed.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                        "family2_preprocessed.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        {
+                            "id": "family3",
+                            "sv_p": "proband_sv.vcf.gz:md5,29be59c0b7db32f25a251ef03fe130fc",
+                            "sv_m": "mother_sv.bed:md5,0d173bc2b09f8456445d137f20976cd4",
+                            "sv_f": "-"
+                        },
+                        "family3_preprocessed.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                        "family3_preprocessed.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        {
+                            "id": "family4",
+                            "sv_p": "-",
+                            "sv_m": "-",
+                            "sv_f": "-"
+                        },
+                        "family.vcf.gz:md5,6f8f59ce06f515eaec4ba442695d0f02",
+                        "family.vcf.gz.tbi:md5,9e4c52686df0443db02d8f101b615aba"
+                    ]
+                ],
+                "vcf": [
+                    [
+                        {
+                            "id": "family1",
+                            "sv_p": "proband_sv.bed:md5,5d5132e465696c191d87fdb5674753b3",
+                            "sv_m": "mother_sv.bed:md5,0d173bc2b09f8456445d137f20976cd4",
+                            "sv_f": "father_sv.bed:md5,9c6fd169c930c8d38e5161b6e8651291"
+                        },
+                        "family1_preprocessed.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                        "family1_preprocessed.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        {
+                            "id": "family2",
+                            "sv_p": "proband_sv.vcf.gz:md5,29be59c0b7db32f25a251ef03fe130fc",
+                            "sv_m": "mother_sv.vcf.gz:md5,1f5b22b680fdd7c0f5e9af23a22812b0",
+                            "sv_f": "father_sv.vcf.gz:md5,d2bb7b382e8b12db3cec19e0ad3cdd74"
+                        },
+                        "family2_preprocessed.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                        "family2_preprocessed.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        {
+                            "id": "family3",
+                            "sv_p": "proband_sv.vcf.gz:md5,29be59c0b7db32f25a251ef03fe130fc",
+                            "sv_m": "mother_sv.bed:md5,0d173bc2b09f8456445d137f20976cd4",
+                            "sv_f": "-"
+                        },
+                        "family3_preprocessed.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                        "family3_preprocessed.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        {
+                            "id": "family4",
+                            "sv_p": "-",
+                            "sv_m": "-",
+                            "sv_f": "-"
+                        },
+                        "family.vcf.gz:md5,6f8f59ce06f515eaec4ba442695d0f02",
+                        "family.vcf.gz.tbi:md5,9e4c52686df0443db02d8f101b615aba"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.04.6"
+        },
+        "timestamp": "2026-02-17T13:31:38.24822256"
+    },
+    "single sample - all bed files": {
+        "content": [
+            [
+                {
+                    "meta": {
+                        "id": "family1",
+                        "sv_p": "proband_sv.bed:md5,5d5132e465696c191d87fdb5674753b3",
+                        "sv_m": "mother_sv.bed:md5,0d173bc2b09f8456445d137f20976cd4",
+                        "sv_f": "father_sv.bed:md5,9c6fd169c930c8d38e5161b6e8651291"
+                    },
+                    "vcf_name": "family1_preprocessed.vcf.gz",
+                    "tbi_name": "family1_preprocessed.vcf.gz.tbi"
+                }
+            ],
+            null
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.04.6"
+        },
+        "timestamp": "2026-02-17T13:27:59.270893139"
+    },
+    "single sample - mixed sv file types": {
+        "content": [
+            [
+                {
+                    "meta": {
+                        "id": "family3",
+                        "sv_p": "proband_sv.vcf.gz:md5,29be59c0b7db32f25a251ef03fe130fc",
+                        "sv_m": "mother_sv.bed:md5,0d173bc2b09f8456445d137f20976cd4",
+                        "sv_f": "-"
+                    },
+                    "vcf_name": "family3_preprocessed.vcf.gz",
+                    "tbi_name": "family3_preprocessed.vcf.gz.tbi"
+                }
+            ],
+            null
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.04.6"
+        },
+        "timestamp": "2026-02-17T13:29:13.258727971"
+    },
+    "single sample - all vcf.gz sv files - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "family2",
+                            "sv_p": "proband_sv.vcf.gz:md5,29be59c0b7db32f25a251ef03fe130fc",
+                            "sv_m": "mother_sv.vcf.gz:md5,1f5b22b680fdd7c0f5e9af23a22812b0",
+                            "sv_f": "father_sv.vcf.gz:md5,d2bb7b382e8b12db3cec19e0ad3cdd74"
+                        },
+                        "family2_preprocessed.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                        "family2_preprocessed.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "vcf": [
+                    [
+                        {
+                            "id": "family2",
+                            "sv_p": "proband_sv.vcf.gz:md5,29be59c0b7db32f25a251ef03fe130fc",
+                            "sv_m": "mother_sv.vcf.gz:md5,1f5b22b680fdd7c0f5e9af23a22812b0",
+                            "sv_f": "father_sv.vcf.gz:md5,d2bb7b382e8b12db3cec19e0ad3cdd74"
+                        },
+                        "family2_preprocessed.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                        "family2_preprocessed.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.04.6"
+        },
+        "timestamp": "2026-02-17T13:30:47.026181506"
+    },
+    "single sample - all bed files - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "family1",
+                            "sv_p": "proband_sv.bed:md5,5d5132e465696c191d87fdb5674753b3",
+                            "sv_m": "mother_sv.bed:md5,0d173bc2b09f8456445d137f20976cd4",
+                            "sv_f": "father_sv.bed:md5,9c6fd169c930c8d38e5161b6e8651291"
+                        },
+                        "family1_preprocessed.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                        "family1_preprocessed.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "vcf": [
+                    [
+                        {
+                            "id": "family1",
+                            "sv_p": "proband_sv.bed:md5,5d5132e465696c191d87fdb5674753b3",
+                            "sv_m": "mother_sv.bed:md5,0d173bc2b09f8456445d137f20976cd4",
+                            "sv_f": "father_sv.bed:md5,9c6fd169c930c8d38e5161b6e8651291"
+                        },
+                        "family1_preprocessed.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                        "family1_preprocessed.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.04.6"
+        },
+        "timestamp": "2026-02-17T13:30:22.611986134"
+    },
+    "single sample - mixed sv file types - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "family3",
+                            "sv_p": "proband_sv.vcf.gz:md5,29be59c0b7db32f25a251ef03fe130fc",
+                            "sv_m": "mother_sv.bed:md5,0d173bc2b09f8456445d137f20976cd4",
+                            "sv_f": "-"
+                        },
+                        "family3_preprocessed.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                        "family3_preprocessed.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "vcf": [
+                    [
+                        {
+                            "id": "family3",
+                            "sv_p": "proband_sv.vcf.gz:md5,29be59c0b7db32f25a251ef03fe130fc",
+                            "sv_m": "mother_sv.bed:md5,0d173bc2b09f8456445d137f20976cd4",
+                            "sv_f": "-"
+                        },
+                        "family3_preprocessed.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                        "family3_preprocessed.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.04.6"
+        },
+        "timestamp": "2026-02-17T13:31:10.633344518"
+    },
+    "single sample - all bed files and ambiguous vaf": {
+        "content": [
+            [
+                {
+                    "meta": {
+                        "id": "family1",
+                        "sv_p": "proband_sv.bed:md5,5d5132e465696c191d87fdb5674753b3",
+                        "sv_m": "mother_sv.bed:md5,0d173bc2b09f8456445d137f20976cd4",
+                        "sv_f": "father_sv.bed:md5,9c6fd169c930c8d38e5161b6e8651291"
+                    },
+                    "vcf_name": "family1_vaf_filtered.vcf.gz",
+                    "tbi_name": "family1_vaf_filtered.vcf.gz.tbi"
+                }
+            ],
+            null
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.04.6"
+        },
+        "timestamp": "2026-02-17T13:28:24.190549802"
+    },
+    "multiple samples - mixed scenarios": {
+        "content": [
+            [
+                {
+                    "meta": {
+                        "id": "family1",
+                        "sv_p": "proband_sv.bed:md5,5d5132e465696c191d87fdb5674753b3",
+                        "sv_m": "mother_sv.bed:md5,0d173bc2b09f8456445d137f20976cd4",
+                        "sv_f": "father_sv.bed:md5,9c6fd169c930c8d38e5161b6e8651291"
+                    },
+                    "vcf_name": "family1_preprocessed.vcf.gz",
+                    "tbi_name": "family1_preprocessed.vcf.gz.tbi"
+                },
+                {
+                    "meta": {
+                        "id": "family2",
+                        "sv_p": "proband_sv.vcf.gz:md5,29be59c0b7db32f25a251ef03fe130fc",
+                        "sv_m": "mother_sv.vcf.gz:md5,1f5b22b680fdd7c0f5e9af23a22812b0",
+                        "sv_f": "father_sv.vcf.gz:md5,d2bb7b382e8b12db3cec19e0ad3cdd74"
+                    },
+                    "vcf_name": "family2_preprocessed.vcf.gz",
+                    "tbi_name": "family2_preprocessed.vcf.gz.tbi"
+                },
+                {
+                    "meta": {
+                        "id": "family3",
+                        "sv_p": "proband_sv.vcf.gz:md5,29be59c0b7db32f25a251ef03fe130fc",
+                        "sv_m": "mother_sv.bed:md5,0d173bc2b09f8456445d137f20976cd4",
+                        "sv_f": "-"
+                    },
+                    "vcf_name": "family3_preprocessed.vcf.gz",
+                    "tbi_name": "family3_preprocessed.vcf.gz.tbi"
+                },
+                {
+                    "meta": {
+                        "id": "family4",
+                        "sv_p": "-",
+                        "sv_m": "-",
+                        "sv_f": "-"
+                    },
+                    "vcf_name": "family.vcf.gz",
+                    "tbi_name": "family.vcf.gz.tbi"
+                }
+            ],
+            null
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.04.6"
+        },
+        "timestamp": "2026-02-17T13:29:59.988761398"
+    }
+}

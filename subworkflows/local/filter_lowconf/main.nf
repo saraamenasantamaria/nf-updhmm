@@ -13,9 +13,9 @@
 //   - SETGT_VAF: Correct genotypes by VAF thresholds (optional correction)
 //
 
-include { BCFTOOLS_SETGT                              } from '../../../modules/local/bcftools/setgt/main'
-include { BCFTOOLS_SETGT_VAF                          } from '../../../modules/local/bcftools/setgt_vaf/main'
-include { BCFTOOLS_VIEW as BCFTOOLS_VIEW_FILTER_ALL   } from '../../../modules/nf-core/bcftools/view/main'
+include { BCFTOOLS_SETGT                                     } from '../../../modules/local/bcftools/setgt/main'
+include { BCFTOOLS_SETGT_VAF                                 } from '../../../modules/local/bcftools/setgt_vaf/main'
+include { BCFTOOLS_VIEW_EXCLUDE  as BCFTOOLS_VIEW_FILTER_ALL } from '../../../modules/local/bcftools/view_exclude/main'
 
 
 workflow FILTER_LOWCONF {
@@ -26,7 +26,6 @@ workflow FILTER_LOWCONF {
     val_apply_vaf_correction  // boolean: whether to apply VAF-based GT correction
     
     main:
-    ch_versions = Channel.empty()
     
     //
     // Conditionally apply BCFTOOLS_SETGT if intersection is not performed
@@ -34,7 +33,6 @@ workflow FILTER_LOWCONF {
     if (!val_perform_intersection) {
         
         BCFTOOLS_SETGT(ch_vcfs)
-        ch_versions = ch_versions.mix(BCFTOOLS_SETGT.out.versions)
         
         ch_input_for_filtering = BCFTOOLS_SETGT.out.vcf
             .join(BCFTOOLS_SETGT.out.tbi)
@@ -48,12 +46,9 @@ workflow FILTER_LOWCONF {
     if (val_apply_vaf_correction) {
         BCFTOOLS_SETGT_VAF(ch_input_for_filtering)
         
-        ch_versions = ch_versions.mix(BCFTOOLS_SETGT_VAF.out.versions)
-        
         ch_input_for_filtering = BCFTOOLS_SETGT_VAF.out.vcf
             .join(BCFTOOLS_SETGT_VAF.out.tbi)
     }
-    
     
     //
     // Prepare excluded regions BED file
@@ -74,8 +69,6 @@ workflow FILTER_LOWCONF {
         [],
         []
     )
-    ch_versions = ch_versions.mix(BCFTOOLS_VIEW_FILTER_ALL.out.versions)
-
 
     //
     // Prepare final filtered VCFs with their indices
@@ -85,5 +78,5 @@ workflow FILTER_LOWCONF {
     
     emit:
     vcf      = ch_final_vcfs  // channel: [val(meta), path(vcf), path(tbi)]
-    versions = ch_versions    // channel: [path(versions.yml)]
+
 }

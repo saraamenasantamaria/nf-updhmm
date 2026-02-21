@@ -1,22 +1,23 @@
 //
-// Filter structural variants using BED regions
+// Filter structural variants using BED regions and optionally filter ambiguous VAF
 //
 // This workflow processes samples with and without SV files, converts VCF SVs to BED format,
-// merges overlapping regions, and applies the mask to filter variants.
+// merges overlapping regions, applies the mask to filter variants, and optionally filters ambiguous VAF.
 //
 
-include { CUSTOM_BEDCONCAT                 } from '../../../modules/local/custom/bedconcat/main'
-include { BEDTOOLS_MERGE             } from '../../../modules/nf-core/bedtools/merge/main'
-include { BCFTOOLS_VIEW as VIEW_MASK } from '../../../modules/nf-core/bcftools/view/main'
-include { BCFTOOLS_QUERY             } from '../../../modules/nf-core/bcftools/query/main'
+include { CUSTOM_BEDCONCAT                               } from '../../../modules/local/custom/bedconcat/main'
+include { BEDTOOLS_MERGE                                 } from '../../../modules/nf-core/bedtools/merge/main'
+include { BCFTOOLS_VIEW_EXCLUDE as VIEW_MASK             } from '../../../modules/local/bcftools/view_exclude/main'
+include { BCFTOOLS_QUERY                                 } from '../../../modules/nf-core/bcftools/query/main'
+include { BCFTOOLS_VIEW as BCFTOOLS_FILTER_AMBIGUOUS_VAF } from '../../../modules/nf-core/bcftools/view/main'
 
 workflow SV_MASK_BED {
     
     take:
     ch_vcfs    // channel: [val(meta), path(vcf), path(tbi)]
+    val_apply_vaf_filter  // boolean: whether to filter ambiguous VAF variants 
 
     main:
-    ch_versions = Channel.empty()
 
     //
     // Expand metadata to include structural variant (SV) file paths
@@ -26,16 +27,13 @@ workflow SV_MASK_BED {
     }
 
     //
-    // Split samples based on SV or VAF availability
+    // Split samples based on SV availability only
     //
     ch_mask_branches = ch_sv_paths.branch { meta, sv_p, sv_m, sv_f, vcf, tbi ->
         def has_sv = [sv_p, sv_m, sv_f].any { it != '-' && it != null }
-        def has_vaf = (meta.containsKey('vaf_bed_p') && meta.vaf_bed_p != null) ||
-                      (meta.containsKey('vaf_bed_m') && meta.vaf_bed_m != null) ||
-                      (meta.containsKey('vaf_bed_f') && meta.vaf_bed_f != null)
         
-        with_mask : has_sv || has_vaf
-        no_mask   : !has_sv && !has_vaf
+        with_mask : has_sv
+        no_mask   : !has_sv
     }
 
     //
@@ -83,7 +81,6 @@ workflow SV_MASK_BED {
         [],
         []
     )
-    ch_versions = ch_versions.mix(BCFTOOLS_QUERY.out.versions)
 
     //
     // Reattach original metadata after conversion
@@ -99,40 +96,13 @@ workflow SV_MASK_BED {
         }
 
     //
-    // Combine original BEDs with converted BEDs
+    // Combine original BEDs with converted BEDs (only SV files now)
     //
     ch_all_bed_files = ch_bed_files
         .map { meta, sv_file, vcf, tbi -> 
             [ meta, sv_file ]
         }
         .mix(ch_converted_beds)
-    
-    // 
-    // Add VAF ambiguous BED files if they exist in metadata
-    // 
-    ch_vaf_beds = ch_mask_branches.with_mask
-        .map { meta, sv_p, sv_m, sv_f, vcf, tbi -> meta }
-        .flatMap { meta ->
-            def vaf_beds = []
-            
-            // Collect VAF BED files from metadata if they exist
-            if (meta.containsKey('vaf_bed_p') && meta.vaf_bed_p != null) {
-                vaf_beds << [ meta, meta.vaf_bed_p ]
-            }
-            if (meta.containsKey('vaf_bed_m') && meta.vaf_bed_m != null) {
-                vaf_beds << [ meta, meta.vaf_bed_m ]
-            }
-            if (meta.containsKey('vaf_bed_f') && meta.vaf_bed_f != null) {
-                vaf_beds << [ meta, meta.vaf_bed_f ]
-            }
-            
-            return vaf_beds
-        }
-    
-    //
-    // Combine SV BEDs with VAF BEDs
-    //
-    ch_all_bed_files = ch_all_bed_files.mix(ch_vaf_beds)
 
     //
     // Group all BEDs per sample
@@ -140,7 +110,7 @@ workflow SV_MASK_BED {
     ch_beds_grouped = ch_all_bed_files.groupTuple(by: 0)
 
     //
-    // Get VCFs for samples that have masks (SV or VAF)
+    // Get VCFs for samples that have SV masks
     //
     ch_vcfs_with_mask = ch_mask_branches.with_mask
         .map { meta, sv_p, sv_m, sv_f, vcf, tbi -> 
@@ -164,13 +134,11 @@ workflow SV_MASK_BED {
             [ meta, beds ]
         }
     )
-    ch_versions = ch_versions.mix(CUSTOM_BEDCONCAT.out.versions)
     
     //
     // Merge overlapping BED regions into a unified mask
     //
     BEDTOOLS_MERGE(CUSTOM_BEDCONCAT.out.bed)
-    ch_versions = ch_versions.mix(BEDTOOLS_MERGE.out.versions)
 
     //
     // Associate merged BED mask with the sample's VCF
@@ -183,7 +151,7 @@ workflow SV_MASK_BED {
         .map { meta, vcf, tbi, bed -> 
             [ meta, vcf, tbi, bed ]
         }
-
+    
     //
     // Apply BED mask to VCF using bcftools view
     //
@@ -193,7 +161,6 @@ workflow SV_MASK_BED {
         [],
         []
     )
-    ch_versions = ch_versions.mix(VIEW_MASK.out.versions)
 
     //
     // Join filtered VCFs with their indices
@@ -202,7 +169,7 @@ workflow SV_MASK_BED {
         .join(VIEW_MASK.out.tbi)
 
     //
-    // Process samples without any mask files (pass through unmodified)
+    // Process samples without any SV mask files (pass through unmodified)
     //
     ch_no_mask_vcf = ch_mask_branches.no_mask
         .map { meta, sv_p, sv_m, sv_f, vcf, tbi -> 
@@ -210,11 +177,26 @@ workflow SV_MASK_BED {
         }
 
     //
-    // Merge processed and unprocessed results
+    // Merge SV-processed and unprocessed results
     //
-    ch_all_vcfs = ch_with_mask_joined.mix(ch_no_mask_vcf)
+    ch_sv_filtered_vcfs = ch_with_mask_joined.mix(ch_no_mask_vcf)
+
+    // Apply VAF ambiguous filtering if requested
+    if (val_apply_vaf_filter) {
+        BCFTOOLS_FILTER_AMBIGUOUS_VAF(
+            ch_sv_filtered_vcfs,
+            [],
+            [],
+            []
+        )
+        
+        ch_final_vcfs = BCFTOOLS_FILTER_AMBIGUOUS_VAF.out.vcf
+            .join(BCFTOOLS_FILTER_AMBIGUOUS_VAF.out.tbi)
+    } else {
+        ch_final_vcfs = ch_sv_filtered_vcfs
+    }
 
     emit:
-    vcf      = ch_all_vcfs  // channel: [val(meta), path(vcf), path(tbi)]
-    versions = ch_versions  // channel: [path(versions.yml)]
+    vcf      = ch_final_vcfs  // channel: [val(meta), path(vcf), path(tbi)]
+
 }

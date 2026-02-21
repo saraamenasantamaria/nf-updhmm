@@ -6,20 +6,20 @@
                     [
                         {
                             "id": "test_trio",
-                            "proband_id": "NA19685",
-                            "mother_id": "NA19688",
-                            "father_id": "NA19689"
+                            "proband_id": "hugelymodelbat",
+                            "mother_id": "slowlycivilbuck",
+                            "father_id": "earlycasualcaiman"
                         },
-                        "test_trio.processed.rds:md5,86dc625e75b4f187c86aa678a4033288"
+                        "test_trio.processed.rds:md5,e2b3e8ba92259d71ea84fc884147eb4c"
                     ]
                 ],
                 "1": [
                     [
                         {
                             "id": "test_trio",
-                            "proband_id": "NA19685",
-                            "mother_id": "NA19688",
-                            "father_id": "NA19689"
+                            "proband_id": "hugelymodelbat",
+                            "mother_id": "slowlycivilbuck",
+                            "father_id": "earlycasualcaiman"
                         },
                         "test_trio.R_sessionInfo.log:md5,0e5fc8fd810bc0cf647e6f3cb3cacd0c"
                     ]
@@ -31,20 +31,20 @@
                     [
                         {
                             "id": "test_trio",
-                            "proband_id": "NA19685",
-                            "mother_id": "NA19688",
-                            "father_id": "NA19689"
+                            "proband_id": "hugelymodelbat",
+                            "mother_id": "slowlycivilbuck",
+                            "father_id": "earlycasualcaiman"
                         },
-                        "test_trio.processed.rds:md5,86dc625e75b4f187c86aa678a4033288"
+                        "test_trio.processed.rds:md5,e2b3e8ba92259d71ea84fc884147eb4c"
                     ]
                 ],
                 "session_info": [
                     [
                         {
                             "id": "test_trio",
-                            "proband_id": "NA19685",
-                            "mother_id": "NA19688",
-                            "father_id": "NA19689"
+                            "proband_id": "hugelymodelbat",
+                            "mother_id": "slowlycivilbuck",
+                            "father_id": "earlycasualcaiman"
                         },
                         "test_trio.R_sessionInfo.log:md5,0e5fc8fd810bc0cf647e6f3cb3cacd0c"
                     ]
@@ -58,7 +58,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2026-01-14T08:32:07.299114621"
+        "timestamp": "2026-01-26T15:50:16.003162372"
     },
     "trio vcf - stub": {
         "content": [
@@ -67,9 +67,9 @@
                     [
                         {
                             "id": "test_trio",
-                            "proband_id": "NA19685",
-                            "mother_id": "NA19688",
-                            "father_id": "NA19689"
+                            "proband_id": "hugelymodelbat",
+                            "mother_id": "slowlycivilbuck",
+                            "father_id": "earlycasualcaiman"
                         },
                         "test_trio.processed.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
@@ -78,9 +78,9 @@
                     [
                         {
                             "id": "test_trio",
-                            "proband_id": "NA19685",
-                            "mother_id": "NA19688",
-                            "father_id": "NA19689"
+                            "proband_id": "hugelymodelbat",
+                            "mother_id": "slowlycivilbuck",
+                            "father_id": "earlycasualcaiman"
                         },
                         "test_trio.R_sessionInfo.log:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
@@ -92,9 +92,9 @@
                     [
                         {
                             "id": "test_trio",
-                            "proband_id": "NA19685",
-                            "mother_id": "NA19688",
-                            "father_id": "NA19689"
+                            "proband_id": "hugelymodelbat",
+                            "mother_id": "slowlycivilbuck",
+                            "father_id": "earlycasualcaiman"
                         },
                         "test_trio.processed.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
@@ -103,9 +103,9 @@
                     [
                         {
                             "id": "test_trio",
-                            "proband_id": "NA19685",
-                            "mother_id": "NA19688",
-                            "father_id": "NA19689"
+                            "proband_id": "hugelymodelbat",
+                            "mother_id": "slowlycivilbuck",
+                            "father_id": "earlycasualcaiman"
                         },
                         "test_trio.R_sessionInfo.log:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
@@ -119,6 +119,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2026-01-14T08:33:03.79260344"
+        "timestamp": "2026-01-26T15:51:12.590891178"
     }
 }

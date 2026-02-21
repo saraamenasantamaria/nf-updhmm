@@ -32,7 +32,6 @@ nextflow_workflow {
                     ]
                 ])
                 input[1] = false
-                input[2] = false
                 """
             }
         }
@@ -59,52 +58,6 @@ nextflow_workflow {
         }
     }
     
-    test("single family - vaf filter") {
-
-        when {
-            workflow {
-                """
-                input[0] = Channel.of([
-                    [
-                        id: 'family1',
-                        sv_p: '-',
-                        sv_m: '-', 
-                        sv_f: '-'
-                    ],
-                    [
-                        file('${projectDir}/subworkflows/local/remove_annotations/tests/data/proband.vcf.gz', checkIfExists: true),
-                        file('${projectDir}/subworkflows/local/remove_annotations/tests/data/mother.vcf.gz', checkIfExists: true),
-                        file('${projectDir}/subworkflows/local/remove_annotations/tests/data/father.vcf.gz', checkIfExists: true)
-                    ]
-                ])
-                input[1] = false
-                input[2] = true
-                """
-            }
-        }
-
-        then {
-            assertAll(
-                { assert workflow.success },
-                { assert workflow.trace.tasks().size() == 15 },
-                { assert workflow.out.vcf.get(0).get(1).size() == 3 }, // 3 VCF files
-                { assert workflow.out.vcf.get(0).get(2).size() == 3 }, // 3 TBI files
-                { assert snapshot(
-                    workflow.out.vcf.collect { meta, vcf, tbis -> 
-                        [
-                            meta: meta,
-                            vcf_count: vcf.size(),
-                            tbi_count: tbis.size(),
-                            vcf_names: vcf.collect { it instanceof java.nio.file.Path ? it.name : it.toString() },
-                            tbi_names: tbis.collect { it instanceof java.nio.file.Path ? it.name : it.toString() }
-                        ]
-                    },
-                    workflow.out.versions
-                ).match() }
-            )
-        }
-    }
-
     test("multiple families") {
 
         when {
@@ -137,7 +90,6 @@ nextflow_workflow {
                         ]
                     ])
                 input[1] = false
-                input[2] = false
                 """
             }
         }
@@ -188,7 +140,6 @@ nextflow_workflow {
                     ]
                 ])
                 input[1] = false
-                input[2] = false
                 """
             }
         }
@@ -220,7 +171,6 @@ nextflow_workflow {
                     ]
                 ])
                 input[1] = true 
-                input[2] = false
                 """
             }
         }
@@ -229,52 +179,6 @@ nextflow_workflow {
             assertAll(
                 { assert workflow.success },
                 { assert workflow.trace.tasks().size() == 9 },
-                { assert workflow.out.vcf.get(0).get(1).size() == 3 }, // 3 VCF files
-                { assert workflow.out.vcf.get(0).get(2).size() == 3 }, // 3 TBI files
-                { assert snapshot(
-                    workflow.out.vcf.collect { meta, vcf, tbis -> 
-                        [
-                            meta: meta,
-                            vcf_count: vcf.size(),
-                            tbi_count: tbis.size(),
-                            vcf_names: vcf.collect { it instanceof java.nio.file.Path ? it.name : it.toString() },
-                            tbi_names: tbis.collect { it instanceof java.nio.file.Path ? it.name : it.toString() }
-                        ]
-                    },
-                    workflow.out.versions
-                ).match() }
-            )
-        }
-    }
-
-    test("single family - gvcf mode - vaf filter") {
-
-        when {
-            workflow {
-                """
-                input[0] = Channel.of([
-                    [
-                        id: 'family1',
-                        sv_p: '-',
-                        sv_m: '-', 
-                        sv_f: '-'
-                    ],
-                    [
-                        file('${projectDir}/subworkflows/local/remove_annotations/tests/data/proband.vcf.gz', checkIfExists: true),
-                        file('${projectDir}/subworkflows/local/remove_annotations/tests/data/mother.vcf.gz', checkIfExists: true),
-                        file('${projectDir}/subworkflows/local/remove_annotations/tests/data/father.vcf.gz', checkIfExists: true)
-                    ]
-                ])
-                input[1] = true 
-                input[2] = true
-                """
-            }
-        }
-
-        then {
-            assertAll(
-                { assert workflow.success },
-                { assert workflow.trace.tasks().size() == 15 },
                 { assert workflow.out.vcf.get(0).get(1).size() == 3 }, // 3 VCF files
                 { assert workflow.out.vcf.get(0).get(2).size() == 3 }, // 3 TBI files
                 { assert snapshot(
@@ -314,7 +218,6 @@ nextflow_workflow {
                     ]
                 ])
                 input[1] = true
-                input[2] = false
                 """
             }
         }

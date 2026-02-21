@@ -4,7 +4,6 @@ channels:
   - conda-forge
   - bioconda
 dependencies:
+  - bioconda::bioconductor-biocparallel=1.44.0
+  - bioconda::bioconductor-updhmm=1.5.3
   - conda-forge::r-base=4.3.0
-  - bioconda::bioconductor-updhmm=1.5.2
-  - bioconda::bioconductor-biocparallel=1.36.0
-

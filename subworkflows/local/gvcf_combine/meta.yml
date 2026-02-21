@@ -12,51 +12,43 @@ keywords:
 components:
   - gatk4/combinegvcfs
   - gatk4/genotypegvcfs
+  - gatk4/variantfiltration
   - bcftools/annotate
 
 input:
-  - - meta:
-        type: map
-        description: |
-          Groovy Map containing family information
-          e.g. [ id:'family_001', proband_id:'proband_001', mother_id:'mother_001', father_id:'father_001', sv_p:'path/to/proband', sv_m:'path/to/mother', sv_f:'path/to/father' ]
-    - gvcfs:
-        type: file
-        description: List of GVCF files for family trio (proband, mother, father) to be combined and genotyped
-        pattern: "*.{gvcf.gz}"
-    - tbis:
-        type: file
-        description: Tabix index files for input GVCF files
-        pattern: "*.tbi"
-        ontologies:
-        - edam: "http://edamontology.org/format_3616"
+  - ch_gvcfs:
+      type: channel
+      description: |
+        Channel containing family metadata, list of GVCF files and their tabix indices
+        Structure: [ meta, gvcfs, tbis ]
+        Where meta is a Groovy Map containing family information
+        e.g. [ id:'family_001', proband_id:'proband_001', mother_id:'mother_001', father_id:'father_001', sv_p:'path/to/proband', sv_m:'path/to/mother', sv_f:'path/to/father' ]
+        gvcfs: List of GVCF files for family trio (proband, mother, father) to be combined, genotyped and annotated
+        tbis: Tabix index files for input GVCF files
+      pattern: "[ meta, [*.gvcf.gz], [*.tbi] ]"
+  - val_fasta:
+      type: file
+      description: Reference genome FASTA file
+      pattern: "*.{fa,fasta}"
+  - val_fai:
+      type: file
+      description: Reference genome FASTA index file
+      pattern: "*.{fa.fai,fasta.fai}"
+  - val_dict:
+      type: file
+      description: Reference genome sequence dictionary file
+      pattern: "*.dict"
 
 output:
   - vcf:
-      - meta:
-          type: map
-          description: |
-            Groovy Map containing family information
-            e.g. [ id:'family_001', proband_id:'proband_001', mother_id:'mother_001', father_id:'father_001', sv_p:'path/to/proband', sv_m:'path/to/mother', sv_f:'path/to/father' ]
-      - vcf:
-          type: file
-          description: Final VCF file containing genotyped variants from family trio members after joint calling and annotation cleanup
-          pattern: "*.vcf.gz"
-          ontologies:
-          - edam: "http://edamontology.org/format_3016"
-      - tbi:
-          type: file
-          description: Tabix index for the final VCF file
-          pattern: "*.tbi"
-          ontologies:
-          - edam: "http://edamontology.org/format_3616"
-  - versions:
-      - versions:
-          type: file
-          description: File containing software versions
-          pattern: "versions.yml"
-          ontologies:
-          - edam: "http://edamontology.org/format_3750"
+      type: channel
+      description: |
+        Channel containing family metadata, final processed VCF file and its tabix index
+        Structure: [ meta, vcf, tbi ]
+        Where vcf is the final VCF file containing genotyped variants from family trio members 
+        after joint calling, variant filtration (LowDepth and LowGQ filters), and removal of unused annotations
+        and tbi is the tabix index file for the final VCF
+      pattern: "[ meta, *.vcf.gz, *.tbi ]"
           
 authors:
   - "@saramenasantamaria"

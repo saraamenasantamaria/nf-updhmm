@@ -6,9 +6,9 @@
                     [
                         {
                             "id": "test_trio",
-                            "proband_id": "NA19685",
-                            "mother_id": "NA19688",
-                            "father_id": "NA19689"
+                            "proband_id": "hugelymodelbat",
+                            "mother_id": "slowlycivilbuck",
+                            "father_id": "earlycasualcaiman"
                         },
                         "test_trio.upd_collapsed.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
@@ -17,9 +17,9 @@
                     [
                         {
                             "id": "test_trio",
-                            "proband_id": "NA19685",
-                            "mother_id": "NA19688",
-                            "father_id": "NA19689"
+                            "proband_id": "hugelymodelbat",
+                            "mother_id": "slowlycivilbuck",
+                            "father_id": "earlycasualcaiman"
                         },
                         "test_trio.upd_collapsed.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
@@ -28,9 +28,9 @@
                     [
                         {
                             "id": "test_trio",
-                            "proband_id": "NA19685",
-                            "mother_id": "NA19688",
-                            "father_id": "NA19689"
+                            "proband_id": "hugelymodelbat",
+                            "mother_id": "slowlycivilbuck",
+                            "father_id": "earlycasualcaiman"
                         },
                         "test_trio.R_sessionInfo.log:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
@@ -42,9 +42,9 @@
                     [
                         {
                             "id": "test_trio",
-                            "proband_id": "NA19685",
-                            "mother_id": "NA19688",
-                            "father_id": "NA19689"
+                            "proband_id": "hugelymodelbat",
+                            "mother_id": "slowlycivilbuck",
+                            "father_id": "earlycasualcaiman"
                         },
                         "test_trio.R_sessionInfo.log:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
@@ -53,9 +53,9 @@
                     [
                         {
                             "id": "test_trio",
-                            "proband_id": "NA19685",
-                            "mother_id": "NA19688",
-                            "father_id": "NA19689"
+                            "proband_id": "hugelymodelbat",
+                            "mother_id": "slowlycivilbuck",
+                            "father_id": "earlycasualcaiman"
                         },
                         "test_trio.upd_collapsed.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
@@ -64,9 +64,9 @@
                     [
                         {
                             "id": "test_trio",
-                            "proband_id": "NA19685",
-                            "mother_id": "NA19688",
-                            "father_id": "NA19689"
+                            "proband_id": "hugelymodelbat",
+                            "mother_id": "slowlycivilbuck",
+                            "father_id": "earlycasualcaiman"
                         },
                         "test_trio.upd_collapsed.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
@@ -80,7 +80,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2026-01-14T08:53:01.054979478"
+        "timestamp": "2026-01-27T08:19:51.190740961"
     },
     "processed trio rds": {
         "content": [
@@ -89,31 +89,31 @@
                     [
                         {
                             "id": "test_trio",
-                            "proband_id": "NA19685",
-                            "mother_id": "NA19688",
-                            "father_id": "NA19689"
+                            "proband_id": "hugelymodelbat",
+                            "mother_id": "slowlycivilbuck",
+                            "father_id": "earlycasualcaiman"
                         },
-                        "test_trio.upd_collapsed.txt:md5,ecd1b8d871fff6370ecd36f0d48136f3"
+                        "test_trio.upd_collapsed.txt:md5,49b269b507da242cc4fc606d8510fd40"
                     ]
                 ],
                 "1": [
                     [
                         {
                             "id": "test_trio",
-                            "proband_id": "NA19685",
-                            "mother_id": "NA19688",
-                            "father_id": "NA19689"
+                            "proband_id": "hugelymodelbat",
+                            "mother_id": "slowlycivilbuck",
+                            "father_id": "earlycasualcaiman"
                         },
-                        "test_trio.upd_collapsed.rds:md5,bd0c6dce353a9bc5e0876fdaa133b13f"
+                        "test_trio.upd_collapsed.rds:md5,8d20ad6c3d1e277957687c06431acb6d"
                     ]
                 ],
                 "2": [
                     [
                         {
                             "id": "test_trio",
-                            "proband_id": "NA19685",
-                            "mother_id": "NA19688",
-                            "father_id": "NA19689"
+                            "proband_id": "hugelymodelbat",
+                            "mother_id": "slowlycivilbuck",
+                            "father_id": "earlycasualcaiman"
                         },
                         "test_trio.R_sessionInfo.log:md5,76ffea8e595dac0304d35e71c36abfe2"
                     ]
@@ -125,9 +125,9 @@
                     [
                         {
                             "id": "test_trio",
-                            "proband_id": "NA19685",
-                            "mother_id": "NA19688",
-                            "father_id": "NA19689"
+                            "proband_id": "hugelymodelbat",
+                            "mother_id": "slowlycivilbuck",
+                            "father_id": "earlycasualcaiman"
                         },
                         "test_trio.R_sessionInfo.log:md5,76ffea8e595dac0304d35e71c36abfe2"
                     ]
@@ -136,22 +136,22 @@
                     [
                         {
                             "id": "test_trio",
-                            "proband_id": "NA19685",
-                            "mother_id": "NA19688",
-                            "father_id": "NA19689"
+                            "proband_id": "hugelymodelbat",
+                            "mother_id": "slowlycivilbuck",
+                            "father_id": "earlycasualcaiman"
                         },
-                        "test_trio.upd_collapsed.rds:md5,bd0c6dce353a9bc5e0876fdaa133b13f"
+                        "test_trio.upd_collapsed.rds:md5,8d20ad6c3d1e277957687c06431acb6d"
                     ]
                 ],
                 "upd_collapsed_txt": [
                     [
                         {
                             "id": "test_trio",
-                            "proband_id": "NA19685",
-                            "mother_id": "NA19688",
-                            "father_id": "NA19689"
+                            "proband_id": "hugelymodelbat",
+                            "mother_id": "slowlycivilbuck",
+                            "father_id": "earlycasualcaiman"
                         },
-                        "test_trio.upd_collapsed.txt:md5,ecd1b8d871fff6370ecd36f0d48136f3"
+                        "test_trio.upd_collapsed.txt:md5,49b269b507da242cc4fc606d8510fd40"
                     ]
                 ],
                 "versions": [
@@ -163,6 +163,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2026-01-14T08:52:36.647160929"
+        "timestamp": "2026-01-27T08:18:39.076201777"
     }
 }

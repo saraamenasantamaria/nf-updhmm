@@ -29,6 +29,7 @@ nextflow_workflow {
                     file('${projectDir}/subworkflows/local/sv_mask_bed/tests/data/family.vcf.gz', checkIfExists: true),
                     file('${projectDir}/subworkflows/local/sv_mask_bed/tests/data/family.vcf.gz.tbi', checkIfExists: true)
                 ])
+                input[1] = false
                 """
             }
         }
@@ -67,14 +68,12 @@ nextflow_workflow {
                         id: 'family1',
                         sv_p: '${projectDir}/subworkflows/local/sv_mask_bed/tests/data/proband_sv.bed',
                         sv_m: '${projectDir}/subworkflows/local/sv_mask_bed/tests/data/mother_sv.bed', 
-                        sv_f: '${projectDir}/subworkflows/local/sv_mask_bed/tests/data/father_sv.bed',
-                        vaf_bed_p: null,
-                        vaf_bed_m: '${projectDir}/subworkflows/local/sv_mask_bed/tests/data/mother_vaf_ambiguous.bed',
-                        vaf_bed_f: '${projectDir}/subworkflows/local/sv_mask_bed/tests/data/father_vaf_ambiguous.bed'
+                        sv_f: '${projectDir}/subworkflows/local/sv_mask_bed/tests/data/father_sv.bed'
                     ],
                     file('${projectDir}/subworkflows/local/sv_mask_bed/tests/data/family.vcf.gz', checkIfExists: true),
                     file('${projectDir}/subworkflows/local/sv_mask_bed/tests/data/family.vcf.gz.tbi', checkIfExists: true)
                 ])
+                input[1] = true
                 """
             }
         }
@@ -118,6 +117,7 @@ nextflow_workflow {
                     file('${projectDir}/subworkflows/local/sv_mask_bed/tests/data/family.vcf.gz', checkIfExists: true),
                     file('${projectDir}/subworkflows/local/sv_mask_bed/tests/data/family.vcf.gz.tbi', checkIfExists: true)
                 ])
+                input[1] = false
                 """
             }
         }
@@ -161,6 +161,7 @@ nextflow_workflow {
                     file('${projectDir}/subworkflows/local/sv_mask_bed/tests/data/family.vcf.gz', checkIfExists: true),
                     file('${projectDir}/subworkflows/local/sv_mask_bed/tests/data/family.vcf.gz.tbi', checkIfExists: true)
                 ])
+                input[1] = false
                 """
             }
         }
@@ -204,6 +205,7 @@ nextflow_workflow {
                     file('${projectDir}/subworkflows/local/sv_mask_bed/tests/data/family.vcf.gz', checkIfExists: true),
                     file('${projectDir}/subworkflows/local/sv_mask_bed/tests/data/family.vcf.gz.tbi', checkIfExists: true)
                 ])
+                input[1] = false
                 """
             }
         }
@@ -279,6 +281,7 @@ nextflow_workflow {
                         file('${projectDir}/subworkflows/local/sv_mask_bed/tests/data/family.vcf.gz.tbi', checkIfExists: true)
                     ]
                 )
+                input[1] = false
                 """
             }
         }
@@ -324,6 +327,7 @@ nextflow_workflow {
                     file('${projectDir}/subworkflows/local/sv_mask_bed/tests/data/family.vcf.gz', checkIfExists: true),
                     file('${projectDir}/subworkflows/local/sv_mask_bed/tests/data/family.vcf.gz.tbi', checkIfExists: true)
                 ])
+                input[1] = false
                 """
             }
         }
@@ -353,6 +357,7 @@ nextflow_workflow {
                     file('${projectDir}/subworkflows/local/sv_mask_bed/tests/data/family.vcf.gz', checkIfExists: true),
                     file('${projectDir}/subworkflows/local/sv_mask_bed/tests/data/family.vcf.gz.tbi', checkIfExists: true)
                 ])
+                input[1] = false
                 """
             }
         }
@@ -382,6 +387,7 @@ nextflow_workflow {
                     file('${projectDir}/subworkflows/local/sv_mask_bed/tests/data/family.vcf.gz', checkIfExists: true),
                     file('${projectDir}/subworkflows/local/sv_mask_bed/tests/data/family.vcf.gz.tbi', checkIfExists: true)
                 ])
+                input[1] = false
                 """
             }
         }
@@ -443,6 +449,7 @@ nextflow_workflow {
                         file('${projectDir}/subworkflows/local/sv_mask_bed/tests/data/family.vcf.gz.tbi', checkIfExists: true)
                     ]
                 )
+                input[1] = false
                 """
             }
         }

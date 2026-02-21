@@ -27,7 +27,6 @@ workflow UPDHMM {
     ch_samplesheet  // channel: samplesheet read in from --input
 
     main:
-    ch_versions = Channel.empty()
     
     //
     // Parse samplesheet into channel with trio metadata
@@ -58,10 +57,8 @@ workflow UPDHMM {
     //
     REMOVE_ANNOTATIONS(
         ch_samples,
-        params.is_gvcf,
-        params.apply_vaf_filter
+        params.is_gvcf
     )
-    ch_versions = ch_versions.mix(REMOVE_ANNOTATIONS.out.versions)
 
     //
     // SUBWORKFLOW: Combine trio VCFs (strategy depends on input format)
@@ -76,7 +73,6 @@ workflow UPDHMM {
             params.fai,
             params.dict
         )
-        ch_versions = ch_versions.mix(GVCF_COMBINE.out.versions)
         ch_combined_vcfs = GVCF_COMBINE.out.vcf
     } else {
         //
@@ -86,15 +82,14 @@ workflow UPDHMM {
             REMOVE_ANNOTATIONS.out.vcf,
             params.perform_intersection
         )
-        ch_versions = ch_versions.mix(VCF_COMBINE.out.versions)
         ch_combined_vcfs = VCF_COMBINE.out.vcf
     }
 
     //
     // SUBWORKFLOW: Mask structural variant regions
     //
-    SV_MASK_BED(ch_combined_vcfs)
-    ch_versions = ch_versions.mix(SV_MASK_BED.out.versions)
+    SV_MASK_BED(ch_combined_vcfs,
+                params.apply_vaf_filter)
 
     //
     // SUBWORKFLOW: Apply quality filters for high-confidence variants
@@ -104,27 +99,10 @@ workflow UPDHMM {
         params.perform_intersection,
         params.apply_vaf_correction
     )
-    ch_versions = ch_versions.mix(FILTER_LOWCONF.out.versions)
 
     //
     // SUBWORKFLOW: UPD event detection and HMM segmentation
     //
     EVENT_DETECTION(FILTER_LOWCONF.out.vcf)
-    //ch_versions = ch_versions.mix(EVENT_DETECTION.out.versions)
-    
-// El proceso BCFTOOLS_QUERY no genera correctamente versions.yml por eso esto da error
-//    //
-//    // Collate and save software versions
-//    //
-//    softwareVersionsToYAML(ch_versions)
-//        .collectFile(
-//            storeDir: "${params.outdir}/pipeline_info",
-//            name: 'nf_core_pipeline_software_mqc_versions.yml',
-//            sort: true,
-//            newLine: true
-//        ).set { ch_collated_versions }
-
-    emit:
-    versions       = ch_versions
 
 }

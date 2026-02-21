@@ -15,16 +15,18 @@ workflow VCF_COMBINE {
     val_perform_intersection  // boolean: whether to perform intersection
     
     main:
-    ch_versions = Channel.empty()
 
     //
     // Optionally perform VCF intersection
     // If val_perform_intersection is enabled, extract only variants shared among all trio members
     //
     if (val_perform_intersection) {
+    
+        ch_isec_input = ch_vcfs.map { meta, vcfs, tbis ->
+            [ meta, vcfs, tbis, [], [], [] ]  
+        }
         
-        BCFTOOLS_ISEC(ch_vcfs)
-        ch_versions = ch_versions.mix(BCFTOOLS_ISEC.out.versions)
+        BCFTOOLS_ISEC(ch_isec_input)
 
         ch_merge_input = BCFTOOLS_ISEC.out.results
             .map { meta, dir ->
@@ -55,7 +57,6 @@ workflow VCF_COMBINE {
         ch_fasta_fai,
         ch_bed_regions
     )
-    ch_versions = ch_versions.mix(BCFTOOLS_MERGE.out.versions)
 
     //
     // Join merged VCFs with their index files
@@ -65,5 +66,5 @@ workflow VCF_COMBINE {
     
     emit:
     vcf      = ch_merged_vcfs  // channel: [val(meta), path(vcf), path(tbi)]
-    versions = ch_versions     // channel: [path(versions.yml)]
+
 }

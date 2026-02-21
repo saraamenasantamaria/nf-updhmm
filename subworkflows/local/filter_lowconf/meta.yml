@@ -1,6 +1,6 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/subworkflows/yaml-schema.json
 name: filter_lowconf
-description: Apply sequential hard filters to produce final high-confidence preprocessed VCF per family.
+description: Apply hard filters to produce final high-confidence preprocessed VCF per family.
 keywords:
   - vcf
   - filtering
@@ -10,27 +10,18 @@ keywords:
   - bcftools
 components:
   - bcftools/setgt
-  - bcftools/setgt_vaf
-  - bcftools/view
+  - bcftools/setgt/vaf
+  - bcftools/view/exclude
 
 input:
-  - - meta:
-        type: map
-        description: |
-          Groovy Map containing family information (family ID and SV paths)
-          e.g. [ id:'family_001', sv_p:'path/to/proband', sv_m:'path/to/mother', sv_f:'path/to/father' ]
-    - vcf:
-        type: file
-        description: Input VCF file to be filtered for quality and problematic genomic regions
-        pattern: "*.{vcf.gz}"
-        ontologies:
-        - edam: "http://edamontology.org/format_3016"
-    - tbi:
-        type: file
-        description: Tabix index file for input VCF
-        pattern: "*.tbi"
-        ontologies:
-        - edam: "http://edamontology.org/format_3616"
+  - ch_vcfs:
+      type: channel
+      description: |
+        Channel containing family metadata, VCF file to be filtered and its tabix index
+        Structure: [ meta, vcf, tbi ]
+        Where meta is a Groovy Map containing family information
+        e.g. [ id:'family_001', sv_p:'path/to/proband', sv_m:'path/to/mother', sv_f:'path/to/father' ]
+        pattern: "[ meta, *.{vcf.gz}, *.tbi ]"
   - val_perform_intersection:
       type: boolean
       description: |
@@ -44,35 +35,16 @@ input:
 
 output:
   - vcf:
-      - meta:
-          type: map
-          description: |
-            Groovy Map containing family information
-            e.g. `[id:'family_001', sv_p:'path/to/proband', sv_m:'path/to/mother', sv_f:'path/to/father']`
-      - vcf:
-          type: file
-          description: |
-            Final filtered high-confidence VCF file after applying sequential filters:
-            1. Biallelic SNPs only (exclude multiallelic)
-            2. Minimum GQ/DP thresholds (configurable via params.GQ_min, params.DP_min)
-            3. Exclude all-reference homozygous variants (0/0 or 0|0 in all trio members)
-            4. Exclude problematic genomic regions (centromeres, segmental duplications, HLA/KIR)
-          pattern: "*.vcf.gz"
-          ontologies:
-          - edam: "http://edamontology.org/format_3016"
-      - tbi:
-          type: file
-          description: Tabix index for the filtered VCF file
-          pattern: "*.tbi"
-          ontologies:
-          - edam: "http://edamontology.org/format_3616"
-  - versions:
-      - versions:
-          type: file
-          description: File containing software versions
-          pattern: "versions.yml"
-          ontologies:
-          - edam: "http://edamontology.org/format_3750"
+      type: channel
+      description: |
+        Channel containing family metadata, filtered VCF file and its tabix index
+        Structure: [ meta, vcf, tbi ]
+        The VCF file in this channel represents the final high-confidence VCF after all filtering steps:
+        1. Biallelic SNPs only (exclude multiallelic)
+        2. Minimum GQ/DP thresholds (configurable via params.GQ_min, params.DP_min)
+        3. Exclude all-reference homozygous variants (0/0 or 0|0 in all trio members)
+        4. Exclude problematic genomic regions (centromeres, segmental duplications, HLA/KIR)
+        pattern: "[ meta, *.{vcf.gz}, *.tbi ]"
 
 authors:
   - "@saramenasantamaria"

@@ -1,10 +1,8 @@
-
 include { TABIX_TABIX                                            } from '../../../modules/nf-core/tabix/tabix/main'
 include { BCFTOOLS_VIEW as BCFTOOLS_VIEW_AUTOSOMES               } from '../../../modules/nf-core/bcftools/view/main'
+include { BCFTOOLS_VIEW as BCFTOOLS_VIEW_AUTOSOMES_GVCF          } from '../../../modules/nf-core/bcftools/view/main'
 include { BCFTOOLS_ANNOTATE as BCFTOOLS_DELETE_ANNOTATIONS       } from '../../../modules/nf-core/bcftools/annotate/main'
 include { BCFTOOLS_ANNOTATE as BCFTOOLS_DELETE_ANNOTATIONS_GVCF  } from '../../../modules/nf-core/bcftools/annotate/main'
-include { BCFTOOLS_VIEW as BCFTOOLS_EXTRACT_AMBIGUOUS_VAF        } from '../../../modules/nf-core/bcftools/view/main'
-include { BCFTOOLS_QUERY as BCFTOOLS_QUERY_VAF_TO_BED            } from '../../../modules/nf-core/bcftools/query/main'
 
 
 workflow REMOVE_ANNOTATIONS {
@@ -12,10 +10,8 @@ workflow REMOVE_ANNOTATIONS {
     take:
     ch_samples    // channel: [val(meta), path(vcfs)]
     val_is_gvcf   // boolean: whether input files are GVCFs
-    val_apply_vaf_filter // boolean: whether to detect ambiguous VAF variants
 
     main:
-    ch_versions = Channel.empty()
     
     //
     // Flatten family trios into individual VCF files
@@ -39,30 +35,40 @@ workflow REMOVE_ANNOTATIONS {
     // Index all VCF/GVCF files with tabix
     //
     TABIX_TABIX(ch_individual_vcfs)
-    ch_versions = ch_versions.mix(TABIX_TABIX.out.versions)
 
     //
     // Combine VCF files with their corresponding index files
     //
     ch_indexed_vcfs = ch_individual_vcfs
-        .join(TABIX_TABIX.out.tbi)
+        .join(TABIX_TABIX.out.index)
     
     //
     // Filter VCFs/GVCFs to keep only autosomal chromosomes (chr1-chr22)
     //
-    BCFTOOLS_VIEW_AUTOSOMES(
-        ch_indexed_vcfs,
-        [],
-        [],
-        []
-    )
-    ch_versions = ch_versions.mix(BCFTOOLS_VIEW_AUTOSOMES.out.versions)
+    if (val_is_gvcf) {
+        BCFTOOLS_VIEW_AUTOSOMES_GVCF(
+            ch_indexed_vcfs,
+            [],
+            [],
+            []
+        )
+        ch_autosome_filtered = BCFTOOLS_VIEW_AUTOSOMES_GVCF.out.vcf
+            .join(BCFTOOLS_VIEW_AUTOSOMES_GVCF.out.tbi)
+    } else {
+        BCFTOOLS_VIEW_AUTOSOMES(
+            ch_indexed_vcfs,
+            [],
+            [],
+            []
+        )
+        ch_autosome_filtered = BCFTOOLS_VIEW_AUTOSOMES.out.vcf
+            .join(BCFTOOLS_VIEW_AUTOSOMES.out.tbi)
+    }
 
     //
     // Prepare input for annotation removal
     //
-    ch_annotate_input = BCFTOOLS_VIEW_AUTOSOMES.out.vcf
-        .join(BCFTOOLS_VIEW_AUTOSOMES.out.tbi)
+    ch_annotate_input = ch_autosome_filtered
         .map { meta, vcf, tbi ->
             [ meta, vcf, tbi, [], [] ]
         }
@@ -77,7 +83,6 @@ workflow REMOVE_ANNOTATIONS {
             [],
             []
         )
-        ch_versions = ch_versions.mix(BCFTOOLS_DELETE_ANNOTATIONS_GVCF.out.versions)
         
         ch_processed_vcfs = BCFTOOLS_DELETE_ANNOTATIONS_GVCF.out.vcf
             .join(BCFTOOLS_DELETE_ANNOTATIONS_GVCF.out.tbi)
@@ -88,59 +93,15 @@ workflow REMOVE_ANNOTATIONS {
             [],
             []
         )
-        ch_versions = ch_versions.mix(BCFTOOLS_DELETE_ANNOTATIONS.out.versions)
         
         ch_processed_vcfs = BCFTOOLS_DELETE_ANNOTATIONS.out.vcf
             .join(BCFTOOLS_DELETE_ANNOTATIONS.out.tbi)
     }
     
     //
-    // Extract variants with ambiguous VAF per individual
-    //
-    if (val_apply_vaf_filter) {
-        BCFTOOLS_EXTRACT_AMBIGUOUS_VAF(
-            ch_processed_vcfs,
-            [],
-            [],
-            []
-        )
-        ch_versions = ch_versions.mix(BCFTOOLS_EXTRACT_AMBIGUOUS_VAF.out.versions)
-        
-        //
-        // Convert ambiguous variants to BED format
-        //
-        BCFTOOLS_QUERY_VAF_TO_BED(
-            BCFTOOLS_EXTRACT_AMBIGUOUS_VAF.out.vcf
-                .join(BCFTOOLS_EXTRACT_AMBIGUOUS_VAF.out.tbi),
-            [],
-            [],
-            []
-        )
-        ch_versions = ch_versions.mix(BCFTOOLS_QUERY_VAF_TO_BED.out.versions)
-        
-        //
-        // Filter out empty BED files and store non-empty ones in metadata
-        //
-        ch_non_empty_beds = BCFTOOLS_QUERY_VAF_TO_BED.out.output
-            .filter { meta, bed ->
-                bed.size() > 0
-            }
-        
-        ch_processed_with_vaf_bed = ch_processed_vcfs
-            .join(ch_non_empty_beds, remainder: true)
-            .map { meta, vcf, tbi, bed ->
-                def meta_with_bed = meta.clone()
-                meta_with_bed.vaf_bed = bed ?: null
-                [ meta_with_bed, vcf, tbi ]
-            }
-    } else {
-        ch_processed_with_vaf_bed = ch_processed_vcfs
-    }
-    
-    //
     // Regroup individual processed VCFs/GVCFs back into family trios
     //
-    ch_regrouped = ch_processed_with_vaf_bed
+    ch_regrouped = ch_processed_vcfs
         .map { meta, vcf, tbi ->
             [ meta.original_family_id, meta.role, meta, vcf, tbi ]
         }
@@ -157,13 +118,6 @@ workflow REMOVE_ANNOTATIONS {
                 sv_f : metas[0].sv_f  
             ]
             
-            // Collect VAF BED files if they exist
-            if (val_apply_vaf_filter) {
-                family_meta.vaf_bed_p = metas.find { it.role == '01' }?.vaf_bed ?: null
-                family_meta.vaf_bed_m = metas.find { it.role == '02' }?.vaf_bed ?: null
-                family_meta.vaf_bed_f = metas.find { it.role == '03' }?.vaf_bed ?: null
-            }
-            
             // Sort VCFs and indices by role to maintain order (proband, mother, father)
             def role_order = ['01', '02', '03']
             def sorted_data = [roles, vcfs, tbis].transpose().sort { 
@@ -177,5 +131,5 @@ workflow REMOVE_ANNOTATIONS {
     
     emit:
     vcf      = ch_regrouped  // channel: [val(meta), path(vcfs), path(tbis)]
-    versions = ch_versions   // channel: [path(versions.yml)]
+
 }

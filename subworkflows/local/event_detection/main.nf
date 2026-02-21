@@ -18,28 +18,23 @@ workflow EVENT_DETECTION {
     ch_vcfs    // channel: [val(meta), path(vcf), path(tbi)]
     
     main:
-    ch_versions = Channel.empty()
     
     //
     // Validate VCF structure and format
     //
     UPDHMM_VCFCHECK(ch_vcfs)
-    ch_versions = ch_versions.mix(UPDHMM_VCFCHECK.out.versions)
     
     //
     // Calculate UPD events from processed VCF
     //
     UPDHMM_CALCULATEEVENTS(UPDHMM_VCFCHECK.out.processed_vcf)
-    ch_versions = ch_versions.mix(UPDHMM_CALCULATEEVENTS.out.versions)
     
     //
-    // Collapse overlapping UPD events
+    // Collapse UPD events
     //
     UPDHMM_COLLAPSEEVENTS(UPDHMM_CALCULATEEVENTS.out.upd_events_rds)
-    ch_versions = ch_versions.mix(UPDHMM_COLLAPSEEVENTS.out.versions)
     
     emit:
     upd_events_txt    = UPDHMM_CALCULATEEVENTS.out.upd_events_txt   // channel: [val(meta), path(txt)]
     upd_collapsed_txt = UPDHMM_COLLAPSEEVENTS.out.upd_collapsed_txt // channel: [val(meta), path(txt)]
-    versions          = ch_versions                                 // channel: [path(versions.yml)]
 }

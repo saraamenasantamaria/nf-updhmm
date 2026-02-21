@@ -13,15 +13,13 @@
                     "tbi_name": "trio_test_filtered_final.vcf.gz.tbi"
                 }
             ],
-            [
-                "versions.yml:md5,896232e00a81d25fad350d085181da80"
-            ]
+            null
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2025-12-30T19:22:55.934521537"
+        "timestamp": "2026-02-17T08:41:54.247034111"
     },
     "trio vcf with intersection and vaf correction": {
         "content": [
@@ -37,16 +35,13 @@
                     "tbi_name": "trio_test_filtered_final.vcf.gz.tbi"
                 }
             ],
-            [
-                "versions.yml:md5,896232e00a81d25fad350d085181da80",
-                "versions.yml:md5,f94d08df82ebdf2aca48153954dff146"
-            ]
+            null
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2025-12-30T19:23:29.449353202"
+        "timestamp": "2026-02-17T08:42:16.504601868"
     },
     "trio vcf - stub": {
         "content": [
@@ -63,10 +58,6 @@
                         "trio_test_filtered_final.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
-                "1": [
-                    "versions.yml:md5,896232e00a81d25fad350d085181da80",
-                    "versions.yml:md5,aa445c9fad49d5c92ea99d05ba8968a8"
-                ],
                 "vcf": [
                     [
                         {
@@ -78,10 +69,6 @@
                         "trio_test_filtered_final.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
                         "trio_test_filtered_final.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
-                ],
-                "versions": [
-                    "versions.yml:md5,896232e00a81d25fad350d085181da80",
-                    "versions.yml:md5,aa445c9fad49d5c92ea99d05ba8968a8"
                 ]
             }
         ],
@@ -89,7 +76,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2025-12-30T19:24:41.553080875"
+        "timestamp": "2026-02-17T08:43:00.350490494"
     },
     "trio vcf without intersection and with vaf correction": {
         "content": [
@@ -105,17 +92,13 @@
                     "tbi_name": "trio_test_filtered_final.vcf.gz.tbi"
                 }
             ],
-            [
-                "versions.yml:md5,896232e00a81d25fad350d085181da80",
-                "versions.yml:md5,aa445c9fad49d5c92ea99d05ba8968a8",
-                "versions.yml:md5,f94d08df82ebdf2aca48153954dff146"
-            ]
+            null
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2025-12-30T19:24:08.06620053"
+        "timestamp": "2026-02-17T08:42:39.925661754"
     },
     "trio vcf without intersection and vaf correction": {
         "content": [
@@ -131,15 +114,12 @@
                     "tbi_name": "trio_test_filtered_final.vcf.gz.tbi"
                 }
             ],
-            [
-                "versions.yml:md5,896232e00a81d25fad350d085181da80",
-                "versions.yml:md5,aa445c9fad49d5c92ea99d05ba8968a8"
-            ]
+            null
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2025-12-30T19:22:29.325345843"
+        "timestamp": "2026-02-17T08:41:34.312706618"
     }
 }

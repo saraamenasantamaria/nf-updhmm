@@ -11,7 +11,8 @@ process UPDHMM_COLLAPSEEVENTS {
     tuple val(meta), path("*.upd_collapsed.txt")   , emit: upd_collapsed_txt
     tuple val(meta), path("*.upd_collapsed.rds")   , emit: upd_collapsed_rds
     tuple val(meta), path("*.R_sessionInfo.log")   , emit: session_info
-    path "versions.yml"                            , emit: versions
+    tuple val("${task.process}"), val("r-base"), eval("Rscript -e \"cat(paste(R.version[['major']], R.version[['minor']], sep='.'))\""), emit: versions_rbase, topic: versions
+    tuple val("${task.process}"), val("bioconductor-updhmm"), eval("Rscript -e \"library(UPDhmm); cat(as.character(packageVersion('UPDhmm')))\""), emit: versions_updhmm, topic: versions
 
     when:
     task.ext.when == null || task.ext.when

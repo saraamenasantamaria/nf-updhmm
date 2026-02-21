@@ -13,56 +13,42 @@ components:
 
 input:
   - ch_vcf:
-    - meta:
+      type: channel
+      description: Channel containing VCF file with tabix index for trio-based UPD detection
+
+output:
+  - upd_events_txt:
+      description: Channel containing UPD events 
+      meta:
         type: map
         description: |
           Groovy Map containing family information (family ID, individual IDs, and SV paths)
           e.g. [ id:'family_001', proband_id:'proband_001', mother_id:'mother_001', father_id:'father_001', sv_p:'path/to/proband.bed', sv_m:'path/to/mother.bed', sv_f:'-' ]
-    - vcf:
+      txt:
         type: file
-        description: Input VCF file containing family trio genotypes for UPD event detection
-        pattern: "*.{vcf.gz}"
+        description: UPD events file containing HMM-detected UPD events per trio, including genomic coordinates (seqnames, start, end), inferred state (group), number of SNPs (n_snps), Mendelian error counts (n_mendelian_error), and optional per-block normalized depth ratios
+        pattern: "*.upd_events.txt"
         ontologies:
-        - edam: "http://edamontology.org/format_3016"
-    - tbi:
-        type: file
-        description: Tabix index file for input VCF
-        pattern: "*.tbi"
-        ontologies:
-        - edam: "http://edamontology.org/format_3616"
-
-output:
-  - upd_events_txt:
-      - meta:
-          type: map
-          description: |
-            Groovy Map containing family information (family ID, individual IDs, and SV paths)
-            e.g. [ id:'family_001', proband_id:'proband_001', mother_id:'mother_001', father_id:'father_001', sv_p:'path/to/proband.bed', sv_m:'path/to/mother.bed', sv_f:'-' ]
-      - txt:
-          type: file
-          description: UPD events file containing HMM-detected UPD events per trio, including genomic coordinates (seqnames, start, end), inferred state (group), number of SNPs (n_snps), Mendelian error counts (n_mendelian_error), and optional per-block normalized depth ratios
-          pattern: "*.upd_events.txt"
-          ontologies:
-            - edam: "http://edamontology.org/format_3475"
+          - edam: "http://edamontology.org/format_3475"
   - upd_collapsed_txt:
-      - meta:
-          type: map
-          description: |
-            Groovy Map containing family information (family ID, individual IDs, and SV paths)
-            e.g. [ id:'family_001', proband_id:'proband_001', mother_id:'mother_001', father_id:'father_001', sv_p:'path/to/proband.bed', sv_m:'path/to/mother.bed', sv_f:'-' ]
-      - txt:
-          type: file
-          description: Collapsed UPD events file per sample, chromosome, and group, summarizing total event counts (n_events), cumulative Mendelian errors (total_mendelian_error), total genomic span size (total_size), and merged event coordinates (collapsed_events, min_start, max_end)
-          pattern: "*.upd_collapsed.txt"
-          ontologies:
-            - edam: "http://edamontology.org/format_3475"
+      description: Channel containing UPD collapsed events
+      meta:
+        type: map
+        description: |
+          Groovy Map containing family information (family ID, individual IDs, and SV paths)
+          e.g. [ id:'family_001', proband_id:'proband_001', mother_id:'mother_001', father_id:'father_001', sv_p:'path/to/proband.bed', sv_m:'path/to/mother.bed', sv_f:'-' ]
+      txt:
+        type: file
+        description: Collapsed UPD events file per sample, chromosome, and group, summarizing total event counts (n_events), cumulative Mendelian errors (total_mendelian_error), total genomic span size (total_size), and merged event coordinates (collapsed_events, min_start, max_end)
+        pattern: "*.upd_collapsed.txt"
+        ontologies:
+          - edam: "http://edamontology.org/format_3475"
   - versions:
-      - versions:
-          type: file
-          description: File containing software versions
-          pattern: "versions.yml"
-          ontologies:
-          - edam: "http://edamontology.org/format_3750"
+        type: file
+        description: File containing software versions
+        pattern: "versions.yml"
+        ontologies:
+        - edam: "http://edamontology.org/format_3750"
 
 authors:
   - "@saramenasantamaria"

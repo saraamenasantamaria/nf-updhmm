@@ -74,6 +74,16 @@ workflow {
         params.hook_url,
         NFCORE_UPDHMM.out.multiqc_report
     )
+    
+    Channel.topic('versions')
+        | unique()
+        | map { process, name, version ->
+            """
+            ${process.tokenize(':').last()}:
+                ${name}: ${version}
+            """.stripIndent()
+        }
+        | collectFile(name: 'collated_versions.yml', storeDir: "${params.outdir}/pipeline_info")
 }
 
 /*

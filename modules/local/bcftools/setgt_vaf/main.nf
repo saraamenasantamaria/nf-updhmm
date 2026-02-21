@@ -4,8 +4,8 @@ process BCFTOOLS_SETGT_VAF {
 
     conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'https://depot.galaxyproject.org/singularity/bcftools:1.20--h8b25389_0':
-        'biocontainers/bcftools:1.20--h8b25389_0' }"
+        'https://depot.galaxyproject.org/singularity/bcftools:1.23--h3a4d415_0':
+        'biocontainers/bcftools:1.23--h3a4d415_0' }"
 
     input:
     tuple val(meta), path(vcf), path(tbi)  // tbi is optional, pass [] if not available
@@ -13,7 +13,7 @@ process BCFTOOLS_SETGT_VAF {
     output:
     tuple val(meta), path("*.vcf.gz")    , emit: vcf
     tuple val(meta), path("*.vcf.gz.tbi"), emit: tbi
-    path "versions.yml"                  , emit: versions
+    tuple val("${task.process}"), val("bcftools"), eval("bcftools --version | head -n1 | cut -d' ' -f2"), emit: versions_bcftools, topic: versions
     
     when:
     task.ext.when == null || task.ext.when
@@ -34,11 +34,6 @@ process BCFTOOLS_SETGT_VAF {
 
     bcftools index -t ${prefix}.vcf.gz
 
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        bcftools: \$(bcftools --version 2>&1 | head -n1 | sed 's/^.*bcftools //; s/ .*\$//')
-        bgzip: \$(bgzip --version 2>&1 | head -n1 | sed 's/^.*bgzip //; s/ .*\$//')
-    END_VERSIONS
     """
 
     stub:
@@ -46,11 +41,6 @@ process BCFTOOLS_SETGT_VAF {
     """
     echo "" | gzip > ${prefix}.vcf.gz
     touch ${prefix}.vcf.gz.tbi
-    
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        bcftools: 1.20
-        bgzip: 1.20
-    END_VERSIONS
+
     """
 }

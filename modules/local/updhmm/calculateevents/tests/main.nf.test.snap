@@ -1,87 +1,4 @@
 {
-    "processed trio rds with custom HMM": {
-        "content": [
-            {
-                "0": [
-                    [
-                        {
-                            "id": "test_trio",
-                            "proband_id": "NA19685",
-                            "mother_id": "NA19688",
-                            "father_id": "NA19689"
-                        },
-                        "test_trio.upd_events.txt:md5,a817609191db523f160c620d14481826"
-                    ]
-                ],
-                "1": [
-                    [
-                        {
-                            "id": "test_trio",
-                            "proband_id": "NA19685",
-                            "mother_id": "NA19688",
-                            "father_id": "NA19689"
-                        },
-                        "test_trio.upd_events.rds:md5,7f9d362f7f4cef89865b944d4ff75f7a"
-                    ]
-                ],
-                "2": [
-                    [
-                        {
-                            "id": "test_trio",
-                            "proband_id": "NA19685",
-                            "mother_id": "NA19688",
-                            "father_id": "NA19689"
-                        },
-                        "test_trio.R_sessionInfo.log:md5,2af0bfd1f98de9b08708c8c2f773e847"
-                    ]
-                ],
-                "3": [
-                    "versions.yml:md5,2f195076cfb0ccc96de1f0a37f344a9e"
-                ],
-                "session_info": [
-                    [
-                        {
-                            "id": "test_trio",
-                            "proband_id": "NA19685",
-                            "mother_id": "NA19688",
-                            "father_id": "NA19689"
-                        },
-                        "test_trio.R_sessionInfo.log:md5,2af0bfd1f98de9b08708c8c2f773e847"
-                    ]
-                ],
-                "upd_events_rds": [
-                    [
-                        {
-                            "id": "test_trio",
-                            "proband_id": "NA19685",
-                            "mother_id": "NA19688",
-                            "father_id": "NA19689"
-                        },
-                        "test_trio.upd_events.rds:md5,7f9d362f7f4cef89865b944d4ff75f7a"
-                    ]
-                ],
-                "upd_events_txt": [
-                    [
-                        {
-                            "id": "test_trio",
-                            "proband_id": "NA19685",
-                            "mother_id": "NA19688",
-                            "father_id": "NA19689"
-                        },
-                        "test_trio.upd_events.txt:md5,a817609191db523f160c620d14481826"
-                    ]
-                ],
-                "versions": [
-                    "versions.yml:md5,2f195076cfb0ccc96de1f0a37f344a9e"
-                ]
-            }
-        ],
-        "meta": {
-            "nf-test": "0.9.3",
-            "nextflow": "25.04.6"
-        },
-        "timestamp": "2026-01-14T08:41:33.292389794"
-    },
     "processed trio rds with add_ratios": {
         "content": [
             {
@@ -89,31 +6,31 @@
                     [
                         {
                             "id": "test_trio",
-                            "proband_id": "NA19685",
-                            "mother_id": "NA19688",
-                            "father_id": "NA19689"
+                            "proband_id": "hugelymodelbat",
+                            "mother_id": "slowlycivilbuck",
+                            "father_id": "earlycasualcaiman"
                         },
-                        "test_trio.upd_events.txt:md5,a817609191db523f160c620d14481826"
+                        "test_trio.upd_events.txt:md5,df52e986f951be0435d60edb372b1c5e"
                     ]
                 ],
                 "1": [
                     [
                         {
                             "id": "test_trio",
-                            "proband_id": "NA19685",
-                            "mother_id": "NA19688",
-                            "father_id": "NA19689"
+                            "proband_id": "hugelymodelbat",
+                            "mother_id": "slowlycivilbuck",
+                            "father_id": "earlycasualcaiman"
                         },
-                        "test_trio.upd_events.rds:md5,7f9d362f7f4cef89865b944d4ff75f7a"
+                        "test_trio.upd_events.rds:md5,a5c30ee7255433c6ac3596a30abab46c"
                     ]
                 ],
                 "2": [
                     [
                         {
                             "id": "test_trio",
-                            "proband_id": "NA19685",
-                            "mother_id": "NA19688",
-                            "father_id": "NA19689"
+                            "proband_id": "hugelymodelbat",
+                            "mother_id": "slowlycivilbuck",
+                            "father_id": "earlycasualcaiman"
                         },
                         "test_trio.R_sessionInfo.log:md5,0e8b2977565d760bc93a739bcd48bad4"
                     ]
@@ -125,9 +42,9 @@
                     [
                         {
                             "id": "test_trio",
-                            "proband_id": "NA19685",
-                            "mother_id": "NA19688",
-                            "father_id": "NA19689"
+                            "proband_id": "hugelymodelbat",
+                            "mother_id": "slowlycivilbuck",
+                            "father_id": "earlycasualcaiman"
                         },
                         "test_trio.R_sessionInfo.log:md5,0e8b2977565d760bc93a739bcd48bad4"
                     ]
@@ -136,22 +53,22 @@
                     [
                         {
                             "id": "test_trio",
-                            "proband_id": "NA19685",
-                            "mother_id": "NA19688",
-                            "father_id": "NA19689"
+                            "proband_id": "hugelymodelbat",
+                            "mother_id": "slowlycivilbuck",
+                            "father_id": "earlycasualcaiman"
                         },
-                        "test_trio.upd_events.rds:md5,7f9d362f7f4cef89865b944d4ff75f7a"
+                        "test_trio.upd_events.rds:md5,a5c30ee7255433c6ac3596a30abab46c"
                     ]
                 ],
                 "upd_events_txt": [
                     [
                         {
                             "id": "test_trio",
-                            "proband_id": "NA19685",
-                            "mother_id": "NA19688",
-                            "father_id": "NA19689"
+                            "proband_id": "hugelymodelbat",
+                            "mother_id": "slowlycivilbuck",
+                            "father_id": "earlycasualcaiman"
                         },
-                        "test_trio.upd_events.txt:md5,a817609191db523f160c620d14481826"
+                        "test_trio.upd_events.txt:md5,df52e986f951be0435d60edb372b1c5e"
                     ]
                 ],
                 "versions": [
@@ -163,7 +80,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2026-01-14T08:40:37.583712458"
+        "timestamp": "2026-01-27T08:12:28.074975933"
     },
     "processed trio rds - stub": {
         "content": [
@@ -172,9 +89,9 @@
                     [
                         {
                             "id": "test_trio",
-                            "proband_id": "NA19685",
-                            "mother_id": "NA19688",
-                            "father_id": "NA19689"
+                            "proband_id": "hugelymodelbat",
+                            "mother_id": "slowlycivilbuck",
+                            "father_id": "earlycasualcaiman"
                         },
                         "test_trio.upd_events.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
@@ -183,9 +100,9 @@
                     [
                         {
                             "id": "test_trio",
-                            "proband_id": "NA19685",
-                            "mother_id": "NA19688",
-                            "father_id": "NA19689"
+                            "proband_id": "hugelymodelbat",
+                            "mother_id": "slowlycivilbuck",
+                            "father_id": "earlycasualcaiman"
                         },
                         "test_trio.upd_events.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
@@ -194,9 +111,9 @@
                     [
                         {
                             "id": "test_trio",
-                            "proband_id": "NA19685",
-                            "mother_id": "NA19688",
-                            "father_id": "NA19689"
+                            "proband_id": "hugelymodelbat",
+                            "mother_id": "slowlycivilbuck",
+                            "father_id": "earlycasualcaiman"
                         },
                         "test_trio.R_sessionInfo.log:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
@@ -208,9 +125,9 @@
                     [
                         {
                             "id": "test_trio",
-                            "proband_id": "NA19685",
-                            "mother_id": "NA19688",
-                            "father_id": "NA19689"
+                            "proband_id": "hugelymodelbat",
+                            "mother_id": "slowlycivilbuck",
+                            "father_id": "earlycasualcaiman"
                         },
                         "test_trio.R_sessionInfo.log:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
@@ -219,9 +136,9 @@
                     [
                         {
                             "id": "test_trio",
-                            "proband_id": "NA19685",
-                            "mother_id": "NA19688",
-                            "father_id": "NA19689"
+                            "proband_id": "hugelymodelbat",
+                            "mother_id": "slowlycivilbuck",
+                            "father_id": "earlycasualcaiman"
                         },
                         "test_trio.upd_events.rds:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
@@ -230,9 +147,9 @@
                     [
                         {
                             "id": "test_trio",
-                            "proband_id": "NA19685",
-                            "mother_id": "NA19688",
-                            "father_id": "NA19689"
+                            "proband_id": "hugelymodelbat",
+                            "mother_id": "slowlycivilbuck",
+                            "father_id": "earlycasualcaiman"
                         },
                         "test_trio.upd_events.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
@@ -246,7 +163,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2026-01-14T08:42:53.670640645"
+        "timestamp": "2026-01-27T08:15:11.483679893"
     },
     "processed trio rds": {
         "content": [
@@ -255,31 +172,31 @@
                     [
                         {
                             "id": "test_trio",
-                            "proband_id": "NA19685",
-                            "mother_id": "NA19688",
-                            "father_id": "NA19689"
+                            "proband_id": "hugelymodelbat",
+                            "mother_id": "slowlycivilbuck",
+                            "father_id": "earlycasualcaiman"
                         },
-                        "test_trio.upd_events.txt:md5,a817609191db523f160c620d14481826"
+                        "test_trio.upd_events.txt:md5,df52e986f951be0435d60edb372b1c5e"
                     ]
                 ],
                 "1": [
                     [
                         {
                             "id": "test_trio",
-                            "proband_id": "NA19685",
-                            "mother_id": "NA19688",
-                            "father_id": "NA19689"
+                            "proband_id": "hugelymodelbat",
+                            "mother_id": "slowlycivilbuck",
+                            "father_id": "earlycasualcaiman"
                         },
-                        "test_trio.upd_events.rds:md5,7f9d362f7f4cef89865b944d4ff75f7a"
+                        "test_trio.upd_events.rds:md5,a5c30ee7255433c6ac3596a30abab46c"
                     ]
                 ],
                 "2": [
                     [
                         {
                             "id": "test_trio",
-                            "proband_id": "NA19685",
-                            "mother_id": "NA19688",
-                            "father_id": "NA19689"
+                            "proband_id": "hugelymodelbat",
+                            "mother_id": "slowlycivilbuck",
+                            "father_id": "earlycasualcaiman"
                         },
                         "test_trio.R_sessionInfo.log:md5,0e8b2977565d760bc93a739bcd48bad4"
                     ]
@@ -291,9 +208,9 @@
                     [
                         {
                             "id": "test_trio",
-                            "proband_id": "NA19685",
-                            "mother_id": "NA19688",
-                            "father_id": "NA19689"
+                            "proband_id": "hugelymodelbat",
+                            "mother_id": "slowlycivilbuck",
+                            "father_id": "earlycasualcaiman"
                         },
                         "test_trio.R_sessionInfo.log:md5,0e8b2977565d760bc93a739bcd48bad4"
                     ]
@@ -302,22 +219,22 @@
                     [
                         {
                             "id": "test_trio",
-                            "proband_id": "NA19685",
-                            "mother_id": "NA19688",
-                            "father_id": "NA19689"
+                            "proband_id": "hugelymodelbat",
+                            "mother_id": "slowlycivilbuck",
+                            "father_id": "earlycasualcaiman"
                         },
-                        "test_trio.upd_events.rds:md5,7f9d362f7f4cef89865b944d4ff75f7a"
+                        "test_trio.upd_events.rds:md5,a5c30ee7255433c6ac3596a30abab46c"
                     ]
                 ],
                 "upd_events_txt": [
                     [
                         {
                             "id": "test_trio",
-                            "proband_id": "NA19685",
-                            "mother_id": "NA19688",
-                            "father_id": "NA19689"
+                            "proband_id": "hugelymodelbat",
+                            "mother_id": "slowlycivilbuck",
+                            "father_id": "earlycasualcaiman"
                         },
-                        "test_trio.upd_events.txt:md5,a817609191db523f160c620d14481826"
+                        "test_trio.upd_events.txt:md5,df52e986f951be0435d60edb372b1c5e"
                     ]
                 ],
                 "versions": [
@@ -329,7 +246,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2026-01-14T08:39:39.975022121"
+        "timestamp": "2026-01-27T08:10:49.419347155"
     },
     "processed trio rds with custom field_DP": {
         "content": [
@@ -338,31 +255,31 @@
                     [
                         {
                             "id": "test_trio",
-                            "proband_id": "NA19685",
-                            "mother_id": "NA19688",
-                            "father_id": "NA19689"
+                            "proband_id": "hugelymodelbat",
+                            "mother_id": "slowlycivilbuck",
+                            "father_id": "earlycasualcaiman"
                         },
-                        "test_trio.upd_events.txt:md5,a817609191db523f160c620d14481826"
+                        "test_trio.upd_events.txt:md5,94e81ab509e0047bcd7dc18f5b87667d"
                     ]
                 ],
                 "1": [
                     [
                         {
                             "id": "test_trio",
-                            "proband_id": "NA19685",
-                            "mother_id": "NA19688",
-                            "father_id": "NA19689"
+                            "proband_id": "hugelymodelbat",
+                            "mother_id": "slowlycivilbuck",
+                            "father_id": "earlycasualcaiman"
                         },
-                        "test_trio.upd_events.rds:md5,7f9d362f7f4cef89865b944d4ff75f7a"
+                        "test_trio.upd_events.rds:md5,e84acd9d2841e76f4e1496cb05f392a8"
                     ]
                 ],
                 "2": [
                     [
                         {
                             "id": "test_trio",
-                            "proband_id": "NA19685",
-                            "mother_id": "NA19688",
-                            "father_id": "NA19689"
+                            "proband_id": "hugelymodelbat",
+                            "mother_id": "slowlycivilbuck",
+                            "father_id": "earlycasualcaiman"
                         },
                         "test_trio.R_sessionInfo.log:md5,2af0bfd1f98de9b08708c8c2f773e847"
                     ]
@@ -374,9 +291,9 @@
                     [
                         {
                             "id": "test_trio",
-                            "proband_id": "NA19685",
-                            "mother_id": "NA19688",
-                            "father_id": "NA19689"
+                            "proband_id": "hugelymodelbat",
+                            "mother_id": "slowlycivilbuck",
+                            "father_id": "earlycasualcaiman"
                         },
                         "test_trio.R_sessionInfo.log:md5,2af0bfd1f98de9b08708c8c2f773e847"
                     ]
@@ -385,22 +302,22 @@
                     [
                         {
                             "id": "test_trio",
-                            "proband_id": "NA19685",
-                            "mother_id": "NA19688",
-                            "father_id": "NA19689"
+                            "proband_id": "hugelymodelbat",
+                            "mother_id": "slowlycivilbuck",
+                            "father_id": "earlycasualcaiman"
                         },
-                        "test_trio.upd_events.rds:md5,7f9d362f7f4cef89865b944d4ff75f7a"
+                        "test_trio.upd_events.rds:md5,e84acd9d2841e76f4e1496cb05f392a8"
                     ]
                 ],
                 "upd_events_txt": [
                     [
                         {
                             "id": "test_trio",
-                            "proband_id": "NA19685",
-                            "mother_id": "NA19688",
-                            "father_id": "NA19689"
+                            "proband_id": "hugelymodelbat",
+                            "mother_id": "slowlycivilbuck",
+                            "father_id": "earlycasualcaiman"
                         },
-                        "test_trio.upd_events.txt:md5,a817609191db523f160c620d14481826"
+                        "test_trio.upd_events.txt:md5,94e81ab509e0047bcd7dc18f5b87667d"
                     ]
                 ],
                 "versions": [
@@ -412,6 +329,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2026-01-14T08:42:28.682324952"
+        "timestamp": "2026-01-27T08:14:05.210154163"
     }
 }

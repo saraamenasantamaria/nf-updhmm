@@ -8,6 +8,7 @@
 
 include { GATK4_COMBINEGVCFS                               } from '../../../modules/nf-core/gatk4/combinegvcfs/main'
 include { GATK4_GENOTYPEGVCFS                              } from '../../../modules/nf-core/gatk4/genotypegvcfs/main'
+include { GATK4_VARIANTFILTRATION                          } from '../../../modules/nf-core/gatk4/variantfiltration/main'
 include { BCFTOOLS_ANNOTATE as BCFTOOLS_DELETE_ANNOTATIONS } from '../../../modules/nf-core/bcftools/annotate/main'
 
 workflow GVCF_COMBINE {
@@ -19,7 +20,6 @@ workflow GVCF_COMBINE {
     val_dict   // path to reference dict
     
     main:
-    ch_versions = Channel.empty()
 
     //
     // Combine GVCFs from trio members
@@ -30,7 +30,6 @@ workflow GVCF_COMBINE {
         val_fai,
         val_dict
     )
-    ch_versions = ch_versions.mix(GATK4_COMBINEGVCFS.out.versions)
 
     //
     // Prepare input for GenotypeGVCFs
@@ -65,13 +64,29 @@ workflow GVCF_COMBINE {
         ch_dbsnp,
         ch_dbsnp_tbi
     )
-    ch_versions = ch_versions.mix(GATK4_GENOTYPEGVCFS.out.versions)
+    
+    //
+    // Apply variant filters (LowDepth and LowGQ)
+    //
+    ch_filter_input = GATK4_GENOTYPEGVCFS.out.vcf
+        .join(GATK4_GENOTYPEGVCFS.out.tbi)
+        
+    // Empty gzi channel (not needed for this analysis)
+    ch_gzi = Channel.value([ [:], [] ])
+    
+    GATK4_VARIANTFILTRATION(
+        ch_filter_input,
+        ch_fasta,
+        ch_fai,
+        ch_dict,
+        ch_gzi
+    )
     
     //
     // Prepare input for annotation removal
     //
-    ch_annotate_input = GATK4_GENOTYPEGVCFS.out.vcf
-        .join(GATK4_GENOTYPEGVCFS.out.tbi)
+    ch_annotate_input = GATK4_VARIANTFILTRATION.out.vcf
+        .join(GATK4_VARIANTFILTRATION.out.tbi)
         .map { meta, vcf, tbi ->
             [ meta, vcf, tbi, [], [] ]
         }
@@ -85,15 +100,13 @@ workflow GVCF_COMBINE {
         [],
         []
     )
-    ch_versions = ch_versions.mix(BCFTOOLS_DELETE_ANNOTATIONS.out.versions)
-
+    
     //
-    // Prepare final output channel with VCF and its index
+    // Final VCFs ready for downstream processing
     //
     ch_final_vcfs = BCFTOOLS_DELETE_ANNOTATIONS.out.vcf
         .join(BCFTOOLS_DELETE_ANNOTATIONS.out.tbi)
     
     emit:
     vcf      = ch_final_vcfs  // channel: [val(meta), path(vcf), path(tbi)]
-    versions = ch_versions    // channel: [path(versions.yml)]
 }
