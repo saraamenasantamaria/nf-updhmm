@@ -1,3 +1,0 @@
-ERROR ~ No such file or directory: https://raw.githubusercontent.com/nf-core/test-datasets/modules/data/genomics/sarscov2/illumina/vcf/test.vcf.tbi
-
- -- Check script '/home/u0030001/nf-updhmm_zenodo/.nf-test-3e7437796d2505dd2c621f55da92de29.nf' at line: 45 or see '/home/u0030001/nf-updhmm_zenodo/.nf-test/tests/3e7437796d2505dd2c621f55da92de29/meta/nextflow.log' file for more details

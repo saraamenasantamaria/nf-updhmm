@@ -1,3 +1,0 @@
-task_id	hash	native_id	name	status	exit	submit	duration	realtime	%cpu	peak_rss	peak_vmem	rchar	wchar
-1	32/ef4d88	2920744	VCF_COMBINE:BCFTOOLS_ISEC (family1)	COMPLETED	0	2026-02-23 13:46:26.514	885ms	466ms	170.5%	4.5 MB	54.5 MB	145.3 KB	5.3 KB
-2	3f/2bac96	2921060	VCF_COMBINE:BCFTOOLS_MERGE (family1)	COMPLETED	0	2026-02-23 13:46:27.504	742ms	432ms	174.5%	4.5 MB	54.5 MB	142.5 KB	2 KB

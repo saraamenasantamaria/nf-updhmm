@@ -1,4 +1,0 @@
-task_id	hash	native_id	name	status	exit	submit	duration	realtime	%cpu	peak_rss	peak_vmem	rchar	wchar
-1	05/1c557e	2830971	BCFTOOLS_VIEW (test_trio)	COMPLETED	0	2026-02-23 11:42:32.370	1.1s	532ms	155.4%	4.5 MB	54.5 MB	393.9 KB	547.2 KB
-2	4e/6876ae	2831292	UPDHMM_VCFCHECK (test_trio)	COMPLETED	0	2026-02-23 11:42:33.882	11.9s	11.5s	95.7%	790.4 MB	7.2 GB	46.3 MB	166.6 KB
-3	08/c379fa	2831848	UPDHMM_CALCULATEEVENTS (test_trio)	COMPLETED	0	2026-02-23 11:42:45.832	13.6s	13.3s	97.4%	807.9 MB	7.2 GB	45.9 MB	4.2 KB

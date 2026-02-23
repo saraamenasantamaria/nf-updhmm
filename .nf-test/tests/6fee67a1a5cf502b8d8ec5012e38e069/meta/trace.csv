@@ -1,3 +1,0 @@
-task_id	hash	native_id	name	status	exit	submit	duration	realtime	%cpu	peak_rss	peak_vmem	rchar	wchar
-1	3b/3450ce	2766337	FILTER_LOWCONF:BCFTOOLS_SETGT (trio_test)	COMPLETED	0	2026-02-23 10:11:35.002	733ms	0ms	176.6%	2.6 MB	4.3 MB	136.6 KB	589 B
-2	73/e7b833	2766575	FILTER_LOWCONF:BCFTOOLS_VIEW_FILTER_ALL (trio_test)	COMPLETED	0	2026-02-23 10:11:35.869	567ms	0ms	174.5%	2.6 MB	4.3 MB	131.3 KB	575 B
