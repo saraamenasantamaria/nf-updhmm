@@ -8,6 +8,8 @@ params.nf_test_output  = ""
 
 // include dependencies
 
+include { BCFTOOLS_VIEW  } from '/home/u0030001/nf-updhmm_zenodo/subworkflows/local/event_detection/tests/../../../../modules/nf-core/bcftools/view/main.nf'
+
 
 // include test workflow
 include { EVENT_DETECTION } from '/home/u0030001/nf-updhmm_zenodo/subworkflows/local/event_detection/tests/../main.nf'
@@ -24,19 +26,36 @@ workflow {
 
     // run dependencies
     
+    {
+        def input = []
+        
+                input[0] = Channel.of([
+                    [ id:'test_trio' ],
+                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/vcf/ped/justhusky_minimal.vcf.gz', checkIfExists: true),
+                    []
+                ])
+                input[1] = []  // regions
+                input[2] = []  // targets
+                input[3] = []  // samples
+                
+        BCFTOOLS_VIEW(*input)
+    }
+    
 
     // workflow mapping
     def input = []
     
-                input[0] = channel.of([
-                    [ id:'test_trio',
-                      proband_id: 'NA19675',
-                      mother_id: 'NA19678',
-                      father_id: 'NA19679'
-                    ],
-                    file('/home/u0030001/nf-updhmm_zenodo/subworkflows/local/event_detection/tests/data/family.vcf.gz', checkIfExists: true),
-                    []
-                ])
+                input[0] = BCFTOOLS_VIEW.out.vcf.map { meta, vcf ->
+                    [
+                        [ id:'test_trio',
+                          proband_id: 'hugelymodelbat',
+                          mother_id: 'slowlycivilbuck',
+                          father_id: 'earlycasualcaiman' 
+                        ],
+                        vcf,
+                        []
+                    ]
+                }
                 
     //----
 

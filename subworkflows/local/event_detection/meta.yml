@@ -44,10 +44,10 @@ output:
         ontologies:
           - edam: "http://edamontology.org/format_3475"
   - versions:
-        type: file
-        description: File containing software versions
-        pattern: "versions.yml"
-        ontologies:
+      type: file
+      description: File containing software versions
+      pattern: "versions.yml"
+      ontologies:
         - edam: "http://edamontology.org/format_3750"
 
 authors:

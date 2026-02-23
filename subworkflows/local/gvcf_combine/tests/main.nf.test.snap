@@ -1,60 +1,38 @@
 {
     "homo_sapiens - stub": {
         "content": [
-            {
-                "0": [
-                    [
-                        {
-                            "id": "test_stub"
-                        },
-                        "test_stub_filtered.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
-                        "test_stub_filtered.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ]
-                ],
-                "vcf": [
-                    [
-                        {
-                            "id": "test_stub"
-                        },
-                        "test_stub_filtered.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
-                        "test_stub_filtered.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ]
+            [
+                [
+                    {
+                        "id": "test_stub"
+                    },
+                    "test_stub_filtered.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                    "test_stub_filtered.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
                 ]
-            }
+            ]
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2026-02-16T23:41:15.665525641"
+        "timestamp": "2026-02-23T11:28:50.817679961"
     },
     "homo_sapiens - duo - 2 gvcf - fasta": {
         "content": [
-            {
-                "0": [
-                    [
-                        {
-                            "id": "test_trio"
-                        },
-                        "test_trio_filtered.vcf.gz:md5,76c0d38c7037b360b73a274eb0c7c0c4",
-                        "test_trio_filtered.vcf.gz.tbi:md5,baa462775416d6d7a884180fff230e9e"
-                    ]
-                ],
-                "vcf": [
-                    [
-                        {
-                            "id": "test_trio"
-                        },
-                        "test_trio_filtered.vcf.gz:md5,76c0d38c7037b360b73a274eb0c7c0c4",
-                        "test_trio_filtered.vcf.gz.tbi:md5,baa462775416d6d7a884180fff230e9e"
-                    ]
+            [
+                [
+                    {
+                        "id": "test_trio"
+                    },
+                    "test_trio_filtered.vcf.gz:md5,76c0d38c7037b360b73a274eb0c7c0c4",
+                    "test_trio_filtered.vcf.gz.tbi:md5,baa462775416d6d7a884180fff230e9e"
                 ]
-            }
+            ]
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2026-02-16T23:40:19.276458172"
+        "timestamp": "2026-02-23T11:27:46.947183073"
     }
 }

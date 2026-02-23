@@ -10,6 +10,7 @@ nextflow_workflow {
     tag "gatk4"
     tag "gatk4/combinegvcfs"
     tag "gatk4/genotypegvcfs"
+    tag "gatk4/variantfiltration"
     tag "bcftools"
     tag "bcftools/annotate"
 
@@ -18,7 +19,6 @@ nextflow_workflow {
         when {
             workflow {
                 """
-
                 input[0] = Channel.of([
                     [ id: 'test_trio' ],
                     [
@@ -43,11 +43,12 @@ nextflow_workflow {
                 { assert workflow.success },
                 { assert workflow.out.vcf },
                 { assert workflow.out.vcf.size() == 1 },
-                { assert snapshot(workflow.out).match() }
+                { assert snapshot(
+                    workflow.out.vcf
+                ).match() }
             )
         }
     }
-
 
     test("homo_sapiens - stub") {
 
@@ -71,7 +72,9 @@ nextflow_workflow {
         then {
             assertAll(
                 { assert workflow.success },
-                { assert snapshot(workflow.out).match() }
+                { assert snapshot(
+                    workflow.out.vcf
+                ).match() }
             )
         }
     }

@@ -37,4 +37,5 @@ workflow EVENT_DETECTION {
     emit:
     upd_events_txt    = UPDHMM_CALCULATEEVENTS.out.upd_events_txt   // channel: [val(meta), path(txt)]
     upd_collapsed_txt = UPDHMM_COLLAPSEEVENTS.out.upd_collapsed_txt // channel: [val(meta), path(txt)]
+    
 }

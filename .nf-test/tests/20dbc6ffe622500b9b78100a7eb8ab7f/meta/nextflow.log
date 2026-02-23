@@ -1,0 +1,156 @@
+Feb-23 11:43:02.879 [main] DEBUG nextflow.cli.Launcher - $> nextflow -quiet -log /home/u0030001/nf-updhmm_zenodo/.nf-test/tests/20dbc6ffe622500b9b78100a7eb8ab7f/meta/nextflow.log run /home/u0030001/nf-updhmm_zenodo/.nf-test-20dbc6ffe622500b9b78100a7eb8ab7f.nf -c /home/u0030001/nf-updhmm_zenodo/nextflow.config -c /home/u0030001/nf-updhmm_zenodo/tests/nextflow.config -c /home/u0030001/nf-updhmm_zenodo/modules/local/updhmm/calculateevents/tests/./add_ratios.config -params-file /home/u0030001/nf-updhmm_zenodo/.nf-test/tests/20dbc6ffe622500b9b78100a7eb8ab7f/meta/params.json -ansi-log false -profile singularity -with-trace /home/u0030001/nf-updhmm_zenodo/.nf-test/tests/20dbc6ffe622500b9b78100a7eb8ab7f/meta/trace.csv -w /home/u0030001/nf-updhmm_zenodo/.nf-test/tests/20dbc6ffe622500b9b78100a7eb8ab7f/work
+Feb-23 11:43:03.005 [main] INFO  nextflow.cli.CmdRun - N E X T F L O W  ~  version 25.04.6
+Feb-23 11:43:03.088 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; embedded=false; plugins-dir=/home/u0030001/.nextflow/plugins; core-plugins: nf-amazon@2.15.0,nf-azure@1.16.0,nf-cloudcache@0.4.3,nf-codecommit@0.2.3,nf-console@1.2.1,nf-google@1.21.1,nf-k8s@1.0.0,nf-tower@1.11.4,nf-wave@1.12.1
+Feb-23 11:43:03.188 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
+Feb-23 11:43:03.190 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
+Feb-23 11:43:03.193 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.12.0 in 'deployment' mode
+Feb-23 11:43:03.212 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
+Feb-23 11:43:03.284 [main] DEBUG nextflow.config.ConfigBuilder - Found config base: /home/u0030001/nf-updhmm_zenodo/nextflow.config
+Feb-23 11:43:03.289 [main] DEBUG nextflow.config.ConfigBuilder - User config file: /home/u0030001/nf-updhmm_zenodo/nextflow.config
+Feb-23 11:43:03.291 [main] DEBUG nextflow.config.ConfigBuilder - User config file: /home/u0030001/nf-updhmm_zenodo/tests/nextflow.config
+Feb-23 11:43:03.291 [main] DEBUG nextflow.config.ConfigBuilder - User config file: /home/u0030001/nf-updhmm_zenodo/modules/local/updhmm/calculateevents/tests/./add_ratios.config
+Feb-23 11:43:03.292 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /home/u0030001/nf-updhmm_zenodo/nextflow.config
+Feb-23 11:43:03.295 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /home/u0030001/nf-updhmm_zenodo/nextflow.config
+Feb-23 11:43:03.295 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /home/u0030001/nf-updhmm_zenodo/tests/nextflow.config
+Feb-23 11:43:03.295 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /home/u0030001/nf-updhmm_zenodo/modules/local/updhmm/calculateevents/tests/add_ratios.config
+Feb-23 11:43:03.387 [main] DEBUG n.secret.LocalSecretsProvider - Secrets store: /home/u0030001/.nextflow/secrets/store.json
+Feb-23 11:43:03.390 [main] DEBUG nextflow.secret.SecretsLoader - Discovered secrets providers: [nextflow.secret.LocalSecretsProvider@f2c488] - activable => nextflow.secret.LocalSecretsProvider@f2c488
+Feb-23 11:43:03.484 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `singularity`
+Feb-23 11:43:09.972 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `singularity`
+Feb-23 11:43:11.386 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `singularity`
+Feb-23 11:43:11.480 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `singularity`
+Feb-23 11:43:11.584 [main] DEBUG nextflow.config.ConfigBuilder - Available config profiles: [bih, cfc_dev, uzl_omics, ifb_core, embl_hd, denbi_qbic, alice, mjolnir_globe, uppmax, giga, incliva, ilifu, ki_luria, uge, icr_alma, rosalind_uge, lugh, mccleary, unibe_ibu, vai, czbiohub_aws, jax, roslin, iris, tes, scw, unc_longleaf, tigem, tubingen_apg, apollo, ipop_up, vsc_calcua, pdc_kth, ceci_nic5, ccga_cau, humantechnopole, stjude, daisybio, eddie, medair, biowulf, apptainer, bi, bigpurple, adcra, cedars, pawsey_setonix, vsc_kul_uhasselt, pawsey_nimbus, rki, ucl_myriad, utd_ganymede, charliecloud, fred_hutch, seattlechildrens, icr_davros, ceres, arm, munin, rosalind, hasta, cfc, uzh, shu_bmrc, ebi_codon_slurm, ebc, ccga_dx, crick, ku_sund_danhead, marvin, lrz_cm4, shifter, biohpc_gen, mana, mamba, york_viking, unc_lccc, wehi, awsbatch, wustl_htcf, arcc, ceci_dragon2, imperial, maestro, software_license, cannon, genotoul, nci_gadi, abims, eva_grace, janelia, nu_genomics, googlebatch, oist, sahmri, kaust, alliance_canada, mpcdf, leicester, vsc_ugent, create, sage, cambridge, jex, podman, ebi_codon, cheaha, xanadu, nyu_hpc, test, marjorie, computerome, ucd_sonic, gpu, seg_globe, mssm, sanger, dkfz, bluebear, pasteur, einstein, ethz_euler, m3c, test_full, imb, ucl_cscluster, tuos_stanage, azurebatch, seadragon, crukmi, csiro_petrichor, qmul_apocrita, wave, docker, engaging, gis, hypatia, psmn, eva, unity, cropdiversityhpc, nygc, fgcz, conda, crg, singularity, mpcdf_viper, pe2, dirac, self_hosted_runner, tufts, uw_hyak_pedslabs, binac2, debug, hki_genie, genouest, cbe, unsw_katana, utd_juno, gitpod, phoenix, seawulf, uod_hpc, fub_curta, lovelace, uct_hpc, aws_tower, binac, fsu_draco]
+Feb-23 11:43:11.781 [main] DEBUG nextflow.cli.CmdRun - Applied DSL=2 from script declaration
+Feb-23 11:43:11.876 [main] INFO  nextflow.cli.CmdRun - Launching `/home/u0030001/nf-updhmm_zenodo/.nf-test-20dbc6ffe622500b9b78100a7eb8ab7f.nf` [compassionate_ekeblad] DSL2 - revision: 3cad278593
+Feb-23 11:43:11.878 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins declared=[nf-schema@2.4.2]
+Feb-23 11:43:11.879 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins default=[]
+Feb-23 11:43:11.879 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins resolved requirement=[nf-schema@2.4.2]
+Feb-23 11:43:11.880 [main] DEBUG nextflow.plugin.PluginUpdater - Installing plugin nf-schema version: 2.4.2
+Feb-23 11:43:11.992 [main] INFO  org.pf4j.AbstractPluginManager - Plugin 'nf-schema@2.4.2' resolved
+Feb-23 11:43:11.993 [main] INFO  org.pf4j.AbstractPluginManager - Start plugin 'nf-schema@2.4.2'
+Feb-23 11:43:12.007 [main] DEBUG nextflow.plugin.BasePlugin - Plugin started nf-schema@2.4.2
+Feb-23 11:43:12.172 [main] DEBUG nextflow.Session - Session UUID: 0e2053e4-c5ba-4e6c-a19d-f36d43950de3
+Feb-23 11:43:12.173 [main] DEBUG nextflow.Session - Run name: compassionate_ekeblad
+Feb-23 11:43:12.173 [main] DEBUG nextflow.Session - Executor pool size: 48
+Feb-23 11:43:12.180 [main] DEBUG nextflow.file.FilePorter - File porter settings maxRetries=3; maxTransfers=50; pollTimeout=null
+Feb-23 11:43:12.184 [main] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'FileTransfer' minSize=10; maxSize=144; workQueue=LinkedBlockingQueue[-1]; allowCoreThreadTimeout=false
+Feb-23 11:43:12.206 [main] DEBUG nextflow.cli.CmdRun - 
+  Version: 25.04.6 build 5954
+  Created: 01-07-2025 11:27 UTC (13:27 CEST)
+  System: Linux 5.14.0-503.40.1.el9_5.x86_64
+  Runtime: Groovy 4.0.26 on OpenJDK 64-Bit Server VM 17.0.15-internal+0-adhoc..src
+  Encoding: UTF-8 (UTF-8)
+  Process: 2832493@ur1nprohpclgn01.urederra.nasertic.es [10.249.234.11]
+  CPUs: 48 - Mem: 94.1 GB (31 GB) - Swap: 0 (0)
+Feb-23 11:43:12.273 [main] DEBUG nextflow.Session - Work-dir: /home/u0030001/nf-updhmm_zenodo/.nf-test/tests/20dbc6ffe622500b9b78100a7eb8ab7f/work [nfs]
+Feb-23 11:43:12.273 [main] DEBUG nextflow.Session - Script base path does not exist or is not a directory: /home/u0030001/nf-updhmm_zenodo/bin
+Feb-23 11:43:12.292 [main] DEBUG nextflow.executor.ExecutorFactory - Extension executors providers=[]
+Feb-23 11:43:12.302 [main] DEBUG nextflow.Session - Observer factory: DefaultObserverFactory
+Feb-23 11:43:12.370 [main] DEBUG nextflow.Session - Observer factory: ValidationObserverFactory
+Feb-23 11:43:12.384 [main] DEBUG nextflow.Session - Observer factory (v2): LinObserverFactory
+Feb-23 11:43:12.480 [main] DEBUG nextflow.cache.CacheFactory - Using Nextflow cache factory: nextflow.cache.DefaultCacheFactory
+Feb-23 11:43:12.488 [main] DEBUG nextflow.util.CustomThreadPool - Creating default thread pool > poolSize: 49; maxThreads: 1000
+Feb-23 11:43:12.907 [main] DEBUG nextflow.Session - Session start
+Feb-23 11:43:12.910 [main] DEBUG nextflow.trace.TraceFileObserver - Workflow started -- trace file: /home/u0030001/nf-updhmm_zenodo/.nf-test/tests/20dbc6ffe622500b9b78100a7eb8ab7f/meta/trace.csv
+Feb-23 11:43:12.936 [main] DEBUG n.validation.config.ValidationConfig - Set `validation.monochromeLogs` to false
+Feb-23 11:43:12.939 [main] DEBUG n.validation.config.ValidationConfig - Added the following parameters to the ignored parameters: [genomes]
+Feb-23 11:43:12.942 [main] DEBUG n.validation.config.HelpConfig - Set `validation.help.enabled` to true
+Feb-23 11:43:12.946 [main] DEBUG n.validation.config.HelpConfig - Set `validation.help.showHiddenParameter` to show_hidden
+Feb-23 11:43:12.946 [main] DEBUG n.validation.config.HelpConfig - Set `validation.help.showHidden` to false (Due to --show_hidden)
+Feb-23 11:43:12.946 [main] DEBUG n.validation.config.HelpConfig - Set `validation.help.fullParameter` to help_full
+Feb-23 11:43:12.972 [main] DEBUG n.validation.config.HelpConfig - Set `validation.help.beforeText` to 
+------------------------------------------------------
+                                        ,--./,-.
+        ___     __   __   __   ___     /,-._.--~'
+  |\ | |__  __ /  ` /  \ |__) |__         }  {
+  | \| |       \__, \__/ |  \ |___     \`-._,-`-,
+                                        `._,._,'
+  nf-core/updhmm 1.0.0dev
+------------------------------------------------------
+
+Feb-23 11:43:12.973 [main] DEBUG n.validation.config.HelpConfig - Set `validation.help.afterText` to 
+* The nf-core framework
+    https://doi.org/10.1038/s41587-020-0439-x
+* Software dependencies
+    https://github.com/nf-core/updhmm/blob/master/CITATIONS.md
+
+Feb-23 11:43:12.974 [main] DEBUG n.validation.config.HelpConfig - Set `validation.help.command` to nextflow run nf-core/updhmm -profile <docker/singularity/.../institute> --input samplesheet.csv --outdir <OUTDIR>
+Feb-23 11:43:12.976 [main] DEBUG n.validation.config.SummaryConfig - Set `validation.summary.beforeText` to 
+------------------------------------------------------
+                                        ,--./,-.
+        ___     __   __   __   ___     /,-._.--~'
+  |\ | |__  __ /  ` /  \ |__) |__         }  {
+  | \| |       \__, \__/ |  \ |___     \`-._,-`-,
+                                        `._,._,'
+  nf-core/updhmm 1.0.0dev
+------------------------------------------------------
+
+Feb-23 11:43:12.979 [main] DEBUG n.validation.config.SummaryConfig - Set `validation.summary.afterText` to 
+* The nf-core framework
+    https://doi.org/10.1038/s41587-020-0439-x
+* Software dependencies
+    https://github.com/nf-core/updhmm/blob/master/CITATIONS.md
+
+Feb-23 11:43:13.890 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
+Feb-23 11:43:15.488 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withLabel:process_medium` matches labels `process_medium` for process with name BCFTOOLS_VIEW
+Feb-23 11:43:15.491 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withName:BCFTOOLS_VIEW` matches process BCFTOOLS_VIEW
+Feb-23 11:43:15.582 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Feb-23 11:43:15.583 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Feb-23 11:43:15.588 [main] DEBUG nextflow.executor.Executor - [warm up] executor > local
+Feb-23 11:43:15.594 [main] DEBUG n.processor.LocalPollingMonitor - Creating local task monitor for executor 'local' > cpus=48; memory=94.1 GB; capacity=48; pollInterval=100ms; dumpInterval=5m
+Feb-23 11:43:15.595 [main] DEBUG n.processor.TaskPollingMonitor - >>> barrier register (monitor: local)
+Feb-23 11:43:15.686 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'BCFTOOLS_VIEW': maxForks=0; fair=false; array=0
+Feb-23 11:43:15.873 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withLabel:process_medium` matches labels `process_medium` for process with name UPDHMM_VCFCHECK
+Feb-23 11:43:15.874 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withName:UPDHMM_VCFCHECK` matches process UPDHMM_VCFCHECK
+Feb-23 11:43:15.881 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Feb-23 11:43:15.884 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Feb-23 11:43:15.885 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'UPDHMM_VCFCHECK': maxForks=0; fair=false; array=0
+Feb-23 11:43:15.973 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withLabel:process_high` matches labels `process_high` for process with name UPDHMM_CALCULATEEVENTS
+Feb-23 11:43:15.974 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withName:UPDHMM_CALCULATEEVENTS` matches process UPDHMM_CALCULATEEVENTS
+Feb-23 11:43:15.977 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Feb-23 11:43:15.980 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Feb-23 11:43:15.981 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'UPDHMM_CALCULATEEVENTS': maxForks=0; fair=false; array=0
+Feb-23 11:43:16.079 [main] DEBUG nextflow.Session - Config process names validation disabled as requested
+Feb-23 11:43:16.084 [main] DEBUG nextflow.Session - Igniting dataflow network (4)
+Feb-23 11:43:16.085 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > BCFTOOLS_VIEW
+Feb-23 11:43:16.088 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > UPDHMM_VCFCHECK
+Feb-23 11:43:16.089 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > UPDHMM_CALCULATEEVENTS
+Feb-23 11:43:16.089 [main] DEBUG nextflow.script.ScriptRunner - Parsed script files:
+  Script_3a26b7952b3b26de: /home/u0030001/nf-updhmm_zenodo/.nf-test-20dbc6ffe622500b9b78100a7eb8ab7f.nf
+  Script_45b60b907de21ad8: /home/u0030001/nf-updhmm_zenodo/modules/local/updhmm/calculateevents/main.nf
+  Script_32a1cef3355ee7c3: /home/u0030001/nf-updhmm_zenodo/modules/nf-core/bcftools/view/main.nf
+  Script_a60ff36d7f3479c3: /home/u0030001/nf-updhmm_zenodo/modules/local/updhmm/vcfcheck/main.nf
+Feb-23 11:43:16.089 [main] DEBUG nextflow.script.ScriptRunner - > Awaiting termination 
+Feb-23 11:43:16.089 [main] DEBUG nextflow.Session - Session await
+Feb-23 11:43:16.489 [FileTransfer-1] DEBUG nextflow.file.FilePorter - Copying foreign file https://raw.githubusercontent.com/nf-core/test-datasets/modules/data/genomics/homo_sapiens/genome/vcf/ped/justhusky_minimal.vcf.gz to work dir: /home/u0030001/nf-updhmm_zenodo/.nf-test/tests/20dbc6ffe622500b9b78100a7eb8ab7f/work/stage-0e2053e4-c5ba-4e6c-a19d-f36d43950de3/cc/83cba4bd21979393bcef08da106584/justhusky_minimal.vcf.gz
+Feb-23 11:43:16.774 [Actor Thread 21] WARN  nextflow.container.SingularityCache - Singularity cache directory has not been defined -- Remote image will be stored in the path: /home/u0030001/nf-updhmm_zenodo/.nf-test/tests/20dbc6ffe622500b9b78100a7eb8ab7f/work/singularity -- Use the environment variable NXF_SINGULARITY_CACHEDIR to specify a different location
+Feb-23 11:43:16.775 [Actor Thread 21] INFO  nextflow.container.SingularityCache - Pulling Singularity image https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/47/474a5ea8dc03366b04df884d89aeacc4f8e6d1ad92266888e7a8e7958d07cde8/data [cache /home/u0030001/nf-updhmm_zenodo/.nf-test/tests/20dbc6ffe622500b9b78100a7eb8ab7f/work/singularity/community-cr-prod.seqera.io-docker-registry-v2-blobs-sha256-47-474a5ea8dc03366b04df884d89aeacc4f8e6d1ad92266888e7a8e7958d07cde8-data.img]
+Feb-23 11:43:17.861 [Actor Thread 21] DEBUG nextflow.container.SingularityCache - Singularity pull complete image=https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/47/474a5ea8dc03366b04df884d89aeacc4f8e6d1ad92266888e7a8e7958d07cde8/data path=/home/u0030001/nf-updhmm_zenodo/.nf-test/tests/20dbc6ffe622500b9b78100a7eb8ab7f/work/singularity/community-cr-prod.seqera.io-docker-registry-v2-blobs-sha256-47-474a5ea8dc03366b04df884d89aeacc4f8e6d1ad92266888e7a8e7958d07cde8-data.img
+Feb-23 11:43:17.989 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Feb-23 11:43:17.990 [Task submitter] INFO  nextflow.Session - [dd/07750a] Submitted process > BCFTOOLS_VIEW (test_trio)
+Feb-23 11:43:19.045 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 1; name: BCFTOOLS_VIEW (test_trio); status: COMPLETED; exit: 0; error: -; workDir: /home/u0030001/nf-updhmm_zenodo/.nf-test/tests/20dbc6ffe622500b9b78100a7eb8ab7f/work/dd/07750afc34817ad93079b8e01ba6ad]
+Feb-23 11:43:19.046 [Task monitor] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'TaskFinalizer' minSize=10; maxSize=144; workQueue=LinkedBlockingQueue[-1]; allowCoreThreadTimeout=false
+Feb-23 11:43:19.173 [TaskFinalizer-1] DEBUG nextflow.processor.TaskProcessor - Process BCFTOOLS_VIEW > Skipping output binding because one or more optional files are missing: fileoutparam<1:1>
+Feb-23 11:43:19.173 [TaskFinalizer-1] DEBUG nextflow.processor.TaskProcessor - Process BCFTOOLS_VIEW > Skipping output binding because one or more optional files are missing: fileoutparam<2:1>
+Feb-23 11:43:19.490 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Feb-23 11:43:19.490 [Task submitter] INFO  nextflow.Session - [9f/fafd7b] Submitted process > UPDHMM_VCFCHECK (test_trio)
+Feb-23 11:43:31.194 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 2; name: UPDHMM_VCFCHECK (test_trio); status: COMPLETED; exit: 0; error: -; workDir: /home/u0030001/nf-updhmm_zenodo/.nf-test/tests/20dbc6ffe622500b9b78100a7eb8ab7f/work/9f/fafd7be0ba817833a658cf3ac9b843]
+Feb-23 11:43:31.400 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Feb-23 11:43:31.469 [Task submitter] INFO  nextflow.Session - [aa/be70d3] Submitted process > UPDHMM_CALCULATEEVENTS (test_trio)
+Feb-23 11:43:45.051 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 3; name: UPDHMM_CALCULATEEVENTS (test_trio); status: COMPLETED; exit: 0; error: -; workDir: /home/u0030001/nf-updhmm_zenodo/.nf-test/tests/20dbc6ffe622500b9b78100a7eb8ab7f/work/aa/be70d3cdcdc9cf0a7acc429f89380a]
+Feb-23 11:43:45.080 [TaskFinalizer-3] WARN  nextflow.processor.PublishDir - Process `UPDHMM_CALCULATEEVENTS` publishDir path contains a variable with a null value
+Feb-23 11:43:45.088 [TaskFinalizer-3] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'PublishDir' minSize=10; maxSize=144; workQueue=LinkedBlockingQueue[-1]; allowCoreThreadTimeout=false
+Feb-23 11:43:45.090 [main] DEBUG nextflow.Session - Session await > all processes finished
+Feb-23 11:43:45.152 [Task monitor] DEBUG n.processor.TaskPollingMonitor - <<< barrier arrives (monitor: local) - terminating tasks monitor poll loop
+Feb-23 11:43:45.152 [main] DEBUG nextflow.Session - Session await > all barriers passed
+Feb-23 11:43:45.154 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'TaskFinalizer' shutdown completed (hard=false)
+Feb-23 11:43:45.157 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'PublishDir' shutdown completed (hard=false)
+Feb-23 11:43:45.172 [main] DEBUG n.trace.WorkflowStatsObserver - Workflow completed > WorkflowStats[succeededCount=3; failedCount=0; ignoredCount=0; cachedCount=0; pendingCount=0; submittedCount=0; runningCount=0; retriesCount=0; abortedCount=0; succeedDuration=1m 24s; failedDuration=0ms; cachedDuration=0ms;loadCpus=0; loadMemory=0; peakRunning=1; peakCpus=6; peakMemory=72 GB; ]
+Feb-23 11:43:45.172 [main] DEBUG nextflow.trace.TraceFileObserver - Workflow completed -- saving trace file
+Feb-23 11:43:45.174 [main] DEBUG nextflow.trace.ReportObserver - Workflow completed -- rendering execution report
+Feb-23 11:43:45.811 [main] DEBUG nextflow.trace.TimelineObserver - Workflow completed -- rendering execution timeline
+Feb-23 11:43:46.086 [main] DEBUG nextflow.cache.CacheDB - Closing CacheDB done
+Feb-23 11:43:46.187 [main] INFO  org.pf4j.AbstractPluginManager - Stop plugin 'nf-schema@2.4.2'
+Feb-23 11:43:46.188 [main] DEBUG nextflow.plugin.BasePlugin - Plugin stopped nf-schema
+Feb-23 11:43:46.189 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'FileTransfer' shutdown completed (hard=false)
+Feb-23 11:43:46.189 [main] DEBUG nextflow.script.ScriptRunner - > Execution complete -- Goodbye

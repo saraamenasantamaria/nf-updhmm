@@ -2,7 +2,7 @@ process UPDHMM_VCFCHECK {
     tag "$meta.id"
     label 'process_medium'
     
-    container "/home/u0030001/nf-updhmm_zenodo/updhmm_v1.5.3.sif"
+    container "/home/u0030001/nf-updhmm_zenodo/UPDhmm_1.7.1.sif"
 
     input:
     tuple val(meta), path(vcf), path(tbi)
@@ -10,9 +10,7 @@ process UPDHMM_VCFCHECK {
     output:
     tuple val(meta), path("*.processed.rds")    , emit: processed_vcf
     tuple val(meta), path("*.R_sessionInfo.log"), emit: session_info
-    tuple val("${task.process}"), val("r-base"), eval("Rscript -e \"cat(paste(R.version[['major']], R.version[['minor']], sep='.'))\""), emit: versions_rbase, topic: versions
-    tuple val("${task.process}"), val("bioconductor-updhmm"), eval("Rscript -e \"library(UPDhmm); cat(as.character(packageVersion('UPDhmm')))\""), emit: versions_updhmm, topic: versions
-    tuple val("${task.process}"), val("bioconductor-variantannotation"), eval("Rscript -e \"library(VariantAnnotation); cat(as.character(packageVersion('VariantAnnotation')))\""), emit: versions_variantannotation, topic: versions
+    path "versions.yml", emit: versions, topic: versions
     
     when:
     task.ext.when == null || task.ext.when

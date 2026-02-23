@@ -1,6 +1,6 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/subworkflows/yaml-schema.json
 name: "gvcf_combine"
-description: Perform GVCF combination and joint genotyping operations to combine family trio GVCFs into a single VCF.
+description: Perform GVCF combination, genotyping, and variant annotation to combine family trio GVCFs into a single VCF.
 keywords:
   - gvcf
   - vcf
@@ -46,9 +46,21 @@ output:
         Channel containing family metadata, final processed VCF file and its tabix index
         Structure: [ meta, vcf, tbi ]
         Where vcf is the final VCF file containing genotyped variants from family trio members 
-        after joint calling, variant filtration (LowDepth and LowGQ filters), and removal of unused annotations
+        after joint calling, variant annotation with filters (LowDepth and LowGQ), and removal of unused annotations
         and tbi is the tabix index file for the final VCF
       pattern: "[ meta, *.vcf.gz, *.tbi ]"
+
+topics:
+  versions:
+    - - ${task.process}:
+        type: string
+        description: The process the versions were collected from
+      - tool_name:
+        type: string
+        description: The tool name
+      - version_command:
+        type: string
+        description: The command used to generate the version of the tool
           
 authors:
   - "@saramenasantamaria"

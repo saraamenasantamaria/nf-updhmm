@@ -32,39 +32,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2026-02-16T22:20:39.265252119"
-    },
-    "multiple families - with intersection": {
-        "content": [
-            [
-                {
-                    "meta": {
-                        "id": "family1",
-                        "sv_p": "-",
-                        "sv_m": "-",
-                        "sv_f": "-"
-                    },
-                    "vcf_name": "family1.vcf.gz",
-                    "tbi_name": "family1.vcf.gz.tbi"
-                },
-                {
-                    "meta": {
-                        "id": "family2",
-                        "sv_p": "-",
-                        "sv_m": "-",
-                        "sv_f": "-"
-                    },
-                    "vcf_name": "family2.vcf.gz",
-                    "tbi_name": "family2.vcf.gz.tbi"
-                }
-            ],
-            null
-        ],
-        "meta": {
-            "nf-test": "0.9.3",
-            "nextflow": "25.04.6"
-        },
-        "timestamp": "2026-02-16T22:19:57.221760394"
+        "timestamp": "2026-02-23T13:47:11.544401138"
     },
     "single family - without intersection - stub": {
         "content": [
@@ -99,39 +67,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2026-02-16T22:20:57.471745533"
-    },
-    "multiple families - without intersection": {
-        "content": [
-            [
-                {
-                    "meta": {
-                        "id": "family1",
-                        "sv_p": "-",
-                        "sv_m": "-",
-                        "sv_f": "-"
-                    },
-                    "vcf_name": "family1.vcf.gz",
-                    "tbi_name": "family1.vcf.gz.tbi"
-                },
-                {
-                    "meta": {
-                        "id": "family2",
-                        "sv_p": "-",
-                        "sv_m": "-",
-                        "sv_f": "-"
-                    },
-                    "vcf_name": "family2.vcf.gz",
-                    "tbi_name": "family2.vcf.gz.tbi"
-                }
-            ],
-            null
-        ],
-        "meta": {
-            "nf-test": "0.9.3",
-            "nextflow": "25.04.6"
-        },
-        "timestamp": "2026-02-16T22:20:18.627799755"
+        "timestamp": "2026-02-23T13:47:31.754375229"
     },
     "single family - with intersection": {
         "content": [
@@ -153,62 +89,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2026-02-16T22:19:14.356370345"
-    },
-    "multiple families - without intersection - stub": {
-        "content": [
-            {
-                "0": [
-                    [
-                        {
-                            "id": "family1",
-                            "sv_p": "-",
-                            "sv_m": "-",
-                            "sv_f": "-"
-                        },
-                        "family1.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
-                        "family1.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ],
-                    [
-                        {
-                            "id": "family2",
-                            "sv_p": "-",
-                            "sv_m": "-",
-                            "sv_f": "-"
-                        },
-                        "family2.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
-                        "family2.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ]
-                ],
-                "vcf": [
-                    [
-                        {
-                            "id": "family1",
-                            "sv_p": "-",
-                            "sv_m": "-",
-                            "sv_f": "-"
-                        },
-                        "family1.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
-                        "family1.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ],
-                    [
-                        {
-                            "id": "family2",
-                            "sv_p": "-",
-                            "sv_m": "-",
-                            "sv_f": "-"
-                        },
-                        "family2.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
-                        "family2.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ]
-                ]
-            }
-        ],
-        "meta": {
-            "nf-test": "0.9.3",
-            "nextflow": "25.04.6"
-        },
-        "timestamp": "2026-02-16T22:21:38.984595223"
+        "timestamp": "2026-02-23T13:46:29.613882031"
     },
     "single family - without intersection": {
         "content": [
@@ -230,61 +111,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.04.6"
         },
-        "timestamp": "2026-02-16T22:19:34.950203205"
-    },
-    "multiple families - with intersection - stub": {
-        "content": [
-            {
-                "0": [
-                    [
-                        {
-                            "id": "family1",
-                            "sv_p": "-",
-                            "sv_m": "-",
-                            "sv_f": "-"
-                        },
-                        "family1.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
-                        "family1.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ],
-                    [
-                        {
-                            "id": "family2",
-                            "sv_p": "-",
-                            "sv_m": "-",
-                            "sv_f": "-"
-                        },
-                        "family2.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
-                        "family2.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ]
-                ],
-                "vcf": [
-                    [
-                        {
-                            "id": "family1",
-                            "sv_p": "-",
-                            "sv_m": "-",
-                            "sv_f": "-"
-                        },
-                        "family1.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
-                        "family1.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ],
-                    [
-                        {
-                            "id": "family2",
-                            "sv_p": "-",
-                            "sv_m": "-",
-                            "sv_f": "-"
-                        },
-                        "family2.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
-                        "family2.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ]
-                ]
-            }
-        ],
-        "meta": {
-            "nf-test": "0.9.3",
-            "nextflow": "25.04.6"
-        },
-        "timestamp": "2026-02-16T22:21:18.770855493"
+        "timestamp": "2026-02-23T13:46:50.975900148"
     }
 }

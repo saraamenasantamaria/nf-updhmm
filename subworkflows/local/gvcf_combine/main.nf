@@ -1,8 +1,13 @@
 //
-// Perform GVCF combination and genotyping operations
+// Perform GVCF combination, genotyping, and variant annotation
 //
 // This workflow combines individual GVCF files from trio members using GATK4 CombineGVCFs,
 // then performs joint genotyping with GenotypeGVCFs to produce a final VCF.
+//
+// After genotyping, variants are annotated using GATK4 VariantFiltration to mark:
+// - "LowGQ": any sample in the trio with genotype quality (GQ) equal to 0
+// - "LowDepth": any sample in the trio with read depth (DP) = 1
+//
 // This approach is specifically designed for GVCF inputs and follows GATK best practices.
 //
 
@@ -15,9 +20,9 @@ workflow GVCF_COMBINE {
     
     take:
     ch_gvcfs    // channel: [val(meta), path(gvcfs), path(tbis)]
-    val_fasta  // path to reference fasta
-    val_fai    // path to fasta index
-    val_dict   // path to reference dict
+    val_fasta   // path to reference fasta
+    val_fai     // path to fasta index
+    val_dict    // path to reference dict
     
     main:
 
@@ -43,15 +48,15 @@ workflow GVCF_COMBINE {
     //
     // Prepare reference files as tuples with empty meta
     //
-    ch_fasta = Channel.value([ [:], val_fasta ])
-    ch_fai   = Channel.value([ [:], val_fai ])
-    ch_dict  = Channel.value([ [:], val_dict ])
+    ch_fasta = channel.value([ [:], val_fasta ])
+    ch_fai   = channel.value([ [:], val_fai ])
+    ch_dict  = channel.value([ [:], val_dict ])
     
     //
     // Set dbSNP files as empty (optional parameters not used)
     //
-    ch_dbsnp     = Channel.value([ [:], [] ])
-    ch_dbsnp_tbi = Channel.value([ [:], [] ])
+    ch_dbsnp     = channel.value([ [:], [] ])
+    ch_dbsnp_tbi = channel.value([ [:], [] ])
 
     //
     // Perform joint genotyping to convert combined GVCF to VCF
@@ -72,7 +77,7 @@ workflow GVCF_COMBINE {
         .join(GATK4_GENOTYPEGVCFS.out.tbi)
         
     // Empty gzi channel (not needed for this analysis)
-    ch_gzi = Channel.value([ [:], [] ])
+    ch_gzi = channel.value([ [:], [] ])
     
     GATK4_VARIANTFILTRATION(
         ch_filter_input,
@@ -108,5 +113,5 @@ workflow GVCF_COMBINE {
         .join(BCFTOOLS_DELETE_ANNOTATIONS.out.tbi)
     
     emit:
-    vcf      = ch_final_vcfs  // channel: [val(meta), path(vcf), path(tbi)]
+    vcf = ch_final_vcfs  // channel: [val(meta), path(vcf), path(tbi)]
 }

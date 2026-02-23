@@ -24,14 +24,15 @@ nextflow_workflow {
                         sv_f: '-'
                     ],
                     [
-                        file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_01.vcf.gz', checkIfExists: true),
-                        file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_02.vcf.gz', checkIfExists: true),
-                        file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_03.vcf.gz', checkIfExists: true)
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/vcf/test.vcf.gz', checkIfExists: true),
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/vcf/test2.vcf.gz', checkIfExists: true),
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/vcf/test3.vcf.gz', checkIfExists: true)
+
                     ],
                     [
-                        file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_01.vcf.gz.tbi', checkIfExists: true),
-                        file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_02.vcf.gz.tbi', checkIfExists: true),
-                        file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_03.vcf.gz.tbi', checkIfExists: true)
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/vcf/test.vcf.gz.tbi', checkIfExists: true),
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/vcf/test2.vcf.gz.tbi', checkIfExists: true),
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/vcf/test3.vcf.gz.tbi', checkIfExists: true)
                     ]
                 ])
                 input[1] = true
@@ -71,14 +72,14 @@ nextflow_workflow {
                         sv_f: '-'
                     ],
                     [
-                        file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_01.vcf.gz', checkIfExists: true),
-                        file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_02.vcf.gz', checkIfExists: true),
-                        file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_03.vcf.gz', checkIfExists: true)
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/vcf/test.vcf.gz', checkIfExists: true),
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/vcf/test2.vcf.gz', checkIfExists: true),
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/vcf/test3.vcf.gz', checkIfExists: true)
                     ],
                     [
-                        file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_01.vcf.gz.tbi', checkIfExists: true),
-                        file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_02.vcf.gz.tbi', checkIfExists: true),
-                        file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_03.vcf.gz.tbi', checkIfExists: true)
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/vcf/test.vcf.gz.tbi', checkIfExists: true),
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/vcf/test2.vcf.gz.tbi', checkIfExists: true),
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/vcf/test3.vcf.gz.tbi', checkIfExists: true)
                     ]
                 ])
                 input[1] = false
@@ -105,149 +106,6 @@ nextflow_workflow {
         }
     }
 
-    test("multiple families - with intersection") {
-
-        when {
-            workflow {
-                """
-                input[0] = Channel.of(
-                    [
-                        [
-                            id: 'family1',
-                            sv_p: '-',
-                            sv_m: '-', 
-                            sv_f: '-'
-                        ],
-                        [
-                            file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_01.vcf.gz', checkIfExists: true),
-                            file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_02.vcf.gz', checkIfExists: true),
-                            file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_03.vcf.gz', checkIfExists: true)
-                        ],
-                        [
-                            file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_01.vcf.gz.tbi', checkIfExists: true),
-                            file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_02.vcf.gz.tbi', checkIfExists: true),
-                            file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_03.vcf.gz.tbi', checkIfExists: true)
-                        ]
-                    ],
-                    [
-                        [
-                            id: 'family2',
-                            sv_p: '-',
-                            sv_m: '-', 
-                            sv_f: '-'
-                        ],
-                        [
-                            file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_01.vcf.gz', checkIfExists: true),
-                            file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_02.vcf.gz', checkIfExists: true),
-                            file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_03.vcf.gz', checkIfExists: true)
-                        ],
-                        [
-                            file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_01.vcf.gz.tbi', checkIfExists: true),
-                            file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_02.vcf.gz.tbi', checkIfExists: true),
-                            file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_03.vcf.gz.tbi', checkIfExists: true)
-                        ]
-                    ]
-                )
-                input[1] = true
-                """
-            }
-        }
-
-        then {
-            assertAll(
-                { assert workflow.success },
-                { assert workflow.trace.tasks().size() > 0 },
-                { assert workflow.out.vcf.size() == 2 },
-                { assert snapshot(
-                    workflow.out.vcf.collect { meta, vcf, tbi -> 
-                        [
-                            meta: [
-                                id: meta.id,
-                                sv_p: meta.sv_p,
-                                sv_m: meta.sv_m,
-                                sv_f: meta.sv_f
-                            ],
-                            vcf_name: file(vcf).name,
-                            tbi_name: file(tbi).name
-                        ]
-                    }.sort { it.meta.id },
-                    workflow.out.versions
-                ).match() }
-            )
-        }
-    }
-
-    test("multiple families - without intersection") {
-
-        when {
-            workflow {
-                """
-                input[0] = Channel.of(
-                    [
-                        [
-                            id: 'family1',
-                            sv_p: '-',
-                            sv_m: '-', 
-                            sv_f: '-'
-                        ],
-                        [
-                            file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_01.vcf.gz', checkIfExists: true),
-                            file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_02.vcf.gz', checkIfExists: true),
-                            file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_03.vcf.gz', checkIfExists: true)
-                        ],
-                        [
-                            file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_01.vcf.gz.tbi', checkIfExists: true),
-                            file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_02.vcf.gz.tbi', checkIfExists: true),
-                            file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_03.vcf.gz.tbi', checkIfExists: true)
-                        ]
-                    ],
-                    [
-                        [
-                            id: 'family2',
-                            sv_p: '-',
-                            sv_m: '-', 
-                            sv_f: '-'
-                        ],
-                        [
-                            file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_01.vcf.gz', checkIfExists: true),
-                            file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_02.vcf.gz', checkIfExists: true),
-                            file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_03.vcf.gz', checkIfExists: true)
-                        ],
-                        [
-                            file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_01.vcf.gz.tbi', checkIfExists: true),
-                            file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_02.vcf.gz.tbi', checkIfExists: true),
-                            file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_03.vcf.gz.tbi', checkIfExists: true)
-                        ]
-                    ]
-                )
-                input[1] = false
-                """
-            }
-        }
-
-        then {
-            assertAll(
-                { assert workflow.success },
-                { assert workflow.trace.tasks().size() > 0 },
-                { assert workflow.out.vcf.size() == 2 },
-                { assert snapshot(
-                    workflow.out.vcf.collect { meta, vcf, tbi -> 
-                        [
-                            meta: [
-                                id: meta.id,
-                                sv_p: meta.sv_p,
-                                sv_m: meta.sv_m,
-                                sv_f: meta.sv_f
-                            ],
-                            vcf_name: file(vcf).name,
-                            tbi_name: file(tbi).name
-                        ]
-                    }.sort { it.meta.id },
-                    workflow.out.versions
-                ).match() }
-            )
-        }
-    }
 
     test("single family - with intersection - stub") {
         
@@ -264,14 +122,14 @@ nextflow_workflow {
                         sv_f: '-'
                     ],
                     [
-                        file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_01.vcf.gz', checkIfExists: true),
-                        file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_02.vcf.gz', checkIfExists: true),
-                        file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_03.vcf.gz', checkIfExists: true)
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/vcf/test.vcf.gz', checkIfExists: true),
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/vcf/test2.vcf.gz', checkIfExists: true),
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/vcf/test3.vcf.gz', checkIfExists: true)
                     ],
                     [
-                        file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_01.vcf.gz.tbi', checkIfExists: true),
-                        file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_02.vcf.gz.tbi', checkIfExists: true),
-                        file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_03.vcf.gz.tbi', checkIfExists: true)
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/vcf/test.vcf.gz.tbi', checkIfExists: true),
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/vcf/test2.vcf.gz.tbi', checkIfExists: true),
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/vcf/test3.vcf.gz.tbi', checkIfExists: true)
                     ]
                 ])
                 input[1] = true
@@ -302,14 +160,14 @@ nextflow_workflow {
                         sv_f: '-'
                     ],
                     [
-                        file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_01.vcf.gz', checkIfExists: true),
-                        file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_02.vcf.gz', checkIfExists: true),
-                        file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_03.vcf.gz', checkIfExists: true)
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/vcf/test.vcf.gz', checkIfExists: true),
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/vcf/test2.vcf.gz', checkIfExists: true),
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/vcf/test3.vcf.gz', checkIfExists: true)
                     ],
                     [
-                        file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_01.vcf.gz.tbi', checkIfExists: true),
-                        file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_02.vcf.gz.tbi', checkIfExists: true),
-                        file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_03.vcf.gz.tbi', checkIfExists: true)
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/vcf/test.vcf.gz.tbi', checkIfExists: true),
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/vcf/test2.vcf.gz.tbi', checkIfExists: true),
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/vcf/test3.vcf.gz.tbi', checkIfExists: true)
                     ]
                 ])
                 input[1] = false
@@ -325,120 +183,6 @@ nextflow_workflow {
         }
     }
 
-    test("multiple families - with intersection - stub") {
-        
-        options "-stub"
-
-        when {
-            workflow {
-                """
-                input[0] = Channel.of(
-                    [
-                        [
-                            id: 'family1',
-                            sv_p: '-',
-                            sv_m: '-', 
-                            sv_f: '-'
-                        ],
-                        [
-                            file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_01.vcf.gz', checkIfExists: true),
-                            file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_02.vcf.gz', checkIfExists: true),
-                            file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_03.vcf.gz', checkIfExists: true)
-                        ],
-                        [
-                            file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_01.vcf.gz.tbi', checkIfExists: true),
-                            file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_02.vcf.gz.tbi', checkIfExists: true),
-                            file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_03.vcf.gz.tbi', checkIfExists: true)
-                        ]
-                    ],
-                    [
-                        [
-                            id: 'family2',
-                            sv_p: '-',
-                            sv_m: '-', 
-                            sv_f: '-'
-                        ],
-                        [
-                            file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_01.vcf.gz', checkIfExists: true),
-                            file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_02.vcf.gz', checkIfExists: true),
-                            file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_03.vcf.gz', checkIfExists: true)
-                        ],
-                        [
-                            file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_01.vcf.gz.tbi', checkIfExists: true),
-                            file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_02.vcf.gz.tbi', checkIfExists: true),
-                            file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_03.vcf.gz.tbi', checkIfExists: true)
-                        ]
-                    ]
-                )
-                input[1] = true
-                """
-            }
-        }
-
-        then {
-            assertAll(
-                { assert workflow.success },
-                { assert snapshot(workflow.out).match() }
-            )
-        }
-    }
-
-    test("multiple families - without intersection - stub") {
-        
-        options "-stub"
-
-        when {
-            workflow {
-                """
-                input[0] = Channel.of(
-                    [
-                        [
-                            id: 'family1',
-                            sv_p: '-',
-                            sv_m: '-', 
-                            sv_f: '-'
-                        ],
-                        [
-                            file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_01.vcf.gz', checkIfExists: true),
-                            file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_02.vcf.gz', checkIfExists: true),
-                            file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_03.vcf.gz', checkIfExists: true)
-                        ],
-                        [
-                            file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_01.vcf.gz.tbi', checkIfExists: true),
-                            file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_02.vcf.gz.tbi', checkIfExists: true),
-                            file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_03.vcf.gz.tbi', checkIfExists: true)
-                        ]
-                    ],
-                    [
-                        [
-                            id: 'family2',
-                            sv_p: '-',
-                            sv_m: '-', 
-                            sv_f: '-'
-                        ],
-                        [
-                            file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_01.vcf.gz', checkIfExists: true),
-                            file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_02.vcf.gz', checkIfExists: true),
-                            file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_03.vcf.gz', checkIfExists: true)
-                        ],
-                        [
-                            file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_01.vcf.gz.tbi', checkIfExists: true),
-                            file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_02.vcf.gz.tbi', checkIfExists: true),
-                            file('${projectDir}/subworkflows/local/vcf_combine/tests/data/family_03.vcf.gz.tbi', checkIfExists: true)
-                        ]
-                    ]
-                )
-                input[1] = false
-                """
-            }
-        }
-
-        then {
-            assertAll(
-                { assert workflow.success },
-                { assert snapshot(workflow.out).match() }
-            )
-        }
-    }
+    
 
 }

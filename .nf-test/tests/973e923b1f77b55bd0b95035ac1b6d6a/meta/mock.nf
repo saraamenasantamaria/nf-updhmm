@@ -36,14 +36,14 @@ workflow {
                         sv_f: '-'
                     ],
                     [
-                        file('/home/u0030001/nf-updhmm_zenodo/subworkflows/local/vcf_combine/tests/data/family_01.vcf.gz', checkIfExists: true),
-                        file('/home/u0030001/nf-updhmm_zenodo/subworkflows/local/vcf_combine/tests/data/family_02.vcf.gz', checkIfExists: true),
-                        file('/home/u0030001/nf-updhmm_zenodo/subworkflows/local/vcf_combine/tests/data/family_03.vcf.gz', checkIfExists: true)
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/vcf/test.vcf.gz', checkIfExists: true),
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/vcf/test2.vcf.gz', checkIfExists: true),
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/vcf/test3.vcf.gz', checkIfExists: true)
                     ],
                     [
-                        file('/home/u0030001/nf-updhmm_zenodo/subworkflows/local/vcf_combine/tests/data/family_01.vcf.gz.tbi', checkIfExists: true),
-                        file('/home/u0030001/nf-updhmm_zenodo/subworkflows/local/vcf_combine/tests/data/family_02.vcf.gz.tbi', checkIfExists: true),
-                        file('/home/u0030001/nf-updhmm_zenodo/subworkflows/local/vcf_combine/tests/data/family_03.vcf.gz.tbi', checkIfExists: true)
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/vcf/test.vcf.gz.tbi', checkIfExists: true),
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/vcf/test2.vcf.gz.tbi', checkIfExists: true),
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/vcf/test3.vcf.gz.tbi', checkIfExists: true)
                     ]
                 ])
                 input[1] = true

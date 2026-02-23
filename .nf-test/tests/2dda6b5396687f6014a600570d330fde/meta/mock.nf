@@ -28,7 +28,6 @@ workflow {
     // workflow mapping
     def input = []
     
-
                 input[0] = Channel.of([
                     [ id: 'test_trio' ],
                     [

@@ -1,0 +1,112 @@
+{
+    "trio vcf": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test_trio",
+                            "proband_id": "hugelymodelbat",
+                            "mother_id": "slowlycivilbuck",
+                            "father_id": "earlycasualcaiman"
+                        },
+                        "test_trio.upd_events.txt:md5,df52e986f951be0435d60edb372b1c5e"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test_trio",
+                            "proband_id": "hugelymodelbat",
+                            "mother_id": "slowlycivilbuck",
+                            "father_id": "earlycasualcaiman"
+                        },
+                        "test_trio.upd_collapsed.txt:md5,49b269b507da242cc4fc606d8510fd40"
+                    ]
+                ],
+                "upd_collapsed_txt": [
+                    [
+                        {
+                            "id": "test_trio",
+                            "proband_id": "hugelymodelbat",
+                            "mother_id": "slowlycivilbuck",
+                            "father_id": "earlycasualcaiman"
+                        },
+                        "test_trio.upd_collapsed.txt:md5,49b269b507da242cc4fc606d8510fd40"
+                    ]
+                ],
+                "upd_events_txt": [
+                    [
+                        {
+                            "id": "test_trio",
+                            "proband_id": "hugelymodelbat",
+                            "mother_id": "slowlycivilbuck",
+                            "father_id": "earlycasualcaiman"
+                        },
+                        "test_trio.upd_events.txt:md5,df52e986f951be0435d60edb372b1c5e"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.04.6"
+        },
+        "timestamp": "2026-02-23T14:05:50.22499689"
+    },
+    "trio vcf - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test_trio",
+                            "proband_id": "hugelymodelbat",
+                            "mother_id": "slowlycivilbuck",
+                            "father_id": "earlycasualcaiman"
+                        },
+                        "test_trio.upd_events.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test_trio",
+                            "proband_id": "hugelymodelbat",
+                            "mother_id": "slowlycivilbuck",
+                            "father_id": "earlycasualcaiman"
+                        },
+                        "test_trio.upd_collapsed.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "upd_collapsed_txt": [
+                    [
+                        {
+                            "id": "test_trio",
+                            "proband_id": "hugelymodelbat",
+                            "mother_id": "slowlycivilbuck",
+                            "father_id": "earlycasualcaiman"
+                        },
+                        "test_trio.upd_collapsed.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "upd_events_txt": [
+                    [
+                        {
+                            "id": "test_trio",
+                            "proband_id": "hugelymodelbat",
+                            "mother_id": "slowlycivilbuck",
+                            "father_id": "earlycasualcaiman"
+                        },
+                        "test_trio.upd_events.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.04.6"
+        },
+        "timestamp": "2026-02-23T14:07:02.206238307"
+    }
+}

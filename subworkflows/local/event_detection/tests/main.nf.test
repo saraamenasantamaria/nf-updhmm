@@ -11,21 +11,44 @@ nextflow_workflow {
     tag "updhmm/vcfcheck"
     tag "updhmm/calculateevents"
     tag "updhmm/collapseevents"
+    
+    setup {
+        run("BCFTOOLS_VIEW") {
+            script "../../../../modules/nf-core/bcftools/view/main.nf"
+            process {
+                """
+                input[0] = Channel.of([
+                    [ id:'test_trio' ],
+                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/vcf/ped/justhusky_minimal.vcf.gz', checkIfExists: true),
+                    []
+                ])
+                input[1] = []  // regions
+                input[2] = []  // targets
+                input[3] = []  // samples
+                """
+            }
+        }
+    }
+    
 
     test("trio vcf") {
 
+        config './nextflow.config'
+        
         when {
             workflow {
                 """
-                input[0] = channel.of([
-                    [ id:'test_trio',
-                      proband_id: 'NA19675',
-                      mother_id: 'NA19678',
-                      father_id: 'NA19679'
-                      ],
-                    file('${projectDir}/subworkflows/local/event_detection/tests/data/family.vcf.gz', checkIfExists: true),
-                    []
-                ])
+                input[0] = BCFTOOLS_VIEW.out.vcf.map { meta, vcf ->
+                    [
+                        [ id:'test_trio',
+                          proband_id: 'hugelymodelbat',
+                          mother_id: 'slowlycivilbuck',
+                          father_id: 'earlycasualcaiman' 
+                        ],
+                        vcf,
+                        []
+                    ]
+                }
                 """
             }
         }
@@ -41,19 +64,22 @@ nextflow_workflow {
     test("trio vcf - stub") {
 
         options "-stub"
+        config './nextflow.config'
 
         when {
             workflow {
                 """
-                input[0] = channel.of([
-                    [ id:'test_trio',
-                      proband_id: 'NA19675',
-                      mother_id: 'NA19678',
-                      father_id: 'NA19679'
-                    ],
-                    file('${projectDir}/subworkflows/local/event_detection/tests/data/family.vcf.gz', checkIfExists: true),
-                    []
-                ])
+                input[0] = BCFTOOLS_VIEW.out.vcf.map { meta, vcf ->
+                    [
+                        [ id:'test_trio',
+                          proband_id: 'hugelymodelbat',
+                          mother_id: 'slowlycivilbuck',
+                          father_id: 'earlycasualcaiman' 
+                        ],
+                        vcf,
+                        []
+                    ]
+                }
                 """
             }
         }

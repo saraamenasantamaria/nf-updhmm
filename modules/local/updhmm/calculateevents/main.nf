@@ -2,7 +2,7 @@ process UPDHMM_CALCULATEEVENTS {
     tag "$meta.id"
     label 'process_high'
     
-    container "/home/u0030001/nf-updhmm_zenodo/updhmm_v1.5.3.sif"
+    container "/home/u0030001/nf-updhmm_zenodo/UPDhmm_1.7.1.sif"
 
     input:
     tuple val(meta), path(processed_vcf_rds)
@@ -11,9 +11,7 @@ process UPDHMM_CALCULATEEVENTS {
     tuple val(meta), path("*.upd_events.txt")   , emit: upd_events_txt
     tuple val(meta), path("*.upd_events.rds")   , emit: upd_events_rds
     tuple val(meta), path("*.R_sessionInfo.log"), emit: session_info
-    tuple val("${task.process}"), val("r-base"), eval("Rscript -e \"cat(paste(R.version[['major']], R.version[['minor']], sep='.'))\""), emit: versions_rbase, topic: versions
-    tuple val("${task.process}"), val("bioconductor-updhmm"), eval("Rscript -e \"library(UPDhmm); cat(as.character(packageVersion('UPDhmm')))\""), emit: versions_updhmm, topic: versions
-    tuple val("${task.process}"), val("bioconductor-biocparallel"), eval("Rscript -e \"library(BiocParallel); cat(as.character(packageVersion('BiocParallel')))\""), emit: versions_biocparallel, topic: versions
+    path "versions.yml", emit: versions, topic: versions
 
     when:
     task.ext.when == null || task.ext.when
